@@ -1,0 +1,2 @@
+../Core/Src/BoardManagerWrapper.cpp:10:7:void* bm_create()	1
+../Core/Src/BoardManagerWrapper.cpp:14:6:void bm_execute(void*)	1

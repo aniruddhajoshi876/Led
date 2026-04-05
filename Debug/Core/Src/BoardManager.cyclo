@@ -1,0 +1,2 @@
+../Core/Src/BoardManager.cpp:10:1:BoardManager::BoardManager()	1
+../Core/Src/BoardManager.cpp:14:6:void BoardManager::execute()	1
