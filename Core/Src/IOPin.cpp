@@ -8,7 +8,7 @@
 #include "IOPin.hpp"
 
 IOPin::IOPin(GPIO_TypeDef *port, uint16_t pin)
-	:port(GPIOB), pin(GPIO_PIN_14)
+	:port(port), pin(pin)
 {
 	}
 

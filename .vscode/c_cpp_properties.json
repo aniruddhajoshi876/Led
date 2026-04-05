@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "name": "STM32",
+      "includePath": [
+        "Core/Inc",
+        "Drivers/CMSIS/Device/ST/STM32G4xx/Include",
+        "Drivers/CMSIS/Include",
+        "Drivers/STM32G4xx_HAL_Driver/Inc"
+      ],
+      "defines": [
+        "STM32G491xx",
+        "USE_HAL_DRIVER"
+      ],
+      "compilerPath": "c:\\Users\\aniru.000\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\arm-none-eabi-gcc\\15.2.1-1.1.1\\.content\\bin\\arm-none-eabi-g++.EXE"
+    }
+  ],
+  "version": 4
+}

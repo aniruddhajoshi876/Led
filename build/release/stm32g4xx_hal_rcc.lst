@@ -1,0 +1,1548 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32g4xx_hal_rcc.c"
+  16              		.text
+  17              		.section	.text.RCC_GetSysClockFreqFromPLLSource,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	RCC_GetSysClockFreqFromPLLSource:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 124B     		ldr	r3, .L5
+  28 0002 DA68     		ldr	r2, [r3, #12]
+  29 0004 02F00302 		and	r2, r2, #3
+  30 0008 DB68     		ldr	r3, [r3, #12]
+  31 000a C3F30313 		ubfx	r3, r3, #4, #4
+  32 000e 0133     		adds	r3, r3, #1
+  33 0010 032A     		cmp	r2, #3
+  34 0012 11D0     		beq	.L4
+  35 0014 0E48     		ldr	r0, .L5+4
+  36 0016 B0FBF3F0 		udiv	r0, r0, r3
+  37 001a 0C4B     		ldr	r3, .L5
+  38 001c DB68     		ldr	r3, [r3, #12]
+  39 001e C3F30623 		ubfx	r3, r3, #8, #7
+  40 0022 03FB00F0 		mul	r0, r3, r0
+  41              	.L3:
+  42 0026 094B     		ldr	r3, .L5
+  43 0028 DB68     		ldr	r3, [r3, #12]
+  44 002a C3F34163 		ubfx	r3, r3, #25, #2
+  45 002e 0133     		adds	r3, r3, #1
+  46 0030 5B00     		lsls	r3, r3, #1
+  47 0032 B0FBF3F0 		udiv	r0, r0, r3
+  48 0036 7047     		bx	lr
+  49              	.L4:
+  50 0038 0648     		ldr	r0, .L5+8
+  51 003a B0FBF3F0 		udiv	r0, r0, r3
+  52 003e 034B     		ldr	r3, .L5
+  53 0040 DB68     		ldr	r3, [r3, #12]
+  54 0042 C3F30623 		ubfx	r3, r3, #8, #7
+  55 0046 03FB00F0 		mul	r0, r3, r0
+  56 004a ECE7     		b	.L3
+  57              	.L6:
+  58              		.align	2
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 2
+
+
+  59              	.L5:
+  60 004c 00100240 		.word	1073876992
+  61 0050 0024F400 		.word	16000000
+  62 0054 00127A00 		.word	8000000
+  64              		.section	.text.HAL_RCC_DeInit,"ax",%progbits
+  65              		.align	1
+  66              		.global	HAL_RCC_DeInit
+  67              		.syntax unified
+  68              		.thumb
+  69              		.thumb_func
+  71              	HAL_RCC_DeInit:
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74 0000 38B5     		push	{r3, r4, r5, lr}
+  75 0002 FFF7FEFF 		bl	HAL_GetTick
+  76 0006 0446     		mov	r4, r0
+  77 0008 2C4A     		ldr	r2, .L24
+  78 000a 1368     		ldr	r3, [r2]
+  79 000c 43F48073 		orr	r3, r3, #256
+  80 0010 1360     		str	r3, [r2]
+  81              	.L8:
+  82 0012 2A4B     		ldr	r3, .L24
+  83 0014 1B68     		ldr	r3, [r3]
+  84 0016 13F4806F 		tst	r3, #1024
+  85 001a 07D1     		bne	.L20
+  86 001c FFF7FEFF 		bl	HAL_GetTick
+  87 0020 001B     		subs	r0, r0, r4
+  88 0022 0228     		cmp	r0, #2
+  89 0024 F5D9     		bls	.L8
+  90 0026 0324     		movs	r4, #3
+  91              	.L9:
+  92 0028 2046     		mov	r0, r4
+  93 002a 38BD     		pop	{r3, r4, r5, pc}
+  94              	.L20:
+  95 002c 234D     		ldr	r5, .L24
+  96 002e 6B68     		ldr	r3, [r5, #4]
+  97 0030 43F08043 		orr	r3, r3, #1073741824
+  98 0034 6B60     		str	r3, [r5, #4]
+  99 0036 FFF7FEFF 		bl	HAL_GetTick
+ 100 003a 0446     		mov	r4, r0
+ 101 003c 0123     		movs	r3, #1
+ 102 003e AB60     		str	r3, [r5, #8]
+ 103              	.L11:
+ 104 0040 1E4B     		ldr	r3, .L24
+ 105 0042 9B68     		ldr	r3, [r3, #8]
+ 106 0044 03F00C03 		and	r3, r3, #12
+ 107 0048 042B     		cmp	r3, #4
+ 108 004a 08D0     		beq	.L21
+ 109 004c FFF7FEFF 		bl	HAL_GetTick
+ 110 0050 001B     		subs	r0, r0, r4
+ 111 0052 41F28833 		movw	r3, #5000
+ 112 0056 9842     		cmp	r0, r3
+ 113 0058 F2D9     		bls	.L11
+ 114 005a 0324     		movs	r4, #3
+ 115 005c E4E7     		b	.L9
+ 116              	.L21:
+ 117 005e 184B     		ldr	r3, .L24+4
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 3
+
+
+ 118 0060 184A     		ldr	r2, .L24+8
+ 119 0062 1A60     		str	r2, [r3]
+ 120 0064 184B     		ldr	r3, .L24+12
+ 121 0066 1868     		ldr	r0, [r3]
+ 122 0068 FFF7FEFF 		bl	HAL_InitTick
+ 123 006c 0446     		mov	r4, r0
+ 124 006e 08B1     		cbz	r0, .L22
+ 125 0070 0124     		movs	r4, #1
+ 126 0072 D9E7     		b	.L9
+ 127              	.L22:
+ 128 0074 114B     		ldr	r3, .L24
+ 129 0076 4FF48072 		mov	r2, #256
+ 130 007a 1A60     		str	r2, [r3]
+ 131 007c 1A60     		str	r2, [r3]
+ 132 007e FFF7FEFF 		bl	HAL_GetTick
+ 133 0082 0546     		mov	r5, r0
+ 134              	.L13:
+ 135 0084 0D4B     		ldr	r3, .L24
+ 136 0086 1B68     		ldr	r3, [r3]
+ 137 0088 13F0007F 		tst	r3, #33554432
+ 138 008c 06D0     		beq	.L23
+ 139 008e FFF7FEFF 		bl	HAL_GetTick
+ 140 0092 401B     		subs	r0, r0, r5
+ 141 0094 0228     		cmp	r0, #2
+ 142 0096 F5D9     		bls	.L13
+ 143 0098 0324     		movs	r4, #3
+ 144 009a C5E7     		b	.L9
+ 145              	.L23:
+ 146 009c 074B     		ldr	r3, .L24
+ 147 009e 4FF48052 		mov	r2, #4096
+ 148 00a2 DA60     		str	r2, [r3, #12]
+ 149 00a4 0022     		movs	r2, #0
+ 150 00a6 9A61     		str	r2, [r3, #24]
+ 151 00a8 4FF0FF32 		mov	r2, #-1
+ 152 00ac 1A62     		str	r2, [r3, #32]
+ 153 00ae D3F89420 		ldr	r2, [r3, #148]
+ 154 00b2 42F40002 		orr	r2, r2, #8388608
+ 155 00b6 C3F89420 		str	r2, [r3, #148]
+ 156 00ba B5E7     		b	.L9
+ 157              	.L25:
+ 158              		.align	2
+ 159              	.L24:
+ 160 00bc 00100240 		.word	1073876992
+ 161 00c0 00000000 		.word	SystemCoreClock
+ 162 00c4 0024F400 		.word	16000000
+ 163 00c8 00000000 		.word	uwTickPrio
+ 165              		.section	.text.HAL_RCC_OscConfig,"ax",%progbits
+ 166              		.align	1
+ 167              		.global	HAL_RCC_OscConfig
+ 168              		.syntax unified
+ 169              		.thumb
+ 170              		.thumb_func
+ 172              	HAL_RCC_OscConfig:
+ 173              		@ args = 0, pretend = 0, frame = 8
+ 174              		@ frame_needed = 0, uses_anonymous_args = 0
+ 175 0000 0028     		cmp	r0, #0
+ 176 0002 00F05182 		beq	.L84
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 4
+
+
+ 177 0006 70B5     		push	{r4, r5, r6, lr}
+ 178 0008 82B0     		sub	sp, sp, #8
+ 179 000a 0446     		mov	r4, r0
+ 180 000c 0368     		ldr	r3, [r0]
+ 181 000e 13F0010F 		tst	r3, #1
+ 182 0012 37D0     		beq	.L28
+ 183 0014 A54A     		ldr	r2, .L130
+ 184 0016 9368     		ldr	r3, [r2, #8]
+ 185 0018 03F00C03 		and	r3, r3, #12
+ 186 001c D268     		ldr	r2, [r2, #12]
+ 187 001e 02F00302 		and	r2, r2, #3
+ 188 0022 0C2B     		cmp	r3, #12
+ 189 0024 23D0     		beq	.L115
+ 190              	.L29:
+ 191 0026 082B     		cmp	r3, #8
+ 192 0028 23D0     		beq	.L30
+ 193 002a 6368     		ldr	r3, [r4, #4]
+ 194 002c B3F5803F 		cmp	r3, #65536
+ 195 0030 4ED0     		beq	.L116
+ 196 0032 B3F5A02F 		cmp	r3, #327680
+ 197 0036 51D0     		beq	.L117
+ 198 0038 9C4B     		ldr	r3, .L130
+ 199 003a 1A68     		ldr	r2, [r3]
+ 200 003c 22F48032 		bic	r2, r2, #65536
+ 201 0040 1A60     		str	r2, [r3]
+ 202 0042 1A68     		ldr	r2, [r3]
+ 203 0044 22F48022 		bic	r2, r2, #262144
+ 204 0048 1A60     		str	r2, [r3]
+ 205              	.L33:
+ 206 004a 6368     		ldr	r3, [r4, #4]
+ 207 004c 002B     		cmp	r3, #0
+ 208 004e 52D0     		beq	.L35
+ 209 0050 FFF7FEFF 		bl	HAL_GetTick
+ 210 0054 0546     		mov	r5, r0
+ 211              	.L36:
+ 212 0056 954B     		ldr	r3, .L130
+ 213 0058 1B68     		ldr	r3, [r3]
+ 214 005a 13F4003F 		tst	r3, #131072
+ 215 005e 11D1     		bne	.L28
+ 216 0060 FFF7FEFF 		bl	HAL_GetTick
+ 217 0064 401B     		subs	r0, r0, r5
+ 218 0066 6428     		cmp	r0, #100
+ 219 0068 F5D9     		bls	.L36
+ 220 006a 0320     		movs	r0, #3
+ 221 006c 25E2     		b	.L27
+ 222              	.L115:
+ 223 006e 032A     		cmp	r2, #3
+ 224 0070 D9D1     		bne	.L29
+ 225              	.L30:
+ 226 0072 8E4B     		ldr	r3, .L130
+ 227 0074 1B68     		ldr	r3, [r3]
+ 228 0076 13F4003F 		tst	r3, #131072
+ 229 007a 03D0     		beq	.L28
+ 230 007c 6368     		ldr	r3, [r4, #4]
+ 231 007e 002B     		cmp	r3, #0
+ 232 0080 00F01482 		beq	.L118
+ 233              	.L28:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 5
+
+
+ 234 0084 2368     		ldr	r3, [r4]
+ 235 0086 13F0020F 		tst	r3, #2
+ 236 008a 5DD0     		beq	.L40
+ 237 008c 874A     		ldr	r2, .L130
+ 238 008e 9368     		ldr	r3, [r2, #8]
+ 239 0090 03F00C03 		and	r3, r3, #12
+ 240 0094 D268     		ldr	r2, [r2, #12]
+ 241 0096 02F00302 		and	r2, r2, #3
+ 242 009a 0C2B     		cmp	r3, #12
+ 243 009c 3AD0     		beq	.L119
+ 244              	.L41:
+ 245 009e 042B     		cmp	r3, #4
+ 246 00a0 3AD0     		beq	.L42
+ 247 00a2 E368     		ldr	r3, [r4, #12]
+ 248 00a4 002B     		cmp	r3, #0
+ 249 00a6 75D0     		beq	.L45
+ 250 00a8 804A     		ldr	r2, .L130
+ 251 00aa 1368     		ldr	r3, [r2]
+ 252 00ac 43F48073 		orr	r3, r3, #256
+ 253 00b0 1360     		str	r3, [r2]
+ 254 00b2 FFF7FEFF 		bl	HAL_GetTick
+ 255 00b6 0546     		mov	r5, r0
+ 256              	.L46:
+ 257 00b8 7C4B     		ldr	r3, .L130
+ 258 00ba 1B68     		ldr	r3, [r3]
+ 259 00bc 13F4806F 		tst	r3, #1024
+ 260 00c0 5FD1     		bne	.L120
+ 261 00c2 FFF7FEFF 		bl	HAL_GetTick
+ 262 00c6 401B     		subs	r0, r0, r5
+ 263 00c8 0228     		cmp	r0, #2
+ 264 00ca F5D9     		bls	.L46
+ 265 00cc 0320     		movs	r0, #3
+ 266 00ce F4E1     		b	.L27
+ 267              	.L116:
+ 268 00d0 764A     		ldr	r2, .L130
+ 269 00d2 1368     		ldr	r3, [r2]
+ 270 00d4 43F48033 		orr	r3, r3, #65536
+ 271 00d8 1360     		str	r3, [r2]
+ 272 00da B6E7     		b	.L33
+ 273              	.L117:
+ 274 00dc 03F18043 		add	r3, r3, #1073741824
+ 275 00e0 A3F53C33 		sub	r3, r3, #192512
+ 276 00e4 1A68     		ldr	r2, [r3]
+ 277 00e6 42F48022 		orr	r2, r2, #262144
+ 278 00ea 1A60     		str	r2, [r3]
+ 279 00ec 1A68     		ldr	r2, [r3]
+ 280 00ee 42F48032 		orr	r2, r2, #65536
+ 281 00f2 1A60     		str	r2, [r3]
+ 282 00f4 A9E7     		b	.L33
+ 283              	.L35:
+ 284 00f6 FFF7FEFF 		bl	HAL_GetTick
+ 285 00fa 0546     		mov	r5, r0
+ 286              	.L38:
+ 287 00fc 6B4B     		ldr	r3, .L130
+ 288 00fe 1B68     		ldr	r3, [r3]
+ 289 0100 13F4003F 		tst	r3, #131072
+ 290 0104 BED0     		beq	.L28
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 6
+
+
+ 291 0106 FFF7FEFF 		bl	HAL_GetTick
+ 292 010a 401B     		subs	r0, r0, r5
+ 293 010c 6428     		cmp	r0, #100
+ 294 010e F5D9     		bls	.L38
+ 295 0110 0320     		movs	r0, #3
+ 296 0112 D2E1     		b	.L27
+ 297              	.L119:
+ 298 0114 022A     		cmp	r2, #2
+ 299 0116 C2D1     		bne	.L41
+ 300              	.L42:
+ 301 0118 644B     		ldr	r3, .L130
+ 302 011a 1B68     		ldr	r3, [r3]
+ 303 011c 13F4806F 		tst	r3, #1024
+ 304 0120 03D0     		beq	.L44
+ 305 0122 E368     		ldr	r3, [r4, #12]
+ 306 0124 002B     		cmp	r3, #0
+ 307 0126 00F0C381 		beq	.L88
+ 308              	.L44:
+ 309 012a 604A     		ldr	r2, .L130
+ 310 012c 5368     		ldr	r3, [r2, #4]
+ 311 012e 23F0FE43 		bic	r3, r3, #2130706432
+ 312 0132 2169     		ldr	r1, [r4, #16]
+ 313 0134 43EA0163 		orr	r3, r3, r1, lsl #24
+ 314 0138 5360     		str	r3, [r2, #4]
+ 315 013a 5D4B     		ldr	r3, .L130+4
+ 316 013c 1868     		ldr	r0, [r3]
+ 317 013e FFF7FEFF 		bl	HAL_InitTick
+ 318 0142 0028     		cmp	r0, #0
+ 319 0144 40F0B681 		bne	.L121
+ 320              	.L40:
+ 321 0148 2368     		ldr	r3, [r4]
+ 322 014a 13F0080F 		tst	r3, #8
+ 323 014e 4CD0     		beq	.L50
+ 324 0150 6369     		ldr	r3, [r4, #20]
+ 325 0152 9BB3     		cbz	r3, .L51
+ 326 0154 554A     		ldr	r2, .L130
+ 327 0156 D2F89430 		ldr	r3, [r2, #148]
+ 328 015a 43F00103 		orr	r3, r3, #1
+ 329 015e C2F89430 		str	r3, [r2, #148]
+ 330 0162 FFF7FEFF 		bl	HAL_GetTick
+ 331 0166 0546     		mov	r5, r0
+ 332              	.L52:
+ 333 0168 504B     		ldr	r3, .L130
+ 334 016a D3F89430 		ldr	r3, [r3, #148]
+ 335 016e 13F0020F 		tst	r3, #2
+ 336 0172 3AD1     		bne	.L50
+ 337 0174 FFF7FEFF 		bl	HAL_GetTick
+ 338 0178 401B     		subs	r0, r0, r5
+ 339 017a 0228     		cmp	r0, #2
+ 340 017c F4D9     		bls	.L52
+ 341 017e 0320     		movs	r0, #3
+ 342 0180 9BE1     		b	.L27
+ 343              	.L120:
+ 344 0182 4A4A     		ldr	r2, .L130
+ 345 0184 5368     		ldr	r3, [r2, #4]
+ 346 0186 23F0FE43 		bic	r3, r3, #2130706432
+ 347 018a 2169     		ldr	r1, [r4, #16]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 7
+
+
+ 348 018c 43EA0163 		orr	r3, r3, r1, lsl #24
+ 349 0190 5360     		str	r3, [r2, #4]
+ 350 0192 D9E7     		b	.L40
+ 351              	.L45:
+ 352 0194 454A     		ldr	r2, .L130
+ 353 0196 1368     		ldr	r3, [r2]
+ 354 0198 23F48073 		bic	r3, r3, #256
+ 355 019c 1360     		str	r3, [r2]
+ 356 019e FFF7FEFF 		bl	HAL_GetTick
+ 357 01a2 0546     		mov	r5, r0
+ 358              	.L48:
+ 359 01a4 414B     		ldr	r3, .L130
+ 360 01a6 1B68     		ldr	r3, [r3]
+ 361 01a8 13F4806F 		tst	r3, #1024
+ 362 01ac CCD0     		beq	.L40
+ 363 01ae FFF7FEFF 		bl	HAL_GetTick
+ 364 01b2 401B     		subs	r0, r0, r5
+ 365 01b4 0228     		cmp	r0, #2
+ 366 01b6 F5D9     		bls	.L48
+ 367 01b8 0320     		movs	r0, #3
+ 368 01ba 7EE1     		b	.L27
+ 369              	.L51:
+ 370 01bc 3B4A     		ldr	r2, .L130
+ 371 01be D2F89430 		ldr	r3, [r2, #148]
+ 372 01c2 23F00103 		bic	r3, r3, #1
+ 373 01c6 C2F89430 		str	r3, [r2, #148]
+ 374 01ca FFF7FEFF 		bl	HAL_GetTick
+ 375 01ce 0546     		mov	r5, r0
+ 376              	.L54:
+ 377 01d0 364B     		ldr	r3, .L130
+ 378 01d2 D3F89430 		ldr	r3, [r3, #148]
+ 379 01d6 13F0020F 		tst	r3, #2
+ 380 01da 06D0     		beq	.L50
+ 381 01dc FFF7FEFF 		bl	HAL_GetTick
+ 382 01e0 401B     		subs	r0, r0, r5
+ 383 01e2 0228     		cmp	r0, #2
+ 384 01e4 F4D9     		bls	.L54
+ 385 01e6 0320     		movs	r0, #3
+ 386 01e8 67E1     		b	.L27
+ 387              	.L50:
+ 388 01ea 2368     		ldr	r3, [r4]
+ 389 01ec 13F0040F 		tst	r3, #4
+ 390 01f0 00F08380 		beq	.L56
+ 391 01f4 2D4B     		ldr	r3, .L130
+ 392 01f6 9B6D     		ldr	r3, [r3, #88]
+ 393 01f8 13F0805F 		tst	r3, #268435456
+ 394 01fc 37D1     		bne	.L94
+ 395 01fe 2B4B     		ldr	r3, .L130
+ 396 0200 9A6D     		ldr	r2, [r3, #88]
+ 397 0202 42F08052 		orr	r2, r2, #268435456
+ 398 0206 9A65     		str	r2, [r3, #88]
+ 399 0208 9B6D     		ldr	r3, [r3, #88]
+ 400 020a 03F08053 		and	r3, r3, #268435456
+ 401 020e 0193     		str	r3, [sp, #4]
+ 402 0210 019B     		ldr	r3, [sp, #4]
+ 403 0212 0123     		movs	r3, #1
+ 404 0214 1E46     		mov	r6, r3
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 8
+
+
+ 405              	.L57:
+ 406 0216 274B     		ldr	r3, .L130+8
+ 407 0218 1B68     		ldr	r3, [r3]
+ 408 021a 13F4807F 		tst	r3, #256
+ 409 021e 29D0     		beq	.L122
+ 410              	.L58:
+ 411 0220 A368     		ldr	r3, [r4, #8]
+ 412 0222 012B     		cmp	r3, #1
+ 413 0224 3AD0     		beq	.L123
+ 414 0226 052B     		cmp	r3, #5
+ 415 0228 46D0     		beq	.L124
+ 416 022a 204B     		ldr	r3, .L130
+ 417 022c D3F89020 		ldr	r2, [r3, #144]
+ 418 0230 22F00102 		bic	r2, r2, #1
+ 419 0234 C3F89020 		str	r2, [r3, #144]
+ 420 0238 D3F89020 		ldr	r2, [r3, #144]
+ 421 023c 22F00402 		bic	r2, r2, #4
+ 422 0240 C3F89020 		str	r2, [r3, #144]
+ 423              	.L62:
+ 424 0244 A368     		ldr	r3, [r4, #8]
+ 425 0246 002B     		cmp	r3, #0
+ 426 0248 44D0     		beq	.L64
+ 427 024a FFF7FEFF 		bl	HAL_GetTick
+ 428 024e 0546     		mov	r5, r0
+ 429              	.L65:
+ 430 0250 164B     		ldr	r3, .L130
+ 431 0252 D3F89030 		ldr	r3, [r3, #144]
+ 432 0256 13F0020F 		tst	r3, #2
+ 433 025a 4DD1     		bne	.L67
+ 434 025c FFF7FEFF 		bl	HAL_GetTick
+ 435 0260 401B     		subs	r0, r0, r5
+ 436 0262 41F28833 		movw	r3, #5000
+ 437 0266 9842     		cmp	r0, r3
+ 438 0268 F2D9     		bls	.L65
+ 439 026a 0320     		movs	r0, #3
+ 440 026c 25E1     		b	.L27
+ 441              	.L94:
+ 442 026e 0023     		movs	r3, #0
+ 443 0270 1E46     		mov	r6, r3
+ 444 0272 D0E7     		b	.L57
+ 445              	.L122:
+ 446 0274 0F4A     		ldr	r2, .L130+8
+ 447 0276 1368     		ldr	r3, [r2]
+ 448 0278 43F48073 		orr	r3, r3, #256
+ 449 027c 1360     		str	r3, [r2]
+ 450 027e FFF7FEFF 		bl	HAL_GetTick
+ 451 0282 0546     		mov	r5, r0
+ 452              	.L59:
+ 453 0284 0B4B     		ldr	r3, .L130+8
+ 454 0286 1B68     		ldr	r3, [r3]
+ 455 0288 13F4807F 		tst	r3, #256
+ 456 028c C8D1     		bne	.L58
+ 457 028e FFF7FEFF 		bl	HAL_GetTick
+ 458 0292 401B     		subs	r0, r0, r5
+ 459 0294 0228     		cmp	r0, #2
+ 460 0296 F5D9     		bls	.L59
+ 461 0298 0320     		movs	r0, #3
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 9
+
+
+ 462 029a 0EE1     		b	.L27
+ 463              	.L123:
+ 464 029c 034A     		ldr	r2, .L130
+ 465 029e D2F89030 		ldr	r3, [r2, #144]
+ 466 02a2 43F00103 		orr	r3, r3, #1
+ 467 02a6 C2F89030 		str	r3, [r2, #144]
+ 468 02aa CBE7     		b	.L62
+ 469              	.L131:
+ 470              		.align	2
+ 471              	.L130:
+ 472 02ac 00100240 		.word	1073876992
+ 473 02b0 00000000 		.word	uwTickPrio
+ 474 02b4 00700040 		.word	1073770496
+ 475              	.L124:
+ 476 02b8 884B     		ldr	r3, .L132
+ 477 02ba D3F89020 		ldr	r2, [r3, #144]
+ 478 02be 42F00402 		orr	r2, r2, #4
+ 479 02c2 C3F89020 		str	r2, [r3, #144]
+ 480 02c6 D3F89020 		ldr	r2, [r3, #144]
+ 481 02ca 42F00102 		orr	r2, r2, #1
+ 482 02ce C3F89020 		str	r2, [r3, #144]
+ 483 02d2 B7E7     		b	.L62
+ 484              	.L64:
+ 485 02d4 FFF7FEFF 		bl	HAL_GetTick
+ 486 02d8 0546     		mov	r5, r0
+ 487              	.L68:
+ 488 02da 804B     		ldr	r3, .L132
+ 489 02dc D3F89030 		ldr	r3, [r3, #144]
+ 490 02e0 13F0020F 		tst	r3, #2
+ 491 02e4 08D0     		beq	.L67
+ 492 02e6 FFF7FEFF 		bl	HAL_GetTick
+ 493 02ea 401B     		subs	r0, r0, r5
+ 494 02ec 41F28833 		movw	r3, #5000
+ 495 02f0 9842     		cmp	r0, r3
+ 496 02f2 F2D9     		bls	.L68
+ 497 02f4 0320     		movs	r0, #3
+ 498 02f6 E0E0     		b	.L27
+ 499              	.L67:
+ 500 02f8 E6B9     		cbnz	r6, .L125
+ 501              	.L56:
+ 502 02fa 2368     		ldr	r3, [r4]
+ 503 02fc 13F0200F 		tst	r3, #32
+ 504 0300 35D0     		beq	.L70
+ 505 0302 A369     		ldr	r3, [r4, #24]
+ 506 0304 E3B1     		cbz	r3, .L71
+ 507 0306 754A     		ldr	r2, .L132
+ 508 0308 D2F89830 		ldr	r3, [r2, #152]
+ 509 030c 43F00103 		orr	r3, r3, #1
+ 510 0310 C2F89830 		str	r3, [r2, #152]
+ 511 0314 FFF7FEFF 		bl	HAL_GetTick
+ 512 0318 0546     		mov	r5, r0
+ 513              	.L72:
+ 514 031a 704B     		ldr	r3, .L132
+ 515 031c D3F89830 		ldr	r3, [r3, #152]
+ 516 0320 13F0020F 		tst	r3, #2
+ 517 0324 23D1     		bne	.L70
+ 518 0326 FFF7FEFF 		bl	HAL_GetTick
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 10
+
+
+ 519 032a 401B     		subs	r0, r0, r5
+ 520 032c 0228     		cmp	r0, #2
+ 521 032e F4D9     		bls	.L72
+ 522 0330 0320     		movs	r0, #3
+ 523 0332 C2E0     		b	.L27
+ 524              	.L125:
+ 525 0334 694A     		ldr	r2, .L132
+ 526 0336 936D     		ldr	r3, [r2, #88]
+ 527 0338 23F08053 		bic	r3, r3, #268435456
+ 528 033c 9365     		str	r3, [r2, #88]
+ 529 033e DCE7     		b	.L56
+ 530              	.L71:
+ 531 0340 664A     		ldr	r2, .L132
+ 532 0342 D2F89830 		ldr	r3, [r2, #152]
+ 533 0346 23F00103 		bic	r3, r3, #1
+ 534 034a C2F89830 		str	r3, [r2, #152]
+ 535 034e FFF7FEFF 		bl	HAL_GetTick
+ 536 0352 0546     		mov	r5, r0
+ 537              	.L74:
+ 538 0354 614B     		ldr	r3, .L132
+ 539 0356 D3F89830 		ldr	r3, [r3, #152]
+ 540 035a 13F0020F 		tst	r3, #2
+ 541 035e 06D0     		beq	.L70
+ 542 0360 FFF7FEFF 		bl	HAL_GetTick
+ 543 0364 401B     		subs	r0, r0, r5
+ 544 0366 0228     		cmp	r0, #2
+ 545 0368 F4D9     		bls	.L74
+ 546 036a 0320     		movs	r0, #3
+ 547 036c A5E0     		b	.L27
+ 548              	.L70:
+ 549 036e E369     		ldr	r3, [r4, #28]
+ 550 0370 002B     		cmp	r3, #0
+ 551 0372 00F0A180 		beq	.L100
+ 552 0376 594A     		ldr	r2, .L132
+ 553 0378 9268     		ldr	r2, [r2, #8]
+ 554 037a 02F00C02 		and	r2, r2, #12
+ 555 037e 0C2A     		cmp	r2, #12
+ 556 0380 64D0     		beq	.L76
+ 557 0382 022B     		cmp	r3, #2
+ 558 0384 13D0     		beq	.L126
+ 559 0386 554A     		ldr	r2, .L132
+ 560 0388 1368     		ldr	r3, [r2]
+ 561 038a 23F08073 		bic	r3, r3, #16777216
+ 562 038e 1360     		str	r3, [r2]
+ 563 0390 FFF7FEFF 		bl	HAL_GetTick
+ 564 0394 0446     		mov	r4, r0
+ 565              	.L82:
+ 566 0396 514B     		ldr	r3, .L132
+ 567 0398 1B68     		ldr	r3, [r3]
+ 568 039a 13F0007F 		tst	r3, #33554432
+ 569 039e 4ED0     		beq	.L127
+ 570 03a0 FFF7FEFF 		bl	HAL_GetTick
+ 571 03a4 001B     		subs	r0, r0, r4
+ 572 03a6 0228     		cmp	r0, #2
+ 573 03a8 F5D9     		bls	.L82
+ 574 03aa 0320     		movs	r0, #3
+ 575 03ac 85E0     		b	.L27
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 11
+
+
+ 576              	.L126:
+ 577 03ae 4B4A     		ldr	r2, .L132
+ 578 03b0 1368     		ldr	r3, [r2]
+ 579 03b2 23F08073 		bic	r3, r3, #16777216
+ 580 03b6 1360     		str	r3, [r2]
+ 581 03b8 FFF7FEFF 		bl	HAL_GetTick
+ 582 03bc 0546     		mov	r5, r0
+ 583              	.L78:
+ 584 03be 474B     		ldr	r3, .L132
+ 585 03c0 1B68     		ldr	r3, [r3]
+ 586 03c2 13F0007F 		tst	r3, #33554432
+ 587 03c6 06D0     		beq	.L128
+ 588 03c8 FFF7FEFF 		bl	HAL_GetTick
+ 589 03cc 401B     		subs	r0, r0, r5
+ 590 03ce 0228     		cmp	r0, #2
+ 591 03d0 F5D9     		bls	.L78
+ 592 03d2 0320     		movs	r0, #3
+ 593 03d4 71E0     		b	.L27
+ 594              	.L128:
+ 595 03d6 414A     		ldr	r2, .L132
+ 596 03d8 D368     		ldr	r3, [r2, #12]
+ 597 03da 4149     		ldr	r1, .L132+4
+ 598 03dc 1940     		ands	r1, r1, r3
+ 599 03de 236A     		ldr	r3, [r4, #32]
+ 600 03e0 606A     		ldr	r0, [r4, #36]
+ 601 03e2 0138     		subs	r0, r0, #1
+ 602 03e4 43EA0013 		orr	r3, r3, r0, lsl #4
+ 603 03e8 A06A     		ldr	r0, [r4, #40]
+ 604 03ea 43EA0023 		orr	r3, r3, r0, lsl #8
+ 605 03ee 206B     		ldr	r0, [r4, #48]
+ 606 03f0 4008     		lsrs	r0, r0, #1
+ 607 03f2 0138     		subs	r0, r0, #1
+ 608 03f4 43EA4053 		orr	r3, r3, r0, lsl #21
+ 609 03f8 606B     		ldr	r0, [r4, #52]
+ 610 03fa 4008     		lsrs	r0, r0, #1
+ 611 03fc 0138     		subs	r0, r0, #1
+ 612 03fe 43EA4063 		orr	r3, r3, r0, lsl #25
+ 613 0402 E06A     		ldr	r0, [r4, #44]
+ 614 0404 43EAC063 		orr	r3, r3, r0, lsl #27
+ 615 0408 1943     		orrs	r1, r1, r3
+ 616 040a D160     		str	r1, [r2, #12]
+ 617 040c 1368     		ldr	r3, [r2]
+ 618 040e 43F08073 		orr	r3, r3, #16777216
+ 619 0412 1360     		str	r3, [r2]
+ 620 0414 D368     		ldr	r3, [r2, #12]
+ 621 0416 43F08073 		orr	r3, r3, #16777216
+ 622 041a D360     		str	r3, [r2, #12]
+ 623 041c FFF7FEFF 		bl	HAL_GetTick
+ 624 0420 0446     		mov	r4, r0
+ 625              	.L80:
+ 626 0422 2E4B     		ldr	r3, .L132
+ 627 0424 1B68     		ldr	r3, [r3]
+ 628 0426 13F0007F 		tst	r3, #33554432
+ 629 042a 06D1     		bne	.L129
+ 630 042c FFF7FEFF 		bl	HAL_GetTick
+ 631 0430 001B     		subs	r0, r0, r4
+ 632 0432 0228     		cmp	r0, #2
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 12
+
+
+ 633 0434 F5D9     		bls	.L80
+ 634 0436 0320     		movs	r0, #3
+ 635 0438 3FE0     		b	.L27
+ 636              	.L129:
+ 637 043a 0020     		movs	r0, #0
+ 638 043c 3DE0     		b	.L27
+ 639              	.L127:
+ 640 043e 274A     		ldr	r2, .L132
+ 641 0440 D168     		ldr	r1, [r2, #12]
+ 642 0442 284B     		ldr	r3, .L132+8
+ 643 0444 0B40     		ands	r3, r3, r1
+ 644 0446 D360     		str	r3, [r2, #12]
+ 645 0448 0020     		movs	r0, #0
+ 646 044a 36E0     		b	.L27
+ 647              	.L76:
+ 648 044c 012B     		cmp	r3, #1
+ 649 044e 36D0     		beq	.L104
+ 650 0450 224B     		ldr	r3, .L132
+ 651 0452 DB68     		ldr	r3, [r3, #12]
+ 652 0454 03F00301 		and	r1, r3, #3
+ 653 0458 226A     		ldr	r2, [r4, #32]
+ 654 045a 9142     		cmp	r1, r2
+ 655 045c 31D1     		bne	.L105
+ 656 045e 03F0F002 		and	r2, r3, #240
+ 657 0462 616A     		ldr	r1, [r4, #36]
+ 658 0464 0139     		subs	r1, r1, #1
+ 659 0466 B2EB011F 		cmp	r2, r1, lsl #4
+ 660 046a 2CD1     		bne	.L106
+ 661 046c 03F4FE42 		and	r2, r3, #32512
+ 662 0470 A16A     		ldr	r1, [r4, #40]
+ 663 0472 B2EB012F 		cmp	r2, r1, lsl #8
+ 664 0476 28D1     		bne	.L107
+ 665 0478 03F07842 		and	r2, r3, #-134217728
+ 666 047c E16A     		ldr	r1, [r4, #44]
+ 667 047e B2EBC16F 		cmp	r2, r1, lsl #27
+ 668 0482 24D1     		bne	.L108
+ 669 0484 03F4C001 		and	r1, r3, #6291456
+ 670 0488 226B     		ldr	r2, [r4, #48]
+ 671 048a 5208     		lsrs	r2, r2, #1
+ 672 048c 013A     		subs	r2, r2, #1
+ 673 048e B1EB425F 		cmp	r1, r2, lsl #21
+ 674 0492 1ED1     		bne	.L109
+ 675 0494 03F0C063 		and	r3, r3, #100663296
+ 676 0498 626B     		ldr	r2, [r4, #52]
+ 677 049a 5208     		lsrs	r2, r2, #1
+ 678 049c 013A     		subs	r2, r2, #1
+ 679 049e B3EB426F 		cmp	r3, r2, lsl #25
+ 680 04a2 18D1     		bne	.L110
+ 681 04a4 0020     		movs	r0, #0
+ 682 04a6 08E0     		b	.L27
+ 683              	.L84:
+ 684 04a8 0120     		movs	r0, #1
+ 685 04aa 7047     		bx	lr
+ 686              	.L118:
+ 687 04ac 0120     		movs	r0, #1
+ 688 04ae 04E0     		b	.L27
+ 689              	.L88:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 13
+
+
+ 690 04b0 0120     		movs	r0, #1
+ 691 04b2 02E0     		b	.L27
+ 692              	.L121:
+ 693 04b4 0120     		movs	r0, #1
+ 694 04b6 00E0     		b	.L27
+ 695              	.L100:
+ 696 04b8 1846     		mov	r0, r3
+ 697              	.L27:
+ 698 04ba 02B0     		add	sp, sp, #8
+ 699              		@ sp needed
+ 700 04bc 70BD     		pop	{r4, r5, r6, pc}
+ 701              	.L104:
+ 702 04be 0120     		movs	r0, #1
+ 703 04c0 FBE7     		b	.L27
+ 704              	.L105:
+ 705 04c2 0120     		movs	r0, #1
+ 706 04c4 F9E7     		b	.L27
+ 707              	.L106:
+ 708 04c6 0120     		movs	r0, #1
+ 709 04c8 F7E7     		b	.L27
+ 710              	.L107:
+ 711 04ca 0120     		movs	r0, #1
+ 712 04cc F5E7     		b	.L27
+ 713              	.L108:
+ 714 04ce 0120     		movs	r0, #1
+ 715 04d0 F3E7     		b	.L27
+ 716              	.L109:
+ 717 04d2 0120     		movs	r0, #1
+ 718 04d4 F1E7     		b	.L27
+ 719              	.L110:
+ 720 04d6 0120     		movs	r0, #1
+ 721 04d8 EFE7     		b	.L27
+ 722              	.L133:
+ 723 04da 00BF     		.align	2
+ 724              	.L132:
+ 725 04dc 00100240 		.word	1073876992
+ 726 04e0 0C809F01 		.word	27230220
+ 727 04e4 FCFFEEFE 		.word	-17891332
+ 729              		.section	.text.HAL_RCC_MCOConfig,"ax",%progbits
+ 730              		.align	1
+ 731              		.global	HAL_RCC_MCOConfig
+ 732              		.syntax unified
+ 733              		.thumb
+ 734              		.thumb_func
+ 736              	HAL_RCC_MCOConfig:
+ 737              		@ args = 0, pretend = 0, frame = 24
+ 738              		@ frame_needed = 0, uses_anonymous_args = 0
+ 739 0000 70B5     		push	{r4, r5, r6, lr}
+ 740 0002 86B0     		sub	sp, sp, #24
+ 741 0004 0E46     		mov	r6, r1
+ 742 0006 1546     		mov	r5, r2
+ 743 0008 0223     		movs	r3, #2
+ 744 000a 0293     		str	r3, [sp, #8]
+ 745 000c 0323     		movs	r3, #3
+ 746 000e 0493     		str	r3, [sp, #16]
+ 747 0010 0023     		movs	r3, #0
+ 748 0012 0393     		str	r3, [sp, #12]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 14
+
+
+ 749 0014 00F08054 		and	r4, r0, #268435456
+ 750 0018 C0F3034C 		ubfx	ip, r0, #16, #4
+ 751 001c 0CF5901E 		add	lr, ip, #1179648
+ 752 0020 0D4A     		ldr	r2, .L137
+ 753 0022 D36C     		ldr	r3, [r2, #76]
+ 754 0024 0121     		movs	r1, #1
+ 755 0026 01FA0CF1 		lsl	r1, r1, ip
+ 756 002a 0B43     		orrs	r3, r3, r1
+ 757 002c D364     		str	r3, [r2, #76]
+ 758 002e 83B2     		uxth	r3, r0
+ 759 0030 0193     		str	r3, [sp, #4]
+ 760 0032 C0F30750 		ubfx	r0, r0, #20, #8
+ 761 0036 0590     		str	r0, [sp, #20]
+ 762 0038 01A9     		add	r1, sp, #4
+ 763 003a 4FEA8E20 		lsl	r0, lr, #10
+ 764 003e FFF7FEFF 		bl	HAL_GPIO_Init
+ 765 0042 3CB9     		cbnz	r4, .L134
+ 766 0044 0449     		ldr	r1, .L137
+ 767 0046 8B68     		ldr	r3, [r1, #8]
+ 768 0048 23F0FE43 		bic	r3, r3, #2130706432
+ 769 004c 3046     		mov	r0, r6
+ 770 004e 2843     		orrs	r0, r0, r5
+ 771 0050 0343     		orrs	r3, r3, r0
+ 772 0052 8B60     		str	r3, [r1, #8]
+ 773              	.L134:
+ 774 0054 06B0     		add	sp, sp, #24
+ 775              		@ sp needed
+ 776 0056 70BD     		pop	{r4, r5, r6, pc}
+ 777              	.L138:
+ 778              		.align	2
+ 779              	.L137:
+ 780 0058 00100240 		.word	1073876992
+ 782              		.section	.text.HAL_RCC_GetSysClockFreq,"ax",%progbits
+ 783              		.align	1
+ 784              		.global	HAL_RCC_GetSysClockFreq
+ 785              		.syntax unified
+ 786              		.thumb
+ 787              		.thumb_func
+ 789              	HAL_RCC_GetSysClockFreq:
+ 790              		@ args = 0, pretend = 0, frame = 0
+ 791              		@ frame_needed = 0, uses_anonymous_args = 0
+ 792              		@ link register save eliminated.
+ 793 0000 1E4B     		ldr	r3, .L148
+ 794 0002 9B68     		ldr	r3, [r3, #8]
+ 795 0004 03F00C03 		and	r3, r3, #12
+ 796 0008 042B     		cmp	r3, #4
+ 797 000a 33D0     		beq	.L143
+ 798 000c 1B4B     		ldr	r3, .L148
+ 799 000e 9B68     		ldr	r3, [r3, #8]
+ 800 0010 03F00C03 		and	r3, r3, #12
+ 801 0014 082B     		cmp	r3, #8
+ 802 0016 2FD0     		beq	.L144
+ 803 0018 184B     		ldr	r3, .L148
+ 804 001a 9B68     		ldr	r3, [r3, #8]
+ 805 001c 03F00C03 		and	r3, r3, #12
+ 806 0020 0C2B     		cmp	r3, #12
+ 807 0022 01D0     		beq	.L146
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 15
+
+
+ 808 0024 0020     		movs	r0, #0
+ 809 0026 7047     		bx	lr
+ 810              	.L146:
+ 811 0028 144B     		ldr	r3, .L148
+ 812 002a DA68     		ldr	r2, [r3, #12]
+ 813 002c 02F00302 		and	r2, r2, #3
+ 814 0030 DB68     		ldr	r3, [r3, #12]
+ 815 0032 C3F30313 		ubfx	r3, r3, #4, #4
+ 816 0036 0133     		adds	r3, r3, #1
+ 817 0038 032A     		cmp	r2, #3
+ 818 003a 11D0     		beq	.L147
+ 819 003c 1048     		ldr	r0, .L148+4
+ 820 003e B0FBF3F0 		udiv	r0, r0, r3
+ 821 0042 0E4B     		ldr	r3, .L148
+ 822 0044 DB68     		ldr	r3, [r3, #12]
+ 823 0046 C3F30623 		ubfx	r3, r3, #8, #7
+ 824 004a 03FB00F0 		mul	r0, r3, r0
+ 825              	.L142:
+ 826 004e 0B4B     		ldr	r3, .L148
+ 827 0050 DB68     		ldr	r3, [r3, #12]
+ 828 0052 C3F34163 		ubfx	r3, r3, #25, #2
+ 829 0056 0133     		adds	r3, r3, #1
+ 830 0058 5B00     		lsls	r3, r3, #1
+ 831 005a B0FBF3F0 		udiv	r0, r0, r3
+ 832 005e 7047     		bx	lr
+ 833              	.L147:
+ 834 0060 0848     		ldr	r0, .L148+8
+ 835 0062 B0FBF3F0 		udiv	r0, r0, r3
+ 836 0066 054B     		ldr	r3, .L148
+ 837 0068 DB68     		ldr	r3, [r3, #12]
+ 838 006a C3F30623 		ubfx	r3, r3, #8, #7
+ 839 006e 03FB00F0 		mul	r0, r3, r0
+ 840 0072 ECE7     		b	.L142
+ 841              	.L143:
+ 842 0074 0248     		ldr	r0, .L148+4
+ 843 0076 7047     		bx	lr
+ 844              	.L144:
+ 845 0078 0248     		ldr	r0, .L148+8
+ 846 007a 7047     		bx	lr
+ 847              	.L149:
+ 848              		.align	2
+ 849              	.L148:
+ 850 007c 00100240 		.word	1073876992
+ 851 0080 0024F400 		.word	16000000
+ 852 0084 00127A00 		.word	8000000
+ 854              		.section	.text.HAL_RCC_ClockConfig,"ax",%progbits
+ 855              		.align	1
+ 856              		.global	HAL_RCC_ClockConfig
+ 857              		.syntax unified
+ 858              		.thumb
+ 859              		.thumb_func
+ 861              	HAL_RCC_ClockConfig:
+ 862              		@ args = 0, pretend = 0, frame = 0
+ 863              		@ frame_needed = 0, uses_anonymous_args = 0
+ 864 0000 0028     		cmp	r0, #0
+ 865 0002 00F0ED80 		beq	.L170
+ 866 0006 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 16
+
+
+ 867 0008 0C46     		mov	r4, r1
+ 868 000a 0546     		mov	r5, r0
+ 869 000c 774B     		ldr	r3, .L188
+ 870 000e 1B68     		ldr	r3, [r3]
+ 871 0010 03F00F03 		and	r3, r3, #15
+ 872 0014 8B42     		cmp	r3, r1
+ 873 0016 0BD2     		bcs	.L152
+ 874 0018 744A     		ldr	r2, .L188
+ 875 001a 1368     		ldr	r3, [r2]
+ 876 001c 23F00F03 		bic	r3, r3, #15
+ 877 0020 0B43     		orrs	r3, r3, r1
+ 878 0022 1360     		str	r3, [r2]
+ 879 0024 1368     		ldr	r3, [r2]
+ 880 0026 03F00F03 		and	r3, r3, #15
+ 881 002a 8B42     		cmp	r3, r1
+ 882 002c 40F0DA80 		bne	.L171
+ 883              	.L152:
+ 884 0030 2B68     		ldr	r3, [r5]
+ 885 0032 13F00103 		ands	r3, r3, #1
+ 886 0036 1F46     		mov	r7, r3
+ 887 0038 65D0     		beq	.L153
+ 888 003a 6B68     		ldr	r3, [r5, #4]
+ 889 003c 032B     		cmp	r3, #3
+ 890 003e 30D0     		beq	.L184
+ 891 0040 022B     		cmp	r3, #2
+ 892 0042 50D0     		beq	.L185
+ 893 0044 6A4B     		ldr	r3, .L188+4
+ 894 0046 1B68     		ldr	r3, [r3]
+ 895 0048 13F4806F 		tst	r3, #1024
+ 896 004c 00F0CC80 		beq	.L176
+ 897              	.L158:
+ 898 0050 FFF7FEFF 		bl	HAL_RCC_GetSysClockFreq
+ 899 0054 674B     		ldr	r3, .L188+8
+ 900 0056 9842     		cmp	r0, r3
+ 901 0058 52D9     		bls	.L177
+ 902 005a 654A     		ldr	r2, .L188+4
+ 903 005c 9368     		ldr	r3, [r2, #8]
+ 904 005e 23F0F003 		bic	r3, r3, #240
+ 905 0062 43F08003 		orr	r3, r3, #128
+ 906 0066 9360     		str	r3, [r2, #8]
+ 907 0068 8023     		movs	r3, #128
+ 908 006a 1F46     		mov	r7, r3
+ 909              	.L155:
+ 910 006c 604A     		ldr	r2, .L188+4
+ 911 006e 9368     		ldr	r3, [r2, #8]
+ 912 0070 23F00303 		bic	r3, r3, #3
+ 913 0074 6968     		ldr	r1, [r5, #4]
+ 914 0076 0B43     		orrs	r3, r3, r1
+ 915 0078 9360     		str	r3, [r2, #8]
+ 916 007a FFF7FEFF 		bl	HAL_GetTick
+ 917 007e 0646     		mov	r6, r0
+ 918              	.L159:
+ 919 0080 5B4B     		ldr	r3, .L188+4
+ 920 0082 9B68     		ldr	r3, [r3, #8]
+ 921 0084 03F00C03 		and	r3, r3, #12
+ 922 0088 6A68     		ldr	r2, [r5, #4]
+ 923 008a B3EB820F 		cmp	r3, r2, lsl #2
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 17
+
+
+ 924 008e 3AD0     		beq	.L153
+ 925 0090 FFF7FEFF 		bl	HAL_GetTick
+ 926 0094 801B     		subs	r0, r0, r6
+ 927 0096 41F28833 		movw	r3, #5000
+ 928 009a 9842     		cmp	r0, r3
+ 929 009c F0D9     		bls	.L159
+ 930 009e 0320     		movs	r0, #3
+ 931 00a0 7DE0     		b	.L151
+ 932              	.L184:
+ 933 00a2 534B     		ldr	r3, .L188+4
+ 934 00a4 1B68     		ldr	r3, [r3]
+ 935 00a6 13F0007F 		tst	r3, #33554432
+ 936 00aa 01D1     		bne	.L186
+ 937 00ac 0120     		movs	r0, #1
+ 938 00ae 76E0     		b	.L151
+ 939              	.L186:
+ 940 00b0 FFF7FEFF 		bl	RCC_GetSysClockFreqFromPLLSource
+ 941 00b4 4F4B     		ldr	r3, .L188+8
+ 942 00b6 9842     		cmp	r0, r3
+ 943 00b8 1CD9     		bls	.L173
+ 944 00ba 4D4B     		ldr	r3, .L188+4
+ 945 00bc 9B68     		ldr	r3, [r3, #8]
+ 946 00be 13F0F00F 		tst	r3, #240
+ 947 00c2 06D0     		beq	.L156
+ 948 00c4 2B68     		ldr	r3, [r5]
+ 949 00c6 13F00203 		ands	r3, r3, #2
+ 950 00ca 1F46     		mov	r7, r3
+ 951 00cc CED0     		beq	.L155
+ 952 00ce AB68     		ldr	r3, [r5, #8]
+ 953 00d0 9BB9     		cbnz	r3, .L174
+ 954              	.L156:
+ 955 00d2 474A     		ldr	r2, .L188+4
+ 956 00d4 9368     		ldr	r3, [r2, #8]
+ 957 00d6 23F0F003 		bic	r3, r3, #240
+ 958 00da 43F08003 		orr	r3, r3, #128
+ 959 00de 9360     		str	r3, [r2, #8]
+ 960 00e0 8023     		movs	r3, #128
+ 961 00e2 1F46     		mov	r7, r3
+ 962 00e4 C2E7     		b	.L155
+ 963              	.L185:
+ 964 00e6 424B     		ldr	r3, .L188+4
+ 965 00e8 1B68     		ldr	r3, [r3]
+ 966 00ea 13F4003F 		tst	r3, #131072
+ 967 00ee AFD1     		bne	.L158
+ 968 00f0 0120     		movs	r0, #1
+ 969 00f2 54E0     		b	.L151
+ 970              	.L173:
+ 971 00f4 0023     		movs	r3, #0
+ 972 00f6 1F46     		mov	r7, r3
+ 973 00f8 B8E7     		b	.L155
+ 974              	.L174:
+ 975 00fa 0023     		movs	r3, #0
+ 976 00fc 1F46     		mov	r7, r3
+ 977 00fe B5E7     		b	.L155
+ 978              	.L177:
+ 979 0100 0023     		movs	r3, #0
+ 980 0102 1F46     		mov	r7, r3
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 18
+
+
+ 981 0104 B2E7     		b	.L155
+ 982              	.L153:
+ 983 0106 2B68     		ldr	r3, [r5]
+ 984 0108 13F0020F 		tst	r3, #2
+ 985 010c 48D0     		beq	.L161
+ 986 010e 13F0040F 		tst	r3, #4
+ 987 0112 04D0     		beq	.L162
+ 988 0114 364A     		ldr	r2, .L188+4
+ 989 0116 9368     		ldr	r3, [r2, #8]
+ 990 0118 43F4E063 		orr	r3, r3, #1792
+ 991 011c 9360     		str	r3, [r2, #8]
+ 992              	.L162:
+ 993 011e 2B68     		ldr	r3, [r5]
+ 994 0120 13F0080F 		tst	r3, #8
+ 995 0124 06D0     		beq	.L163
+ 996 0126 324A     		ldr	r2, .L188+4
+ 997 0128 9368     		ldr	r3, [r2, #8]
+ 998 012a 23F47C53 		bic	r3, r3, #16128
+ 999 012e 43F4E063 		orr	r3, r3, #1792
+ 1000 0132 9360     		str	r3, [r2, #8]
+ 1001              	.L163:
+ 1002 0134 2E4A     		ldr	r2, .L188+4
+ 1003 0136 9368     		ldr	r3, [r2, #8]
+ 1004 0138 23F0F003 		bic	r3, r3, #240
+ 1005 013c A968     		ldr	r1, [r5, #8]
+ 1006 013e 0B43     		orrs	r3, r3, r1
+ 1007 0140 9360     		str	r3, [r2, #8]
+ 1008              	.L164:
+ 1009 0142 2A4B     		ldr	r3, .L188
+ 1010 0144 1B68     		ldr	r3, [r3]
+ 1011 0146 03F00F03 		and	r3, r3, #15
+ 1012 014a A342     		cmp	r3, r4
+ 1013 014c 30D8     		bhi	.L187
+ 1014              	.L165:
+ 1015 014e 2B68     		ldr	r3, [r5]
+ 1016 0150 13F0040F 		tst	r3, #4
+ 1017 0154 06D0     		beq	.L168
+ 1018 0156 264A     		ldr	r2, .L188+4
+ 1019 0158 9368     		ldr	r3, [r2, #8]
+ 1020 015a 23F4E063 		bic	r3, r3, #1792
+ 1021 015e E968     		ldr	r1, [r5, #12]
+ 1022 0160 0B43     		orrs	r3, r3, r1
+ 1023 0162 9360     		str	r3, [r2, #8]
+ 1024              	.L168:
+ 1025 0164 2B68     		ldr	r3, [r5]
+ 1026 0166 13F0080F 		tst	r3, #8
+ 1027 016a 07D0     		beq	.L169
+ 1028 016c 204A     		ldr	r2, .L188+4
+ 1029 016e 9368     		ldr	r3, [r2, #8]
+ 1030 0170 23F46053 		bic	r3, r3, #14336
+ 1031 0174 2969     		ldr	r1, [r5, #16]
+ 1032 0176 43EAC103 		orr	r3, r3, r1, lsl #3
+ 1033 017a 9360     		str	r3, [r2, #8]
+ 1034              	.L169:
+ 1035 017c FFF7FEFF 		bl	HAL_RCC_GetSysClockFreq
+ 1036 0180 1B4B     		ldr	r3, .L188+4
+ 1037 0182 9B68     		ldr	r3, [r3, #8]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 19
+
+
+ 1038 0184 C3F30313 		ubfx	r3, r3, #4, #4
+ 1039 0188 1B4A     		ldr	r2, .L188+12
+ 1040 018a D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 1041 018c 03F01F03 		and	r3, r3, #31
+ 1042 0190 D840     		lsrs	r0, r0, r3
+ 1043 0192 1A4B     		ldr	r3, .L188+16
+ 1044 0194 1860     		str	r0, [r3]
+ 1045 0196 1A4B     		ldr	r3, .L188+20
+ 1046 0198 1868     		ldr	r0, [r3]
+ 1047 019a FFF7FEFF 		bl	HAL_InitTick
+ 1048              	.L151:
+ 1049 019e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1050              	.L161:
+ 1051 01a0 802F     		cmp	r7, #128
+ 1052 01a2 CED1     		bne	.L164
+ 1053 01a4 124A     		ldr	r2, .L188+4
+ 1054 01a6 9368     		ldr	r3, [r2, #8]
+ 1055 01a8 23F0F003 		bic	r3, r3, #240
+ 1056 01ac 9360     		str	r3, [r2, #8]
+ 1057 01ae C8E7     		b	.L164
+ 1058              	.L187:
+ 1059 01b0 0E4A     		ldr	r2, .L188
+ 1060 01b2 1368     		ldr	r3, [r2]
+ 1061 01b4 23F00F03 		bic	r3, r3, #15
+ 1062 01b8 2343     		orrs	r3, r3, r4
+ 1063 01ba 1360     		str	r3, [r2]
+ 1064 01bc FFF7FEFF 		bl	HAL_GetTick
+ 1065 01c0 0646     		mov	r6, r0
+ 1066              	.L166:
+ 1067 01c2 0A4B     		ldr	r3, .L188
+ 1068 01c4 1B68     		ldr	r3, [r3]
+ 1069 01c6 03F00F03 		and	r3, r3, #15
+ 1070 01ca A342     		cmp	r3, r4
+ 1071 01cc BFD0     		beq	.L165
+ 1072 01ce FFF7FEFF 		bl	HAL_GetTick
+ 1073 01d2 801B     		subs	r0, r0, r6
+ 1074 01d4 41F28833 		movw	r3, #5000
+ 1075 01d8 9842     		cmp	r0, r3
+ 1076 01da F2D9     		bls	.L166
+ 1077 01dc 0320     		movs	r0, #3
+ 1078 01de DEE7     		b	.L151
+ 1079              	.L170:
+ 1080 01e0 0120     		movs	r0, #1
+ 1081 01e2 7047     		bx	lr
+ 1082              	.L171:
+ 1083 01e4 0120     		movs	r0, #1
+ 1084 01e6 DAE7     		b	.L151
+ 1085              	.L176:
+ 1086 01e8 0120     		movs	r0, #1
+ 1087 01ea D8E7     		b	.L151
+ 1088              	.L189:
+ 1089              		.align	2
+ 1090              	.L188:
+ 1091 01ec 00200240 		.word	1073881088
+ 1092 01f0 00100240 		.word	1073876992
+ 1093 01f4 00B4C404 		.word	80000000
+ 1094 01f8 00000000 		.word	AHBPrescTable
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 20
+
+
+ 1095 01fc 00000000 		.word	SystemCoreClock
+ 1096 0200 00000000 		.word	uwTickPrio
+ 1098              		.section	.text.HAL_RCC_GetHCLKFreq,"ax",%progbits
+ 1099              		.align	1
+ 1100              		.global	HAL_RCC_GetHCLKFreq
+ 1101              		.syntax unified
+ 1102              		.thumb
+ 1103              		.thumb_func
+ 1105              	HAL_RCC_GetHCLKFreq:
+ 1106              		@ args = 0, pretend = 0, frame = 0
+ 1107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1108              		@ link register save eliminated.
+ 1109 0000 014B     		ldr	r3, .L191
+ 1110 0002 1868     		ldr	r0, [r3]
+ 1111 0004 7047     		bx	lr
+ 1112              	.L192:
+ 1113 0006 00BF     		.align	2
+ 1114              	.L191:
+ 1115 0008 00000000 		.word	SystemCoreClock
+ 1117              		.section	.text.HAL_RCC_GetPCLK1Freq,"ax",%progbits
+ 1118              		.align	1
+ 1119              		.global	HAL_RCC_GetPCLK1Freq
+ 1120              		.syntax unified
+ 1121              		.thumb
+ 1122              		.thumb_func
+ 1124              	HAL_RCC_GetPCLK1Freq:
+ 1125              		@ args = 0, pretend = 0, frame = 0
+ 1126              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1127 0000 08B5     		push	{r3, lr}
+ 1128 0002 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ 1129 0006 054B     		ldr	r3, .L195
+ 1130 0008 9B68     		ldr	r3, [r3, #8]
+ 1131 000a C3F30223 		ubfx	r3, r3, #8, #3
+ 1132 000e 044A     		ldr	r2, .L195+4
+ 1133 0010 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 1134 0012 03F01F03 		and	r3, r3, #31
+ 1135 0016 D840     		lsrs	r0, r0, r3
+ 1136 0018 08BD     		pop	{r3, pc}
+ 1137              	.L196:
+ 1138 001a 00BF     		.align	2
+ 1139              	.L195:
+ 1140 001c 00100240 		.word	1073876992
+ 1141 0020 00000000 		.word	APBPrescTable
+ 1143              		.section	.text.HAL_RCC_GetPCLK2Freq,"ax",%progbits
+ 1144              		.align	1
+ 1145              		.global	HAL_RCC_GetPCLK2Freq
+ 1146              		.syntax unified
+ 1147              		.thumb
+ 1148              		.thumb_func
+ 1150              	HAL_RCC_GetPCLK2Freq:
+ 1151              		@ args = 0, pretend = 0, frame = 0
+ 1152              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1153 0000 08B5     		push	{r3, lr}
+ 1154 0002 FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
+ 1155 0006 054B     		ldr	r3, .L199
+ 1156 0008 9B68     		ldr	r3, [r3, #8]
+ 1157 000a C3F3C223 		ubfx	r3, r3, #11, #3
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 21
+
+
+ 1158 000e 044A     		ldr	r2, .L199+4
+ 1159 0010 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 1160 0012 03F01F03 		and	r3, r3, #31
+ 1161 0016 D840     		lsrs	r0, r0, r3
+ 1162 0018 08BD     		pop	{r3, pc}
+ 1163              	.L200:
+ 1164 001a 00BF     		.align	2
+ 1165              	.L199:
+ 1166 001c 00100240 		.word	1073876992
+ 1167 0020 00000000 		.word	APBPrescTable
+ 1169              		.section	.text.HAL_RCC_GetOscConfig,"ax",%progbits
+ 1170              		.align	1
+ 1171              		.global	HAL_RCC_GetOscConfig
+ 1172              		.syntax unified
+ 1173              		.thumb
+ 1174              		.thumb_func
+ 1176              	HAL_RCC_GetOscConfig:
+ 1177              		@ args = 0, pretend = 0, frame = 0
+ 1178              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1179              		@ link register save eliminated.
+ 1180 0000 2F23     		movs	r3, #47
+ 1181 0002 0360     		str	r3, [r0]
+ 1182 0004 3A4B     		ldr	r3, .L216
+ 1183 0006 1B68     		ldr	r3, [r3]
+ 1184 0008 13F4802F 		tst	r3, #262144
+ 1185 000c 4BD0     		beq	.L202
+ 1186 000e 4FF4A023 		mov	r3, #327680
+ 1187 0012 4360     		str	r3, [r0, #4]
+ 1188              	.L203:
+ 1189 0014 364B     		ldr	r3, .L216
+ 1190 0016 1B68     		ldr	r3, [r3]
+ 1191 0018 13F4807F 		tst	r3, #256
+ 1192 001c 4FD0     		beq	.L205
+ 1193 001e 4FF48073 		mov	r3, #256
+ 1194 0022 C360     		str	r3, [r0, #12]
+ 1195              	.L206:
+ 1196 0024 324A     		ldr	r2, .L216
+ 1197 0026 5368     		ldr	r3, [r2, #4]
+ 1198 0028 C3F30663 		ubfx	r3, r3, #24, #7
+ 1199 002c 0361     		str	r3, [r0, #16]
+ 1200 002e D2F89030 		ldr	r3, [r2, #144]
+ 1201 0032 13F0040F 		tst	r3, #4
+ 1202 0036 45D0     		beq	.L207
+ 1203 0038 0523     		movs	r3, #5
+ 1204 003a 8360     		str	r3, [r0, #8]
+ 1205              	.L208:
+ 1206 003c 2C4B     		ldr	r3, .L216
+ 1207 003e D3F89430 		ldr	r3, [r3, #148]
+ 1208 0042 13F0010F 		tst	r3, #1
+ 1209 0046 49D0     		beq	.L210
+ 1210 0048 0123     		movs	r3, #1
+ 1211 004a 4361     		str	r3, [r0, #20]
+ 1212              	.L211:
+ 1213 004c 284B     		ldr	r3, .L216
+ 1214 004e D3F89830 		ldr	r3, [r3, #152]
+ 1215 0052 13F0010F 		tst	r3, #1
+ 1216 0056 44D0     		beq	.L212
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 22
+
+
+ 1217 0058 0123     		movs	r3, #1
+ 1218 005a 8361     		str	r3, [r0, #24]
+ 1219              	.L213:
+ 1220 005c 244B     		ldr	r3, .L216
+ 1221 005e 1B68     		ldr	r3, [r3]
+ 1222 0060 13F0807F 		tst	r3, #16777216
+ 1223 0064 40D0     		beq	.L214
+ 1224 0066 0223     		movs	r3, #2
+ 1225 0068 C361     		str	r3, [r0, #28]
+ 1226              	.L215:
+ 1227 006a 214A     		ldr	r2, .L216
+ 1228 006c D368     		ldr	r3, [r2, #12]
+ 1229 006e 03F00303 		and	r3, r3, #3
+ 1230 0072 0362     		str	r3, [r0, #32]
+ 1231 0074 D368     		ldr	r3, [r2, #12]
+ 1232 0076 C3F30313 		ubfx	r3, r3, #4, #4
+ 1233 007a 0133     		adds	r3, r3, #1
+ 1234 007c 4362     		str	r3, [r0, #36]
+ 1235 007e D368     		ldr	r3, [r2, #12]
+ 1236 0080 C3F30623 		ubfx	r3, r3, #8, #7
+ 1237 0084 8362     		str	r3, [r0, #40]
+ 1238 0086 D368     		ldr	r3, [r2, #12]
+ 1239 0088 C3F34153 		ubfx	r3, r3, #21, #2
+ 1240 008c 0133     		adds	r3, r3, #1
+ 1241 008e 5B00     		lsls	r3, r3, #1
+ 1242 0090 0363     		str	r3, [r0, #48]
+ 1243 0092 D368     		ldr	r3, [r2, #12]
+ 1244 0094 C3F34163 		ubfx	r3, r3, #25, #2
+ 1245 0098 0133     		adds	r3, r3, #1
+ 1246 009a 5B00     		lsls	r3, r3, #1
+ 1247 009c 4363     		str	r3, [r0, #52]
+ 1248 009e D368     		ldr	r3, [r2, #12]
+ 1249 00a0 DB0E     		lsrs	r3, r3, #27
+ 1250 00a2 C362     		str	r3, [r0, #44]
+ 1251 00a4 7047     		bx	lr
+ 1252              	.L202:
+ 1253 00a6 124B     		ldr	r3, .L216
+ 1254 00a8 1B68     		ldr	r3, [r3]
+ 1255 00aa 13F4803F 		tst	r3, #65536
+ 1256 00ae 03D0     		beq	.L204
+ 1257 00b0 4FF48033 		mov	r3, #65536
+ 1258 00b4 4360     		str	r3, [r0, #4]
+ 1259 00b6 ADE7     		b	.L203
+ 1260              	.L204:
+ 1261 00b8 0023     		movs	r3, #0
+ 1262 00ba 4360     		str	r3, [r0, #4]
+ 1263 00bc AAE7     		b	.L203
+ 1264              	.L205:
+ 1265 00be 0023     		movs	r3, #0
+ 1266 00c0 C360     		str	r3, [r0, #12]
+ 1267 00c2 AFE7     		b	.L206
+ 1268              	.L207:
+ 1269 00c4 0A4B     		ldr	r3, .L216
+ 1270 00c6 D3F89030 		ldr	r3, [r3, #144]
+ 1271 00ca 13F0010F 		tst	r3, #1
+ 1272 00ce 02D0     		beq	.L209
+ 1273 00d0 0123     		movs	r3, #1
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 23
+
+
+ 1274 00d2 8360     		str	r3, [r0, #8]
+ 1275 00d4 B2E7     		b	.L208
+ 1276              	.L209:
+ 1277 00d6 0023     		movs	r3, #0
+ 1278 00d8 8360     		str	r3, [r0, #8]
+ 1279 00da AFE7     		b	.L208
+ 1280              	.L210:
+ 1281 00dc 0023     		movs	r3, #0
+ 1282 00de 4361     		str	r3, [r0, #20]
+ 1283 00e0 B4E7     		b	.L211
+ 1284              	.L212:
+ 1285 00e2 0023     		movs	r3, #0
+ 1286 00e4 8361     		str	r3, [r0, #24]
+ 1287 00e6 B9E7     		b	.L213
+ 1288              	.L214:
+ 1289 00e8 0123     		movs	r3, #1
+ 1290 00ea C361     		str	r3, [r0, #28]
+ 1291 00ec BDE7     		b	.L215
+ 1292              	.L217:
+ 1293 00ee 00BF     		.align	2
+ 1294              	.L216:
+ 1295 00f0 00100240 		.word	1073876992
+ 1297              		.section	.text.HAL_RCC_GetClockConfig,"ax",%progbits
+ 1298              		.align	1
+ 1299              		.global	HAL_RCC_GetClockConfig
+ 1300              		.syntax unified
+ 1301              		.thumb
+ 1302              		.thumb_func
+ 1304              	HAL_RCC_GetClockConfig:
+ 1305              		@ args = 0, pretend = 0, frame = 0
+ 1306              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1307              		@ link register save eliminated.
+ 1308 0000 0F23     		movs	r3, #15
+ 1309 0002 0360     		str	r3, [r0]
+ 1310 0004 0B4B     		ldr	r3, .L219
+ 1311 0006 9A68     		ldr	r2, [r3, #8]
+ 1312 0008 02F00302 		and	r2, r2, #3
+ 1313 000c 4260     		str	r2, [r0, #4]
+ 1314 000e 9A68     		ldr	r2, [r3, #8]
+ 1315 0010 02F0F002 		and	r2, r2, #240
+ 1316 0014 8260     		str	r2, [r0, #8]
+ 1317 0016 9A68     		ldr	r2, [r3, #8]
+ 1318 0018 02F4E062 		and	r2, r2, #1792
+ 1319 001c C260     		str	r2, [r0, #12]
+ 1320 001e 9B68     		ldr	r3, [r3, #8]
+ 1321 0020 DB08     		lsrs	r3, r3, #3
+ 1322 0022 03F4E063 		and	r3, r3, #1792
+ 1323 0026 0361     		str	r3, [r0, #16]
+ 1324 0028 034B     		ldr	r3, .L219+4
+ 1325 002a 1B68     		ldr	r3, [r3]
+ 1326 002c 03F00F03 		and	r3, r3, #15
+ 1327 0030 0B60     		str	r3, [r1]
+ 1328 0032 7047     		bx	lr
+ 1329              	.L220:
+ 1330              		.align	2
+ 1331              	.L219:
+ 1332 0034 00100240 		.word	1073876992
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 24
+
+
+ 1333 0038 00200240 		.word	1073881088
+ 1335              		.section	.text.HAL_RCC_EnableCSS,"ax",%progbits
+ 1336              		.align	1
+ 1337              		.global	HAL_RCC_EnableCSS
+ 1338              		.syntax unified
+ 1339              		.thumb
+ 1340              		.thumb_func
+ 1342              	HAL_RCC_EnableCSS:
+ 1343              		@ args = 0, pretend = 0, frame = 0
+ 1344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1345              		@ link register save eliminated.
+ 1346 0000 024A     		ldr	r2, .L222
+ 1347 0002 1368     		ldr	r3, [r2]
+ 1348 0004 43F40023 		orr	r3, r3, #524288
+ 1349 0008 1360     		str	r3, [r2]
+ 1350 000a 7047     		bx	lr
+ 1351              	.L223:
+ 1352              		.align	2
+ 1353              	.L222:
+ 1354 000c 00100240 		.word	1073876992
+ 1356              		.section	.text.HAL_RCC_EnableLSECSS,"ax",%progbits
+ 1357              		.align	1
+ 1358              		.global	HAL_RCC_EnableLSECSS
+ 1359              		.syntax unified
+ 1360              		.thumb
+ 1361              		.thumb_func
+ 1363              	HAL_RCC_EnableLSECSS:
+ 1364              		@ args = 0, pretend = 0, frame = 0
+ 1365              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1366              		@ link register save eliminated.
+ 1367 0000 034A     		ldr	r2, .L225
+ 1368 0002 D2F89030 		ldr	r3, [r2, #144]
+ 1369 0006 43F02003 		orr	r3, r3, #32
+ 1370 000a C2F89030 		str	r3, [r2, #144]
+ 1371 000e 7047     		bx	lr
+ 1372              	.L226:
+ 1373              		.align	2
+ 1374              	.L225:
+ 1375 0010 00100240 		.word	1073876992
+ 1377              		.section	.text.HAL_RCC_DisableLSECSS,"ax",%progbits
+ 1378              		.align	1
+ 1379              		.global	HAL_RCC_DisableLSECSS
+ 1380              		.syntax unified
+ 1381              		.thumb
+ 1382              		.thumb_func
+ 1384              	HAL_RCC_DisableLSECSS:
+ 1385              		@ args = 0, pretend = 0, frame = 0
+ 1386              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1387              		@ link register save eliminated.
+ 1388 0000 034A     		ldr	r2, .L228
+ 1389 0002 D2F89030 		ldr	r3, [r2, #144]
+ 1390 0006 23F02003 		bic	r3, r3, #32
+ 1391 000a C2F89030 		str	r3, [r2, #144]
+ 1392 000e 7047     		bx	lr
+ 1393              	.L229:
+ 1394              		.align	2
+ 1395              	.L228:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 25
+
+
+ 1396 0010 00100240 		.word	1073876992
+ 1398              		.section	.text.HAL_RCC_CSSCallback,"ax",%progbits
+ 1399              		.align	1
+ 1400              		.weak	HAL_RCC_CSSCallback
+ 1401              		.syntax unified
+ 1402              		.thumb
+ 1403              		.thumb_func
+ 1405              	HAL_RCC_CSSCallback:
+ 1406              		@ args = 0, pretend = 0, frame = 0
+ 1407              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1408              		@ link register save eliminated.
+ 1409 0000 7047     		bx	lr
+ 1411              		.section	.text.HAL_RCC_NMI_IRQHandler,"ax",%progbits
+ 1412              		.align	1
+ 1413              		.global	HAL_RCC_NMI_IRQHandler
+ 1414              		.syntax unified
+ 1415              		.thumb
+ 1416              		.thumb_func
+ 1418              	HAL_RCC_NMI_IRQHandler:
+ 1419              		@ args = 0, pretend = 0, frame = 0
+ 1420              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1421 0000 08B5     		push	{r3, lr}
+ 1422 0002 064B     		ldr	r3, .L235
+ 1423 0004 DB69     		ldr	r3, [r3, #28]
+ 1424 0006 13F4807F 		tst	r3, #256
+ 1425 000a 00D1     		bne	.L234
+ 1426              	.L231:
+ 1427 000c 08BD     		pop	{r3, pc}
+ 1428              	.L234:
+ 1429 000e FFF7FEFF 		bl	HAL_RCC_CSSCallback
+ 1430 0012 024B     		ldr	r3, .L235
+ 1431 0014 4FF48072 		mov	r2, #256
+ 1432 0018 1A62     		str	r2, [r3, #32]
+ 1433 001a F7E7     		b	.L231
+ 1434              	.L236:
+ 1435              		.align	2
+ 1436              	.L235:
+ 1437 001c 00100240 		.word	1073876992
+ 1439              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 15.2.1 20251203"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 26
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32g4xx_hal_rcc.c
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:18     .text.RCC_GetSysClockFreqFromPLLSource:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:23     .text.RCC_GetSysClockFreqFromPLLSource:00000000 RCC_GetSysClockFreqFromPLLSource
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:60     .text.RCC_GetSysClockFreqFromPLLSource:0000004c $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:65     .text.HAL_RCC_DeInit:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:71     .text.HAL_RCC_DeInit:00000000 HAL_RCC_DeInit
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:160    .text.HAL_RCC_DeInit:000000bc $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:166    .text.HAL_RCC_OscConfig:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:172    .text.HAL_RCC_OscConfig:00000000 HAL_RCC_OscConfig
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:472    .text.HAL_RCC_OscConfig:000002ac $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:476    .text.HAL_RCC_OscConfig:000002b8 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:725    .text.HAL_RCC_OscConfig:000004dc $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:730    .text.HAL_RCC_MCOConfig:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:736    .text.HAL_RCC_MCOConfig:00000000 HAL_RCC_MCOConfig
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:780    .text.HAL_RCC_MCOConfig:00000058 $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:783    .text.HAL_RCC_GetSysClockFreq:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:789    .text.HAL_RCC_GetSysClockFreq:00000000 HAL_RCC_GetSysClockFreq
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:850    .text.HAL_RCC_GetSysClockFreq:0000007c $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:855    .text.HAL_RCC_ClockConfig:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:861    .text.HAL_RCC_ClockConfig:00000000 HAL_RCC_ClockConfig
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1091   .text.HAL_RCC_ClockConfig:000001ec $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1099   .text.HAL_RCC_GetHCLKFreq:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1105   .text.HAL_RCC_GetHCLKFreq:00000000 HAL_RCC_GetHCLKFreq
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1115   .text.HAL_RCC_GetHCLKFreq:00000008 $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1118   .text.HAL_RCC_GetPCLK1Freq:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1124   .text.HAL_RCC_GetPCLK1Freq:00000000 HAL_RCC_GetPCLK1Freq
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1140   .text.HAL_RCC_GetPCLK1Freq:0000001c $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1144   .text.HAL_RCC_GetPCLK2Freq:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1150   .text.HAL_RCC_GetPCLK2Freq:00000000 HAL_RCC_GetPCLK2Freq
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1166   .text.HAL_RCC_GetPCLK2Freq:0000001c $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1170   .text.HAL_RCC_GetOscConfig:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1176   .text.HAL_RCC_GetOscConfig:00000000 HAL_RCC_GetOscConfig
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1295   .text.HAL_RCC_GetOscConfig:000000f0 $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1298   .text.HAL_RCC_GetClockConfig:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1304   .text.HAL_RCC_GetClockConfig:00000000 HAL_RCC_GetClockConfig
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1332   .text.HAL_RCC_GetClockConfig:00000034 $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1336   .text.HAL_RCC_EnableCSS:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1342   .text.HAL_RCC_EnableCSS:00000000 HAL_RCC_EnableCSS
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1354   .text.HAL_RCC_EnableCSS:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1357   .text.HAL_RCC_EnableLSECSS:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1363   .text.HAL_RCC_EnableLSECSS:00000000 HAL_RCC_EnableLSECSS
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1375   .text.HAL_RCC_EnableLSECSS:00000010 $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1378   .text.HAL_RCC_DisableLSECSS:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1384   .text.HAL_RCC_DisableLSECSS:00000000 HAL_RCC_DisableLSECSS
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1396   .text.HAL_RCC_DisableLSECSS:00000010 $d
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1399   .text.HAL_RCC_CSSCallback:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1405   .text.HAL_RCC_CSSCallback:00000000 HAL_RCC_CSSCallback
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1412   .text.HAL_RCC_NMI_IRQHandler:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1418   .text.HAL_RCC_NMI_IRQHandler:00000000 HAL_RCC_NMI_IRQHandler
+C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s:1437   .text.HAL_RCC_NMI_IRQHandler:0000001c $d
+
+UNDEFINED SYMBOLS
+HAL_GetTick
+HAL_InitTick
+SystemCoreClock
+uwTickPrio
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cczHGp3r.s 			page 27
+
+
+HAL_GPIO_Init
+AHBPrescTable
+APBPrescTable

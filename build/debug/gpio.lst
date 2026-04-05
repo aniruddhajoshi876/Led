@@ -1,0 +1,184 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cc7PJG34.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gpio.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/gpio.c"
+  20              		.section	.text.MX_GPIO_Init,"ax",%progbits
+  21              		.align	1
+  22              		.global	MX_GPIO_Init
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	MX_GPIO_Init:
+  28              	.LFB132:
+   1:Core/Src/gpio.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/gpio.c **** /**
+   3:Core/Src/gpio.c ****   ******************************************************************************
+   4:Core/Src/gpio.c ****   * @file    gpio.c
+   5:Core/Src/gpio.c ****   * @brief   This file provides code for the configuration
+   6:Core/Src/gpio.c ****   *          of all used GPIO pins.
+   7:Core/Src/gpio.c ****   ******************************************************************************
+   8:Core/Src/gpio.c ****   * @attention
+   9:Core/Src/gpio.c ****   *
+  10:Core/Src/gpio.c ****   * Copyright (c) 2026 STMicroelectronics.
+  11:Core/Src/gpio.c ****   * All rights reserved.
+  12:Core/Src/gpio.c ****   *
+  13:Core/Src/gpio.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:Core/Src/gpio.c ****   * in the root directory of this software component.
+  15:Core/Src/gpio.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:Core/Src/gpio.c ****   *
+  17:Core/Src/gpio.c ****   ******************************************************************************
+  18:Core/Src/gpio.c ****   */
+  19:Core/Src/gpio.c **** /* USER CODE END Header */
+  20:Core/Src/gpio.c **** 
+  21:Core/Src/gpio.c **** /* Includes ------------------------------------------------------------------*/
+  22:Core/Src/gpio.c **** #include "gpio.h"
+  23:Core/Src/gpio.c **** 
+  24:Core/Src/gpio.c **** /* USER CODE BEGIN 0 */
+  25:Core/Src/gpio.c **** 
+  26:Core/Src/gpio.c **** /* USER CODE END 0 */
+  27:Core/Src/gpio.c **** 
+  28:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
+  29:Core/Src/gpio.c **** /* Configure GPIO                                                             */
+  30:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cc7PJG34.s 			page 2
+
+
+  31:Core/Src/gpio.c **** /* USER CODE BEGIN 1 */
+  32:Core/Src/gpio.c **** 
+  33:Core/Src/gpio.c **** /* USER CODE END 1 */
+  34:Core/Src/gpio.c **** 
+  35:Core/Src/gpio.c **** /** Configure pins
+  36:Core/Src/gpio.c **** */
+  37:Core/Src/gpio.c **** void MX_GPIO_Init(void)
+  38:Core/Src/gpio.c **** {
+  29              		.loc 1 38 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 24
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 4, -16
+  36              		.cfi_offset 5, -12
+  37              		.cfi_offset 6, -8
+  38              		.cfi_offset 14, -4
+  39 0002 86B0     		sub	sp, sp, #24
+  40              		.cfi_def_cfa_offset 40
+  39:Core/Src/gpio.c **** 
+  40:Core/Src/gpio.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+  41              		.loc 1 40 3 view .LVU1
+  42              		.loc 1 40 20 is_stmt 0 view .LVU2
+  43 0004 01AD     		add	r5, sp, #4
+  44 0006 0024     		movs	r4, #0
+  45 0008 0194     		str	r4, [sp, #4]
+  46 000a 0294     		str	r4, [sp, #8]
+  47 000c 0394     		str	r4, [sp, #12]
+  48 000e 0494     		str	r4, [sp, #16]
+  49 0010 0594     		str	r4, [sp, #20]
+  41:Core/Src/gpio.c **** 
+  42:Core/Src/gpio.c ****   /* GPIO Ports Clock Enable */
+  43:Core/Src/gpio.c ****   __HAL_RCC_GPIOB_CLK_ENABLE();
+  50              		.loc 1 43 3 is_stmt 1 view .LVU3
+  51              	.LBB2:
+  52              		.loc 1 43 3 view .LVU4
+  53              		.loc 1 43 3 view .LVU5
+  54 0012 0F4B     		ldr	r3, .L3
+  55 0014 DA6C     		ldr	r2, [r3, #76]
+  56 0016 42F00202 		orr	r2, r2, #2
+  57 001a DA64     		str	r2, [r3, #76]
+  58              		.loc 1 43 3 view .LVU6
+  59 001c DB6C     		ldr	r3, [r3, #76]
+  60 001e 03F00203 		and	r3, r3, #2
+  61 0022 0093     		str	r3, [sp]
+  62              		.loc 1 43 3 view .LVU7
+  63 0024 009B     		ldr	r3, [sp]
+  64              	.LBE2:
+  65              		.loc 1 43 3 view .LVU8
+  44:Core/Src/gpio.c **** 
+  45:Core/Src/gpio.c ****   /*Configure GPIO pin Output Level */
+  46:Core/Src/gpio.c ****   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
+  66              		.loc 1 46 3 view .LVU9
+  67 0026 0B4E     		ldr	r6, .L3+4
+  68 0028 2246     		mov	r2, r4
+  69 002a 4FF48041 		mov	r1, #16384
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cc7PJG34.s 			page 3
+
+
+  70 002e 3046     		mov	r0, r6
+  71 0030 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  72              	.LVL0:
+  47:Core/Src/gpio.c **** 
+  48:Core/Src/gpio.c ****   /*Configure GPIO pin : PB14 */
+  49:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_14;
+  73              		.loc 1 49 3 view .LVU10
+  74              		.loc 1 49 23 is_stmt 0 view .LVU11
+  75 0034 4FF48043 		mov	r3, #16384
+  76 0038 0193     		str	r3, [sp, #4]
+  50:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  77              		.loc 1 50 3 is_stmt 1 view .LVU12
+  78              		.loc 1 50 24 is_stmt 0 view .LVU13
+  79 003a 0123     		movs	r3, #1
+  80 003c 0293     		str	r3, [sp, #8]
+  51:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+  81              		.loc 1 51 3 is_stmt 1 view .LVU14
+  82              		.loc 1 51 24 is_stmt 0 view .LVU15
+  83 003e 0394     		str	r4, [sp, #12]
+  52:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  84              		.loc 1 52 3 is_stmt 1 view .LVU16
+  85              		.loc 1 52 25 is_stmt 0 view .LVU17
+  86 0040 0494     		str	r4, [sp, #16]
+  53:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  87              		.loc 1 53 3 is_stmt 1 view .LVU18
+  88 0042 2946     		mov	r1, r5
+  89 0044 3046     		mov	r0, r6
+  90 0046 FFF7FEFF 		bl	HAL_GPIO_Init
+  91              	.LVL1:
+  54:Core/Src/gpio.c **** 
+  55:Core/Src/gpio.c **** }
+  92              		.loc 1 55 1 is_stmt 0 view .LVU19
+  93 004a 06B0     		add	sp, sp, #24
+  94              		.cfi_def_cfa_offset 16
+  95              		@ sp needed
+  96 004c 70BD     		pop	{r4, r5, r6, pc}
+  97              	.L4:
+  98 004e 00BF     		.align	2
+  99              	.L3:
+ 100 0050 00100240 		.word	1073876992
+ 101 0054 00040048 		.word	1207960576
+ 102              		.cfi_endproc
+ 103              	.LFE132:
+ 105              		.text
+ 106              	.Letext0:
+ 107              		.file 2 "C:/Users/aniru.000/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-de
+ 108              		.file 3 "C:/Users/aniru.000/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-de
+ 109              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g491xx.h"
+ 110              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cc7PJG34.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gpio.c
+C:\Users\aniru.000\AppData\Local\Temp\cc7PJG34.s:21     .text.MX_GPIO_Init:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cc7PJG34.s:27     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\aniru.000\AppData\Local\Temp\cc7PJG34.s:100    .text.MX_GPIO_Init:00000050 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_GPIO_Init

@@ -1,0 +1,115 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccuriAQX.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"BoardManagerWrapper.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/BoardManagerWrapper.cpp"
+  20              		.align	1
+  21              		.global	bm_create
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	bm_create:
+  27              	.LFB132:
+   1:Core/Src/BoardManagerWrapper.cpp **** /*
+   2:Core/Src/BoardManagerWrapper.cpp ****  * BoardManagerWrapper.c
+   3:Core/Src/BoardManagerWrapper.cpp ****  *
+   4:Core/Src/BoardManagerWrapper.cpp ****  *  Created on: Apr 4, 2026
+   5:Core/Src/BoardManagerWrapper.cpp ****  *      Author: aniru
+   6:Core/Src/BoardManagerWrapper.cpp ****  */
+   7:Core/Src/BoardManagerWrapper.cpp **** #include "BoardManagerWrapper.h"
+   8:Core/Src/BoardManagerWrapper.cpp **** #include "BoardManager.h"
+   9:Core/Src/BoardManagerWrapper.cpp **** 
+  10:Core/Src/BoardManagerWrapper.cpp **** void* bm_create(){
+  28              		.loc 1 10 18 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  11:Core/Src/BoardManagerWrapper.cpp **** 	return new BoardManager();
+  36              		.loc 1 11 2 view .LVU1
+  37              		.loc 1 11 26 is_stmt 0 view .LVU2
+  38 0002 0C20     		movs	r0, #12
+  39 0004 FFF7FEFF 		bl	_Znwj
+  40              	.LVL0:
+  41 0008 0446     		mov	r4, r0
+  42              		.loc 1 11 26 discriminator 1 view .LVU3
+  43 000a FFF7FEFF 		bl	_ZN12BoardManagerC1Ev
+  44              	.LVL1:
+  12:Core/Src/BoardManagerWrapper.cpp **** }
+  45              		.loc 1 12 1 view .LVU4
+  46 000e 2046     		mov	r0, r4
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccuriAQX.s 			page 2
+
+
+  47 0010 10BD     		pop	{r4, pc}
+  48              		.cfi_endproc
+  49              	.LFE132:
+  51              		.align	1
+  52              		.global	bm_execute
+  53              		.syntax unified
+  54              		.thumb
+  55              		.thumb_func
+  57              	bm_execute:
+  58              	.LVL2:
+  59              	.LFB133:
+  13:Core/Src/BoardManagerWrapper.cpp **** 
+  14:Core/Src/BoardManagerWrapper.cpp **** void bm_execute(void* bm){
+  60              		.loc 1 14 26 is_stmt 1 view -0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		.loc 1 14 26 is_stmt 0 view .LVU6
+  65 0012 08B5     		push	{r3, lr}
+  66              		.cfi_def_cfa_offset 8
+  67              		.cfi_offset 3, -8
+  68              		.cfi_offset 14, -4
+  15:Core/Src/BoardManagerWrapper.cpp **** 	return static_cast<BoardManager*>(bm)->execute();
+  69              		.loc 1 15 2 is_stmt 1 view .LVU7
+  70              		.loc 1 15 48 is_stmt 0 view .LVU8
+  71 0014 FFF7FEFF 		bl	_ZN12BoardManager7executeEv
+  72              	.LVL3:
+  16:Core/Src/BoardManagerWrapper.cpp **** }
+  73              		.loc 1 16 1 view .LVU9
+  74 0018 08BD     		pop	{r3, pc}
+  75              		.cfi_endproc
+  76              	.LFE133:
+  78              	.Letext0:
+  79              		.file 2 "C:/Users/aniru.000/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-de
+  80              		.file 3 "C:/Users/aniru.000/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-de
+  81              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g491xx.h"
+  82              		.file 5 "Core/Inc/IOPin.hpp"
+  83              		.file 6 "Core/Inc/IOPinwrapper.hpp"
+  84              		.file 7 "Core/Inc/BoardManager.h"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccuriAQX.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 BoardManagerWrapper.cpp
+C:\Users\aniru.000\AppData\Local\Temp\ccuriAQX.s:20     .text:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccuriAQX.s:26     .text:00000000 bm_create
+C:\Users\aniru.000\AppData\Local\Temp\ccuriAQX.s:57     .text:00000012 bm_execute
+
+UNDEFINED SYMBOLS
+_Znwj
+_ZN12BoardManagerC1Ev
+_ZN12BoardManager7executeEv

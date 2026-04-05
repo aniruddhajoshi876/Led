@@ -1,0 +1,110 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccO5Pj61.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"IOPinwrapper.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/IOPinwrapper.cpp"
+  20              		.align	1
+  21              		.global	_ZN13IOPin_wrapperC2ER5IOPin
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_ZN13IOPin_wrapperC2ER5IOPin:
+  27              	.LVL0:
+  28              	.LFB133:
+   1:Core/Src/IOPinwrapper.cpp **** /*
+   2:Core/Src/IOPinwrapper.cpp ****  * IOPinwrapper.cpp
+   3:Core/Src/IOPinwrapper.cpp ****  *
+   4:Core/Src/IOPinwrapper.cpp ****  *  Created on: Apr 4, 2026
+   5:Core/Src/IOPinwrapper.cpp ****  *      Author: aniru
+   6:Core/Src/IOPinwrapper.cpp ****  */
+   7:Core/Src/IOPinwrapper.cpp **** 
+   8:Core/Src/IOPinwrapper.cpp **** #include "IOPinwrapper.hpp"
+   9:Core/Src/IOPinwrapper.cpp **** 
+  10:Core/Src/IOPinwrapper.cpp **** IOPin_wrapper::IOPin_wrapper(IOPin& led)
+  29              		.loc 1 10 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              	.LBB2:
+  11:Core/Src/IOPinwrapper.cpp **** 	:led(led)
+  35              		.loc 1 11 3 is_stmt 0 view .LVU1
+  36 0000 0160     		str	r1, [r0]
+  37              	.LBE2:
+  12:Core/Src/IOPinwrapper.cpp **** {}
+  38              		.loc 1 12 2 view .LVU2
+  39 0002 7047     		bx	lr
+  40              		.cfi_endproc
+  41              	.LFE133:
+  43              		.global	_ZN13IOPin_wrapperC1ER5IOPin
+  44              		.thumb_set _ZN13IOPin_wrapperC1ER5IOPin,_ZN13IOPin_wrapperC2ER5IOPin
+  45              		.align	1
+  46              		.global	_ZN13IOPin_wrapper10toggle_ledEv
+  47              		.syntax unified
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccO5Pj61.s 			page 2
+
+
+  48              		.thumb
+  49              		.thumb_func
+  51              	_ZN13IOPin_wrapper10toggle_ledEv:
+  52              	.LVL1:
+  53              	.LFB135:
+  13:Core/Src/IOPinwrapper.cpp **** 
+  14:Core/Src/IOPinwrapper.cpp **** void IOPin_wrapper::toggle_led(){
+  54              		.loc 1 14 33 is_stmt 1 view -0
+  55              		.cfi_startproc
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58              		.loc 1 14 33 is_stmt 0 view .LVU4
+  59 0004 08B5     		push	{r3, lr}
+  60              		.cfi_def_cfa_offset 8
+  61              		.cfi_offset 3, -8
+  62              		.cfi_offset 14, -4
+  15:Core/Src/IOPinwrapper.cpp **** 	led.toggle();
+  63              		.loc 1 15 2 is_stmt 1 view .LVU5
+  64              		.loc 1 15 12 is_stmt 0 view .LVU6
+  65 0006 0068     		ldr	r0, [r0]
+  66              	.LVL2:
+  67              		.loc 1 15 12 view .LVU7
+  68 0008 FFF7FEFF 		bl	_ZN5IOPin6toggleEv
+  69              	.LVL3:
+  16:Core/Src/IOPinwrapper.cpp **** }
+  70              		.loc 1 16 1 view .LVU8
+  71 000c 08BD     		pop	{r3, pc}
+  72              		.cfi_endproc
+  73              	.LFE135:
+  75              	.Letext0:
+  76              		.file 2 "C:/Users/aniru.000/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-de
+  77              		.file 3 "C:/Users/aniru.000/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-de
+  78              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g491xx.h"
+  79              		.file 5 "Core/Inc/IOPin.hpp"
+  80              		.file 6 "Core/Inc/IOPinwrapper.hpp"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccO5Pj61.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 IOPinwrapper.cpp
+C:\Users\aniru.000\AppData\Local\Temp\ccO5Pj61.s:20     .text:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccO5Pj61.s:26     .text:00000000 _ZN13IOPin_wrapperC2ER5IOPin
+C:\Users\aniru.000\AppData\Local\Temp\ccO5Pj61.s:26     .text:00000000 _ZN13IOPin_wrapperC1ER5IOPin
+C:\Users\aniru.000\AppData\Local\Temp\ccO5Pj61.s:51     .text:00000004 _ZN13IOPin_wrapper10toggle_ledEv
+
+UNDEFINED SYMBOLS
+_ZN5IOPin6toggleEv

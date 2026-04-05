@@ -1,0 +1,247 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32g4xx_hal_dma_ex.c"
+  16              		.text
+  17              		.section	.text.HAL_DMAEx_ConfigMuxSync,"ax",%progbits
+  18              		.align	1
+  19              		.global	HAL_DMAEx_ConfigMuxSync
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	HAL_DMAEx_ConfigMuxSync:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27 0000 90F82530 		ldrb	r3, [r0, #37]	@ zero_extendqisi2
+  28 0004 012B     		cmp	r3, #1
+  29 0006 24D1     		bne	.L3
+  30 0008 90F82430 		ldrb	r3, [r0, #36]	@ zero_extendqisi2
+  31 000c 012B     		cmp	r3, #1
+  32 000e 22D0     		beq	.L4
+  33 0010 10B5     		push	{r4, lr}
+  34 0012 0123     		movs	r3, #1
+  35 0014 80F82430 		strb	r3, [r0, #36]
+  36 0018 D0F848C0 		ldr	ip, [r0, #72]
+  37 001c DCF80020 		ldr	r2, [ip]
+  38 0020 02F07F02 		and	r2, r2, #127
+  39 0024 CB68     		ldr	r3, [r1, #12]
+  40 0026 013B     		subs	r3, r3, #1
+  41 0028 DB04     		lsls	r3, r3, #19
+  42 002a 0C68     		ldr	r4, [r1]
+  43 002c 43EA0463 		orr	r3, r3, r4, lsl #24
+  44 0030 4C68     		ldr	r4, [r1, #4]
+  45 0032 2343     		orrs	r3, r3, r4
+  46 0034 91F808E0 		ldrb	lr, [r1, #8]	@ zero_extendqisi2
+  47 0038 43EA0E43 		orr	r3, r3, lr, lsl #16
+  48 003c 497A     		ldrb	r1, [r1, #9]	@ zero_extendqisi2
+  49 003e 43EA4123 		orr	r3, r3, r1, lsl #9
+  50 0042 1343     		orrs	r3, r3, r2
+  51 0044 CCF80030 		str	r3, [ip]
+  52 0048 0023     		movs	r3, #0
+  53 004a 80F82430 		strb	r3, [r0, #36]
+  54 004e 1846     		mov	r0, r3
+  55 0050 10BD     		pop	{r4, pc}
+  56              	.L3:
+  57 0052 0120     		movs	r0, #1
+  58 0054 7047     		bx	lr
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s 			page 2
+
+
+  59              	.L4:
+  60 0056 0220     		movs	r0, #2
+  61 0058 7047     		bx	lr
+  63              		.section	.text.HAL_DMAEx_ConfigMuxRequestGenerator,"ax",%progbits
+  64              		.align	1
+  65              		.global	HAL_DMAEx_ConfigMuxRequestGenerator
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  70              	HAL_DMAEx_ConfigMuxRequestGenerator:
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  73 0000 90F82520 		ldrb	r2, [r0, #37]	@ zero_extendqisi2
+  74 0004 012A     		cmp	r2, #1
+  75 0006 28D1     		bne	.L12
+  76 0008 00B5     		push	{lr}
+  77 000a 0346     		mov	r3, r0
+  78 000c D0B2     		uxtb	r0, r2
+  79 000e D3F854E0 		ldr	lr, [r3, #84]
+  80 0012 BEF1000F 		cmp	lr, #0
+  81 0016 1DD0     		beq	.L10
+  82 0018 93F82420 		ldrb	r2, [r3, #36]	@ zero_extendqisi2
+  83 001c 012A     		cmp	r2, #1
+  84 001e 1ED0     		beq	.L13
+  85 0020 0122     		movs	r2, #1
+  86 0022 83F82420 		strb	r2, [r3, #36]
+  87 0026 0868     		ldr	r0, [r1]
+  88 0028 8A68     		ldr	r2, [r1, #8]
+  89 002a 02F1FF3C 		add	ip, r2, #-1
+  90 002e 4FF47802 		mov	r2, #16252928
+  91              		.syntax unified
+  92              	@ 1055 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  93 0032 92FAA2F2 		rbit r2, r2
+  94              	@ 0 "" 2
+  95              		.thumb
+  96              		.syntax unified
+  97 0036 72B1     		cbz	r2, .L14
+  98 0038 B2FA82F2 		clz	r2, r2
+  99              	.L11:
+ 100 003c 02F01F02 		and	r2, r2, #31
+ 101 0040 0CFA02F2 		lsl	r2, ip, r2
+ 102 0044 0243     		orrs	r2, r2, r0
+ 103 0046 4968     		ldr	r1, [r1, #4]
+ 104 0048 0A43     		orrs	r2, r2, r1
+ 105 004a CEF80020 		str	r2, [lr]
+ 106 004e 0020     		movs	r0, #0
+ 107 0050 83F82400 		strb	r0, [r3, #36]
+ 108              	.L10:
+ 109 0054 00BD     		pop	{pc}
+ 110              	.L14:
+ 111 0056 2022     		movs	r2, #32
+ 112 0058 F0E7     		b	.L11
+ 113              	.L12:
+ 114 005a 0120     		movs	r0, #1
+ 115 005c 7047     		bx	lr
+ 116              	.L13:
+ 117 005e 0220     		movs	r0, #2
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s 			page 3
+
+
+ 118 0060 F8E7     		b	.L10
+ 120              		.section	.text.HAL_DMAEx_EnableMuxRequestGenerator,"ax",%progbits
+ 121              		.align	1
+ 122              		.global	HAL_DMAEx_EnableMuxRequestGenerator
+ 123              		.syntax unified
+ 124              		.thumb
+ 125              		.thumb_func
+ 127              	HAL_DMAEx_EnableMuxRequestGenerator:
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130              		@ link register save eliminated.
+ 131 0000 90F82530 		ldrb	r3, [r0, #37]	@ zero_extendqisi2
+ 132 0004 3BB1     		cbz	r3, .L21
+ 133 0006 436D     		ldr	r3, [r0, #84]
+ 134 0008 3BB1     		cbz	r3, .L22
+ 135 000a 1A68     		ldr	r2, [r3]
+ 136 000c 42F48032 		orr	r2, r2, #65536
+ 137 0010 1A60     		str	r2, [r3]
+ 138 0012 0020     		movs	r0, #0
+ 139 0014 7047     		bx	lr
+ 140              	.L21:
+ 141 0016 0120     		movs	r0, #1
+ 142 0018 7047     		bx	lr
+ 143              	.L22:
+ 144 001a 0120     		movs	r0, #1
+ 145 001c 7047     		bx	lr
+ 147              		.section	.text.HAL_DMAEx_DisableMuxRequestGenerator,"ax",%progbits
+ 148              		.align	1
+ 149              		.global	HAL_DMAEx_DisableMuxRequestGenerator
+ 150              		.syntax unified
+ 151              		.thumb
+ 152              		.thumb_func
+ 154              	HAL_DMAEx_DisableMuxRequestGenerator:
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157              		@ link register save eliminated.
+ 158 0000 90F82530 		ldrb	r3, [r0, #37]	@ zero_extendqisi2
+ 159 0004 3BB1     		cbz	r3, .L25
+ 160 0006 436D     		ldr	r3, [r0, #84]
+ 161 0008 3BB1     		cbz	r3, .L26
+ 162 000a 1A68     		ldr	r2, [r3]
+ 163 000c 22F48032 		bic	r2, r2, #65536
+ 164 0010 1A60     		str	r2, [r3]
+ 165 0012 0020     		movs	r0, #0
+ 166 0014 7047     		bx	lr
+ 167              	.L25:
+ 168 0016 0120     		movs	r0, #1
+ 169 0018 7047     		bx	lr
+ 170              	.L26:
+ 171 001a 0120     		movs	r0, #1
+ 172 001c 7047     		bx	lr
+ 174              		.section	.text.HAL_DMAEx_MUX_IRQHandler,"ax",%progbits
+ 175              		.align	1
+ 176              		.global	HAL_DMAEx_MUX_IRQHandler
+ 177              		.syntax unified
+ 178              		.thumb
+ 179              		.thumb_func
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s 			page 4
+
+
+ 181              	HAL_DMAEx_MUX_IRQHandler:
+ 182              		@ args = 0, pretend = 0, frame = 0
+ 183              		@ frame_needed = 0, uses_anonymous_args = 0
+ 184 0000 10B5     		push	{r4, lr}
+ 185 0002 0446     		mov	r4, r0
+ 186 0004 C36C     		ldr	r3, [r0, #76]
+ 187 0006 1A68     		ldr	r2, [r3]
+ 188 0008 036D     		ldr	r3, [r0, #80]
+ 189 000a 1A42     		tst	r2, r3
+ 190 000c 0ED0     		beq	.L28
+ 191 000e 826C     		ldr	r2, [r0, #72]
+ 192 0010 1368     		ldr	r3, [r2]
+ 193 0012 23F48073 		bic	r3, r3, #256
+ 194 0016 1360     		str	r3, [r2]
+ 195 0018 C36C     		ldr	r3, [r0, #76]
+ 196 001a 026D     		ldr	r2, [r0, #80]
+ 197 001c 5A60     		str	r2, [r3, #4]
+ 198 001e C36B     		ldr	r3, [r0, #60]
+ 199 0020 43F40073 		orr	r3, r3, #512
+ 200 0024 C363     		str	r3, [r0, #60]
+ 201 0026 436B     		ldr	r3, [r0, #52]
+ 202 0028 03B1     		cbz	r3, .L28
+ 203 002a 9847     		blx	r3
+ 204              	.L28:
+ 205 002c 636D     		ldr	r3, [r4, #84]
+ 206 002e 9BB1     		cbz	r3, .L27
+ 207 0030 A26D     		ldr	r2, [r4, #88]
+ 208 0032 1168     		ldr	r1, [r2]
+ 209 0034 E26D     		ldr	r2, [r4, #92]
+ 210 0036 1142     		tst	r1, r2
+ 211 0038 0ED0     		beq	.L27
+ 212 003a 1A68     		ldr	r2, [r3]
+ 213 003c 22F48072 		bic	r2, r2, #256
+ 214 0040 1A60     		str	r2, [r3]
+ 215 0042 A36D     		ldr	r3, [r4, #88]
+ 216 0044 E26D     		ldr	r2, [r4, #92]
+ 217 0046 5A60     		str	r2, [r3, #4]
+ 218 0048 E36B     		ldr	r3, [r4, #60]
+ 219 004a 43F48063 		orr	r3, r3, #1024
+ 220 004e E363     		str	r3, [r4, #60]
+ 221 0050 636B     		ldr	r3, [r4, #52]
+ 222 0052 0BB1     		cbz	r3, .L27
+ 223 0054 2046     		mov	r0, r4
+ 224 0056 9847     		blx	r3
+ 225              	.L27:
+ 226 0058 10BD     		pop	{r4, pc}
+ 228              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 15.2.1 20251203"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32g4xx_hal_dma_ex.c
+C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s:18     .text.HAL_DMAEx_ConfigMuxSync:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s:24     .text.HAL_DMAEx_ConfigMuxSync:00000000 HAL_DMAEx_ConfigMuxSync
+C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s:64     .text.HAL_DMAEx_ConfigMuxRequestGenerator:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s:70     .text.HAL_DMAEx_ConfigMuxRequestGenerator:00000000 HAL_DMAEx_ConfigMuxRequestGenerator
+C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s:121    .text.HAL_DMAEx_EnableMuxRequestGenerator:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s:127    .text.HAL_DMAEx_EnableMuxRequestGenerator:00000000 HAL_DMAEx_EnableMuxRequestGenerator
+C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s:148    .text.HAL_DMAEx_DisableMuxRequestGenerator:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s:154    .text.HAL_DMAEx_DisableMuxRequestGenerator:00000000 HAL_DMAEx_DisableMuxRequestGenerator
+C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s:175    .text.HAL_DMAEx_MUX_IRQHandler:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccmxKp7h.s:181    .text.HAL_DMAEx_MUX_IRQHandler:00000000 HAL_DMAEx_MUX_IRQHandler
+
+NO UNDEFINED SYMBOLS

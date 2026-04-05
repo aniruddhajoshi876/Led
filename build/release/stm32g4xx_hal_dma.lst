@@ -1,0 +1,1045 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32g4xx_hal_dma.c"
+  16              		.text
+  17              		.section	.text.DMA_SetConfig,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	DMA_SetConfig:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 30B5     		push	{r4, r5, lr}
+  27 0002 C46C     		ldr	r4, [r0, #76]
+  28 0004 056D     		ldr	r5, [r0, #80]
+  29 0006 6560     		str	r5, [r4, #4]
+  30 0008 446D     		ldr	r4, [r0, #84]
+  31 000a 14B1     		cbz	r4, .L2
+  32 000c 846D     		ldr	r4, [r0, #88]
+  33 000e C56D     		ldr	r5, [r0, #92]
+  34 0010 6560     		str	r5, [r4, #4]
+  35              	.L2:
+  36 0012 446C     		ldr	r4, [r0, #68]
+  37 0014 04F01F0E 		and	lr, r4, #31
+  38 0018 4FF0010C 		mov	ip, #1
+  39 001c 0CFA0EFC 		lsl	ip, ip, lr
+  40 0020 046C     		ldr	r4, [r0, #64]
+  41 0022 C4F804C0 		str	ip, [r4, #4]
+  42 0026 0468     		ldr	r4, [r0]
+  43 0028 6360     		str	r3, [r4, #4]
+  44 002a 8368     		ldr	r3, [r0, #8]
+  45 002c 102B     		cmp	r3, #16
+  46 002e 04D0     		beq	.L6
+  47 0030 0368     		ldr	r3, [r0]
+  48 0032 9960     		str	r1, [r3, #8]
+  49 0034 0368     		ldr	r3, [r0]
+  50 0036 DA60     		str	r2, [r3, #12]
+  51              	.L1:
+  52 0038 30BD     		pop	{r4, r5, pc}
+  53              	.L6:
+  54 003a 0368     		ldr	r3, [r0]
+  55 003c 9A60     		str	r2, [r3, #8]
+  56 003e 0368     		ldr	r3, [r0]
+  57 0040 D960     		str	r1, [r3, #12]
+  58 0042 F9E7     		b	.L1
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 2
+
+
+  60              		.section	.text.DMA_CalcDMAMUXChannelBaseAndMask,"ax",%progbits
+  61              		.align	1
+  62              		.syntax unified
+  63              		.thumb
+  64              		.thumb_func
+  66              	DMA_CalcDMAMUXChannelBaseAndMask:
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69              		@ link register save eliminated.
+  70 0000 0368     		ldr	r3, [r0]
+  71 0002 104A     		ldr	r2, .L10
+  72 0004 9342     		cmp	r3, r2
+  73 0006 14D8     		bhi	.L8
+  74 0008 DBB2     		uxtb	r3, r3
+  75 000a 083B     		subs	r3, r3, #8
+  76 000c 0E4A     		ldr	r2, .L10+4
+  77 000e A2FB0323 		umull	r2, r3, r2, r3
+  78 0012 1B09     		lsrs	r3, r3, #4
+  79 0014 0D49     		ldr	r1, .L10+8
+  80              	.L9:
+  81 0016 426C     		ldr	r2, [r0, #68]
+  82 0018 22F00302 		bic	r2, r2, #3
+  83 001c 0A44     		add	r2, r2, r1
+  84 001e 8264     		str	r2, [r0, #72]
+  85 0020 0B4A     		ldr	r2, .L10+12
+  86 0022 C264     		str	r2, [r0, #76]
+  87 0024 03F01F03 		and	r3, r3, #31
+  88 0028 0122     		movs	r2, #1
+  89 002a 02FA03F3 		lsl	r3, r2, r3
+  90 002e 0365     		str	r3, [r0, #80]
+  91 0030 7047     		bx	lr
+  92              	.L8:
+  93 0032 DBB2     		uxtb	r3, r3
+  94 0034 083B     		subs	r3, r3, #8
+  95 0036 044A     		ldr	r2, .L10+4
+  96 0038 A2FB0323 		umull	r2, r3, r2, r3
+  97 003c 1B09     		lsrs	r3, r3, #4
+  98 003e 0833     		adds	r3, r3, #8
+  99 0040 0449     		ldr	r1, .L10+16
+ 100 0042 E8E7     		b	.L9
+ 101              	.L11:
+ 102              		.align	2
+ 103              	.L10:
+ 104 0044 07040240 		.word	1073873927
+ 105 0048 CDCCCCCC 		.word	-858993459
+ 106 004c 00080240 		.word	1073874944
+ 107 0050 80080240 		.word	1073875072
+ 108 0054 20080240 		.word	1073874976
+ 110              		.section	.text.DMA_CalcDMAMUXRequestGenBaseAndMask,"ax",%progbits
+ 111              		.align	1
+ 112              		.syntax unified
+ 113              		.thumb
+ 114              		.thumb_func
+ 116              	DMA_CalcDMAMUXRequestGenBaseAndMask:
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		@ link register save eliminated.
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 3
+
+
+ 120 0000 4368     		ldr	r3, [r0, #4]
+ 121 0002 03F07F03 		and	r3, r3, #127
+ 122 0006 074A     		ldr	r2, .L13
+ 123 0008 1A44     		add	r2, r2, r3
+ 124 000a 9200     		lsls	r2, r2, #2
+ 125 000c 4265     		str	r2, [r0, #84]
+ 126 000e 064A     		ldr	r2, .L13+4
+ 127 0010 8265     		str	r2, [r0, #88]
+ 128 0012 013B     		subs	r3, r3, #1
+ 129 0014 03F01F03 		and	r3, r3, #31
+ 130 0018 0122     		movs	r2, #1
+ 131 001a 02FA03F3 		lsl	r3, r2, r3
+ 132 001e C365     		str	r3, [r0, #92]
+ 133 0020 7047     		bx	lr
+ 134              	.L14:
+ 135 0022 00BF     		.align	2
+ 136              	.L13:
+ 137 0024 3F820010 		.word	268468799
+ 138 0028 40090240 		.word	1073875264
+ 140              		.section	.text.HAL_DMA_Init,"ax",%progbits
+ 141              		.align	1
+ 142              		.global	HAL_DMA_Init
+ 143              		.syntax unified
+ 144              		.thumb
+ 145              		.thumb_func
+ 147              	HAL_DMA_Init:
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 0, uses_anonymous_args = 0
+ 150 0000 0028     		cmp	r0, #0
+ 151 0002 5BD0     		beq	.L22
+ 152 0004 10B5     		push	{r4, lr}
+ 153 0006 0446     		mov	r4, r0
+ 154 0008 0268     		ldr	r2, [r0]
+ 155 000a 2D4B     		ldr	r3, .L29
+ 156 000c 9A42     		cmp	r2, r3
+ 157 000e 3DD8     		bhi	.L17
+ 158 0010 2C4B     		ldr	r3, .L29+4
+ 159 0012 1344     		add	r3, r3, r2
+ 160 0014 2C49     		ldr	r1, .L29+8
+ 161 0016 A1FB0313 		umull	r1, r3, r1, r3
+ 162 001a 1B09     		lsrs	r3, r3, #4
+ 163 001c 9B00     		lsls	r3, r3, #2
+ 164 001e 4364     		str	r3, [r0, #68]
+ 165 0020 2A4B     		ldr	r3, .L29+12
+ 166 0022 0364     		str	r3, [r0, #64]
+ 167              	.L18:
+ 168 0024 0223     		movs	r3, #2
+ 169 0026 84F82530 		strb	r3, [r4, #37]
+ 170 002a 1168     		ldr	r1, [r2]
+ 171 002c 6FF30E11 		bfc	r1, #4, #11
+ 172 0030 A368     		ldr	r3, [r4, #8]
+ 173 0032 E068     		ldr	r0, [r4, #12]
+ 174 0034 0343     		orrs	r3, r3, r0
+ 175 0036 2069     		ldr	r0, [r4, #16]
+ 176 0038 0343     		orrs	r3, r3, r0
+ 177 003a 6069     		ldr	r0, [r4, #20]
+ 178 003c 0343     		orrs	r3, r3, r0
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 4
+
+
+ 179 003e A069     		ldr	r0, [r4, #24]
+ 180 0040 0343     		orrs	r3, r3, r0
+ 181 0042 E069     		ldr	r0, [r4, #28]
+ 182 0044 0343     		orrs	r3, r3, r0
+ 183 0046 206A     		ldr	r0, [r4, #32]
+ 184 0048 0343     		orrs	r3, r3, r0
+ 185 004a 0B43     		orrs	r3, r3, r1
+ 186 004c 1360     		str	r3, [r2]
+ 187 004e 2046     		mov	r0, r4
+ 188 0050 FFF7FEFF 		bl	DMA_CalcDMAMUXChannelBaseAndMask
+ 189 0054 A368     		ldr	r3, [r4, #8]
+ 190 0056 B3F5804F 		cmp	r3, #16384
+ 191 005a 22D0     		beq	.L27
+ 192              	.L19:
+ 193 005c 6368     		ldr	r3, [r4, #4]
+ 194 005e A26C     		ldr	r2, [r4, #72]
+ 195 0060 03F07F03 		and	r3, r3, #127
+ 196 0064 1360     		str	r3, [r2]
+ 197 0066 E36C     		ldr	r3, [r4, #76]
+ 198 0068 226D     		ldr	r2, [r4, #80]
+ 199 006a 5A60     		str	r2, [r3, #4]
+ 200 006c 6368     		ldr	r3, [r4, #4]
+ 201 006e 013B     		subs	r3, r3, #1
+ 202 0070 032B     		cmp	r3, #3
+ 203 0072 19D9     		bls	.L28
+ 204 0074 0023     		movs	r3, #0
+ 205 0076 6365     		str	r3, [r4, #84]
+ 206 0078 A365     		str	r3, [r4, #88]
+ 207 007a E365     		str	r3, [r4, #92]
+ 208              	.L21:
+ 209 007c 0020     		movs	r0, #0
+ 210 007e E063     		str	r0, [r4, #60]
+ 211 0080 0123     		movs	r3, #1
+ 212 0082 84F82530 		strb	r3, [r4, #37]
+ 213 0086 84F82400 		strb	r0, [r4, #36]
+ 214 008a 10BD     		pop	{r4, pc}
+ 215              	.L17:
+ 216 008c 104B     		ldr	r3, .L29+16
+ 217 008e 1344     		add	r3, r3, r2
+ 218 0090 0D49     		ldr	r1, .L29+8
+ 219 0092 A1FB0313 		umull	r1, r3, r1, r3
+ 220 0096 1B09     		lsrs	r3, r3, #4
+ 221 0098 9B00     		lsls	r3, r3, #2
+ 222 009a 4364     		str	r3, [r0, #68]
+ 223 009c 0D4B     		ldr	r3, .L29+20
+ 224 009e 0364     		str	r3, [r0, #64]
+ 225 00a0 C0E7     		b	.L18
+ 226              	.L27:
+ 227 00a2 0023     		movs	r3, #0
+ 228 00a4 6360     		str	r3, [r4, #4]
+ 229 00a6 D9E7     		b	.L19
+ 230              	.L28:
+ 231 00a8 2046     		mov	r0, r4
+ 232 00aa FFF7FEFF 		bl	DMA_CalcDMAMUXRequestGenBaseAndMask
+ 233 00ae 636D     		ldr	r3, [r4, #84]
+ 234 00b0 0022     		movs	r2, #0
+ 235 00b2 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 5
+
+
+ 236 00b4 A36D     		ldr	r3, [r4, #88]
+ 237 00b6 E26D     		ldr	r2, [r4, #92]
+ 238 00b8 5A60     		str	r2, [r3, #4]
+ 239 00ba DFE7     		b	.L21
+ 240              	.L22:
+ 241 00bc 0120     		movs	r0, #1
+ 242 00be 7047     		bx	lr
+ 243              	.L30:
+ 244              		.align	2
+ 245              	.L29:
+ 246 00c0 07040240 		.word	1073873927
+ 247 00c4 F8FFFDBF 		.word	-1073872904
+ 248 00c8 CDCCCCCC 		.word	-858993459
+ 249 00cc 00000240 		.word	1073872896
+ 250 00d0 F8FBFDBF 		.word	-1073873928
+ 251 00d4 00040240 		.word	1073873920
+ 253              		.section	.text.HAL_DMA_DeInit,"ax",%progbits
+ 254              		.align	1
+ 255              		.global	HAL_DMA_DeInit
+ 256              		.syntax unified
+ 257              		.thumb
+ 258              		.thumb_func
+ 260              	HAL_DMA_DeInit:
+ 261              		@ args = 0, pretend = 0, frame = 0
+ 262              		@ frame_needed = 0, uses_anonymous_args = 0
+ 263 0000 0028     		cmp	r0, #0
+ 264 0002 4BD0     		beq	.L36
+ 265 0004 38B5     		push	{r3, r4, r5, lr}
+ 266 0006 0446     		mov	r4, r0
+ 267 0008 0268     		ldr	r2, [r0]
+ 268 000a 1368     		ldr	r3, [r2]
+ 269 000c 23F00103 		bic	r3, r3, #1
+ 270 0010 1360     		str	r3, [r2]
+ 271 0012 0268     		ldr	r2, [r0]
+ 272 0014 224B     		ldr	r3, .L42
+ 273 0016 9A42     		cmp	r2, r3
+ 274 0018 2CD8     		bhi	.L33
+ 275 001a 224B     		ldr	r3, .L42+4
+ 276 001c 1344     		add	r3, r3, r2
+ 277 001e 2249     		ldr	r1, .L42+8
+ 278 0020 A1FB0313 		umull	r1, r3, r1, r3
+ 279 0024 1B09     		lsrs	r3, r3, #4
+ 280 0026 9B00     		lsls	r3, r3, #2
+ 281 0028 4364     		str	r3, [r0, #68]
+ 282 002a 204B     		ldr	r3, .L42+12
+ 283 002c 0364     		str	r3, [r0, #64]
+ 284              	.L34:
+ 285 002e 0025     		movs	r5, #0
+ 286 0030 1560     		str	r5, [r2]
+ 287 0032 636C     		ldr	r3, [r4, #68]
+ 288 0034 03F01F02 		and	r2, r3, #31
+ 289 0038 216C     		ldr	r1, [r4, #64]
+ 290 003a 0123     		movs	r3, #1
+ 291 003c 9340     		lsls	r3, r3, r2
+ 292 003e 4B60     		str	r3, [r1, #4]
+ 293 0040 2046     		mov	r0, r4
+ 294 0042 FFF7FEFF 		bl	DMA_CalcDMAMUXChannelBaseAndMask
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 6
+
+
+ 295 0046 A36C     		ldr	r3, [r4, #72]
+ 296 0048 1D60     		str	r5, [r3]
+ 297 004a E36C     		ldr	r3, [r4, #76]
+ 298 004c 226D     		ldr	r2, [r4, #80]
+ 299 004e 5A60     		str	r2, [r3, #4]
+ 300 0050 6368     		ldr	r3, [r4, #4]
+ 301 0052 013B     		subs	r3, r3, #1
+ 302 0054 032B     		cmp	r3, #3
+ 303 0056 18D9     		bls	.L41
+ 304              	.L35:
+ 305 0058 0020     		movs	r0, #0
+ 306 005a 6065     		str	r0, [r4, #84]
+ 307 005c A065     		str	r0, [r4, #88]
+ 308 005e E065     		str	r0, [r4, #92]
+ 309 0060 E062     		str	r0, [r4, #44]
+ 310 0062 2063     		str	r0, [r4, #48]
+ 311 0064 6063     		str	r0, [r4, #52]
+ 312 0066 A063     		str	r0, [r4, #56]
+ 313 0068 E063     		str	r0, [r4, #60]
+ 314 006a 84F82500 		strb	r0, [r4, #37]
+ 315 006e 84F82400 		strb	r0, [r4, #36]
+ 316 0072 38BD     		pop	{r3, r4, r5, pc}
+ 317              	.L33:
+ 318 0074 0E4B     		ldr	r3, .L42+16
+ 319 0076 1344     		add	r3, r3, r2
+ 320 0078 0B49     		ldr	r1, .L42+8
+ 321 007a A1FB0313 		umull	r1, r3, r1, r3
+ 322 007e 1B09     		lsrs	r3, r3, #4
+ 323 0080 9B00     		lsls	r3, r3, #2
+ 324 0082 4364     		str	r3, [r0, #68]
+ 325 0084 0B4B     		ldr	r3, .L42+20
+ 326 0086 0364     		str	r3, [r0, #64]
+ 327 0088 D1E7     		b	.L34
+ 328              	.L41:
+ 329 008a 2046     		mov	r0, r4
+ 330 008c FFF7FEFF 		bl	DMA_CalcDMAMUXRequestGenBaseAndMask
+ 331 0090 636D     		ldr	r3, [r4, #84]
+ 332 0092 1D60     		str	r5, [r3]
+ 333 0094 A36D     		ldr	r3, [r4, #88]
+ 334 0096 E26D     		ldr	r2, [r4, #92]
+ 335 0098 5A60     		str	r2, [r3, #4]
+ 336 009a DDE7     		b	.L35
+ 337              	.L36:
+ 338 009c 0120     		movs	r0, #1
+ 339 009e 7047     		bx	lr
+ 340              	.L43:
+ 341              		.align	2
+ 342              	.L42:
+ 343 00a0 07040240 		.word	1073873927
+ 344 00a4 F8FFFDBF 		.word	-1073872904
+ 345 00a8 CDCCCCCC 		.word	-858993459
+ 346 00ac 00000240 		.word	1073872896
+ 347 00b0 F8FBFDBF 		.word	-1073873928
+ 348 00b4 00040240 		.word	1073873920
+ 350              		.section	.text.HAL_DMA_Start,"ax",%progbits
+ 351              		.align	1
+ 352              		.global	HAL_DMA_Start
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 7
+
+
+ 353              		.syntax unified
+ 354              		.thumb
+ 355              		.thumb_func
+ 357              	HAL_DMA_Start:
+ 358              		@ args = 0, pretend = 0, frame = 0
+ 359              		@ frame_needed = 0, uses_anonymous_args = 0
+ 360 0000 10B5     		push	{r4, lr}
+ 361 0002 0446     		mov	r4, r0
+ 362 0004 90F82400 		ldrb	r0, [r0, #36]	@ zero_extendqisi2
+ 363 0008 0128     		cmp	r0, #1
+ 364 000a 22D0     		beq	.L47
+ 365 000c 0120     		movs	r0, #1
+ 366 000e 84F82400 		strb	r0, [r4, #36]
+ 367 0012 94F82500 		ldrb	r0, [r4, #37]	@ zero_extendqisi2
+ 368 0016 0128     		cmp	r0, #1
+ 369 0018 04D0     		beq	.L49
+ 370 001a 0023     		movs	r3, #0
+ 371 001c 84F82430 		strb	r3, [r4, #36]
+ 372 0020 0220     		movs	r0, #2
+ 373              	.L45:
+ 374 0022 10BD     		pop	{r4, pc}
+ 375              	.L49:
+ 376 0024 0220     		movs	r0, #2
+ 377 0026 84F82500 		strb	r0, [r4, #37]
+ 378 002a 0020     		movs	r0, #0
+ 379 002c E063     		str	r0, [r4, #60]
+ 380 002e D4F800C0 		ldr	ip, [r4]
+ 381 0032 DCF80000 		ldr	r0, [ip]
+ 382 0036 20F00100 		bic	r0, r0, #1
+ 383 003a CCF80000 		str	r0, [ip]
+ 384 003e 2046     		mov	r0, r4
+ 385 0040 FFF7FEFF 		bl	DMA_SetConfig
+ 386 0044 2268     		ldr	r2, [r4]
+ 387 0046 1368     		ldr	r3, [r2]
+ 388 0048 43F00103 		orr	r3, r3, #1
+ 389 004c 1360     		str	r3, [r2]
+ 390 004e 0020     		movs	r0, #0
+ 391 0050 E7E7     		b	.L45
+ 392              	.L47:
+ 393 0052 0220     		movs	r0, #2
+ 394 0054 E5E7     		b	.L45
+ 396              		.section	.text.HAL_DMA_Start_IT,"ax",%progbits
+ 397              		.align	1
+ 398              		.global	HAL_DMA_Start_IT
+ 399              		.syntax unified
+ 400              		.thumb
+ 401              		.thumb_func
+ 403              	HAL_DMA_Start_IT:
+ 404              		@ args = 0, pretend = 0, frame = 0
+ 405              		@ frame_needed = 0, uses_anonymous_args = 0
+ 406 0000 10B5     		push	{r4, lr}
+ 407 0002 0446     		mov	r4, r0
+ 408 0004 90F82400 		ldrb	r0, [r0, #36]	@ zero_extendqisi2
+ 409 0008 0128     		cmp	r0, #1
+ 410 000a 43D0     		beq	.L57
+ 411 000c 0120     		movs	r0, #1
+ 412 000e 84F82400 		strb	r0, [r4, #36]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 8
+
+
+ 413 0012 94F82500 		ldrb	r0, [r4, #37]	@ zero_extendqisi2
+ 414 0016 0128     		cmp	r0, #1
+ 415 0018 04D0     		beq	.L59
+ 416 001a 0023     		movs	r3, #0
+ 417 001c 84F82430 		strb	r3, [r4, #36]
+ 418 0020 0220     		movs	r0, #2
+ 419              	.L51:
+ 420 0022 10BD     		pop	{r4, pc}
+ 421              	.L59:
+ 422 0024 0220     		movs	r0, #2
+ 423 0026 84F82500 		strb	r0, [r4, #37]
+ 424 002a 0020     		movs	r0, #0
+ 425 002c E063     		str	r0, [r4, #60]
+ 426 002e D4F800C0 		ldr	ip, [r4]
+ 427 0032 DCF80000 		ldr	r0, [ip]
+ 428 0036 20F00100 		bic	r0, r0, #1
+ 429 003a CCF80000 		str	r0, [ip]
+ 430 003e 2046     		mov	r0, r4
+ 431 0040 FFF7FEFF 		bl	DMA_SetConfig
+ 432 0044 236B     		ldr	r3, [r4, #48]
+ 433 0046 D3B1     		cbz	r3, .L53
+ 434 0048 2268     		ldr	r2, [r4]
+ 435 004a 1368     		ldr	r3, [r2]
+ 436 004c 43F00E03 		orr	r3, r3, #14
+ 437 0050 1360     		str	r3, [r2]
+ 438              	.L54:
+ 439 0052 A36C     		ldr	r3, [r4, #72]
+ 440 0054 1A68     		ldr	r2, [r3]
+ 441 0056 12F4803F 		tst	r2, #65536
+ 442 005a 03D0     		beq	.L55
+ 443 005c 1A68     		ldr	r2, [r3]
+ 444 005e 42F48072 		orr	r2, r2, #256
+ 445 0062 1A60     		str	r2, [r3]
+ 446              	.L55:
+ 447 0064 636D     		ldr	r3, [r4, #84]
+ 448 0066 1BB1     		cbz	r3, .L56
+ 449 0068 1A68     		ldr	r2, [r3]
+ 450 006a 42F48072 		orr	r2, r2, #256
+ 451 006e 1A60     		str	r2, [r3]
+ 452              	.L56:
+ 453 0070 2268     		ldr	r2, [r4]
+ 454 0072 1368     		ldr	r3, [r2]
+ 455 0074 43F00103 		orr	r3, r3, #1
+ 456 0078 1360     		str	r3, [r2]
+ 457 007a 0020     		movs	r0, #0
+ 458 007c D1E7     		b	.L51
+ 459              	.L53:
+ 460 007e 2268     		ldr	r2, [r4]
+ 461 0080 1368     		ldr	r3, [r2]
+ 462 0082 23F00403 		bic	r3, r3, #4
+ 463 0086 1360     		str	r3, [r2]
+ 464 0088 2268     		ldr	r2, [r4]
+ 465 008a 1368     		ldr	r3, [r2]
+ 466 008c 43F00A03 		orr	r3, r3, #10
+ 467 0090 1360     		str	r3, [r2]
+ 468 0092 DEE7     		b	.L54
+ 469              	.L57:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 9
+
+
+ 470 0094 0220     		movs	r0, #2
+ 471 0096 C4E7     		b	.L51
+ 473              		.section	.text.HAL_DMA_Abort,"ax",%progbits
+ 474              		.align	1
+ 475              		.global	HAL_DMA_Abort
+ 476              		.syntax unified
+ 477              		.thumb
+ 478              		.thumb_func
+ 480              	HAL_DMA_Abort:
+ 481              		@ args = 0, pretend = 0, frame = 0
+ 482              		@ frame_needed = 0, uses_anonymous_args = 0
+ 483              		@ link register save eliminated.
+ 484 0000 0346     		mov	r3, r0
+ 485 0002 0028     		cmp	r0, #0
+ 486 0004 33D0     		beq	.L64
+ 487 0006 90F82520 		ldrb	r2, [r0, #37]	@ zero_extendqisi2
+ 488 000a 022A     		cmp	r2, #2
+ 489 000c 09D0     		beq	.L62
+ 490 000e 0422     		movs	r2, #4
+ 491 0010 C263     		str	r2, [r0, #60]
+ 492 0012 0120     		movs	r0, #1
+ 493              	.L63:
+ 494 0014 0122     		movs	r2, #1
+ 495 0016 83F82520 		strb	r2, [r3, #37]
+ 496 001a 0022     		movs	r2, #0
+ 497 001c 83F82420 		strb	r2, [r3, #36]
+ 498 0020 7047     		bx	lr
+ 499              	.L62:
+ 500 0022 0168     		ldr	r1, [r0]
+ 501 0024 0A68     		ldr	r2, [r1]
+ 502 0026 22F00102 		bic	r2, r2, #1
+ 503 002a 0A60     		str	r2, [r1]
+ 504 002c 0168     		ldr	r1, [r0]
+ 505 002e 0A68     		ldr	r2, [r1]
+ 506 0030 22F00E02 		bic	r2, r2, #14
+ 507 0034 0A60     		str	r2, [r1]
+ 508 0036 816C     		ldr	r1, [r0, #72]
+ 509 0038 0A68     		ldr	r2, [r1]
+ 510 003a 22F48072 		bic	r2, r2, #256
+ 511 003e 0A60     		str	r2, [r1]
+ 512 0040 426C     		ldr	r2, [r0, #68]
+ 513 0042 02F01F01 		and	r1, r2, #31
+ 514 0046 006C     		ldr	r0, [r0, #64]
+ 515 0048 0122     		movs	r2, #1
+ 516 004a 8A40     		lsls	r2, r2, r1
+ 517 004c 4260     		str	r2, [r0, #4]
+ 518 004e DA6C     		ldr	r2, [r3, #76]
+ 519 0050 196D     		ldr	r1, [r3, #80]
+ 520 0052 5160     		str	r1, [r2, #4]
+ 521 0054 5A6D     		ldr	r2, [r3, #84]
+ 522 0056 42B1     		cbz	r2, .L65
+ 523 0058 1168     		ldr	r1, [r2]
+ 524 005a 21F48071 		bic	r1, r1, #256
+ 525 005e 1160     		str	r1, [r2]
+ 526 0060 9A6D     		ldr	r2, [r3, #88]
+ 527 0062 D96D     		ldr	r1, [r3, #92]
+ 528 0064 5160     		str	r1, [r2, #4]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 10
+
+
+ 529 0066 0020     		movs	r0, #0
+ 530 0068 D4E7     		b	.L63
+ 531              	.L65:
+ 532 006a 1046     		mov	r0, r2
+ 533 006c D2E7     		b	.L63
+ 534              	.L64:
+ 535 006e 0120     		movs	r0, #1
+ 536 0070 7047     		bx	lr
+ 538              		.section	.text.HAL_DMA_Abort_IT,"ax",%progbits
+ 539              		.align	1
+ 540              		.global	HAL_DMA_Abort_IT
+ 541              		.syntax unified
+ 542              		.thumb
+ 543              		.thumb_func
+ 545              	HAL_DMA_Abort_IT:
+ 546              		@ args = 0, pretend = 0, frame = 0
+ 547              		@ frame_needed = 0, uses_anonymous_args = 0
+ 548 0000 08B5     		push	{r3, lr}
+ 549 0002 90F82530 		ldrb	r3, [r0, #37]	@ zero_extendqisi2
+ 550 0006 022B     		cmp	r3, #2
+ 551 0008 09D0     		beq	.L67
+ 552 000a 0423     		movs	r3, #4
+ 553 000c C363     		str	r3, [r0, #60]
+ 554 000e 0123     		movs	r3, #1
+ 555 0010 80F82530 		strb	r3, [r0, #37]
+ 556 0014 0022     		movs	r2, #0
+ 557 0016 80F82420 		strb	r2, [r0, #36]
+ 558 001a 1846     		mov	r0, r3
+ 559              	.L68:
+ 560 001c 08BD     		pop	{r3, pc}
+ 561              	.L67:
+ 562 001e 0268     		ldr	r2, [r0]
+ 563 0020 1368     		ldr	r3, [r2]
+ 564 0022 23F00103 		bic	r3, r3, #1
+ 565 0026 1360     		str	r3, [r2]
+ 566 0028 0268     		ldr	r2, [r0]
+ 567 002a 1368     		ldr	r3, [r2]
+ 568 002c 23F00E03 		bic	r3, r3, #14
+ 569 0030 1360     		str	r3, [r2]
+ 570 0032 826C     		ldr	r2, [r0, #72]
+ 571 0034 1368     		ldr	r3, [r2]
+ 572 0036 23F48073 		bic	r3, r3, #256
+ 573 003a 1360     		str	r3, [r2]
+ 574 003c 436C     		ldr	r3, [r0, #68]
+ 575 003e 03F01F02 		and	r2, r3, #31
+ 576 0042 016C     		ldr	r1, [r0, #64]
+ 577 0044 0123     		movs	r3, #1
+ 578 0046 9340     		lsls	r3, r3, r2
+ 579 0048 4B60     		str	r3, [r1, #4]
+ 580 004a C36C     		ldr	r3, [r0, #76]
+ 581 004c 026D     		ldr	r2, [r0, #80]
+ 582 004e 5A60     		str	r2, [r3, #4]
+ 583 0050 436D     		ldr	r3, [r0, #84]
+ 584 0052 33B1     		cbz	r3, .L69
+ 585 0054 1A68     		ldr	r2, [r3]
+ 586 0056 22F48072 		bic	r2, r2, #256
+ 587 005a 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 11
+
+
+ 588 005c 836D     		ldr	r3, [r0, #88]
+ 589 005e C26D     		ldr	r2, [r0, #92]
+ 590 0060 5A60     		str	r2, [r3, #4]
+ 591              	.L69:
+ 592 0062 0123     		movs	r3, #1
+ 593 0064 80F82530 		strb	r3, [r0, #37]
+ 594 0068 0023     		movs	r3, #0
+ 595 006a 80F82430 		strb	r3, [r0, #36]
+ 596 006e 836B     		ldr	r3, [r0, #56]
+ 597 0070 13B1     		cbz	r3, .L70
+ 598 0072 9847     		blx	r3
+ 599 0074 0020     		movs	r0, #0
+ 600 0076 D1E7     		b	.L68
+ 601              	.L70:
+ 602 0078 1846     		mov	r0, r3
+ 603 007a CFE7     		b	.L68
+ 605              		.section	.text.HAL_DMA_PollForTransfer,"ax",%progbits
+ 606              		.align	1
+ 607              		.global	HAL_DMA_PollForTransfer
+ 608              		.syntax unified
+ 609              		.thumb
+ 610              		.thumb_func
+ 612              	HAL_DMA_PollForTransfer:
+ 613              		@ args = 0, pretend = 0, frame = 0
+ 614              		@ frame_needed = 0, uses_anonymous_args = 0
+ 615 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 616 0004 0446     		mov	r4, r0
+ 617 0006 90F82530 		ldrb	r3, [r0, #37]	@ zero_extendqisi2
+ 618 000a 022B     		cmp	r3, #2
+ 619 000c 07D0     		beq	.L73
+ 620 000e 0423     		movs	r3, #4
+ 621 0010 C363     		str	r3, [r0, #60]
+ 622 0012 0023     		movs	r3, #0
+ 623 0014 80F82430 		strb	r3, [r0, #36]
+ 624 0018 0120     		movs	r0, #1
+ 625              	.L74:
+ 626 001a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 627              	.L73:
+ 628 001e 0F46     		mov	r7, r1
+ 629 0020 1546     		mov	r5, r2
+ 630 0022 0368     		ldr	r3, [r0]
+ 631 0024 1B68     		ldr	r3, [r3]
+ 632 0026 13F0200F 		tst	r3, #32
+ 633 002a 2BD1     		bne	.L88
+ 634 002c 79BB     		cbnz	r1, .L76
+ 635 002e 436C     		ldr	r3, [r0, #68]
+ 636 0030 03F01F03 		and	r3, r3, #31
+ 637 0034 0226     		movs	r6, #2
+ 638 0036 9E40     		lsls	r6, r6, r3
+ 639              	.L77:
+ 640 0038 FFF7FEFF 		bl	HAL_GetTick
+ 641 003c 8046     		mov	r8, r0
+ 642              	.L80:
+ 643 003e 226C     		ldr	r2, [r4, #64]
+ 644 0040 1368     		ldr	r3, [r2]
+ 645 0042 3342     		tst	r3, r6
+ 646 0044 34D1     		bne	.L89
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 12
+
+
+ 647 0046 1168     		ldr	r1, [r2]
+ 648 0048 636C     		ldr	r3, [r4, #68]
+ 649 004a 03F01F03 		and	r3, r3, #31
+ 650 004e 4FF0080C 		mov	ip, #8
+ 651 0052 0CFA03FC 		lsl	ip, ip, r3
+ 652 0056 11EA0C0F 		tst	r1, ip
+ 653 005a 1ED1     		bne	.L90
+ 654 005c B5F1FF3F 		cmp	r5, #-1
+ 655 0060 EDD0     		beq	.L80
+ 656 0062 FFF7FEFF 		bl	HAL_GetTick
+ 657 0066 4346     		mov	r3, r8
+ 658 0068 C01A     		subs	r0, r0, r3
+ 659 006a A842     		cmp	r0, r5
+ 660 006c 01D8     		bhi	.L81
+ 661 006e 002D     		cmp	r5, #0
+ 662 0070 E5D1     		bne	.L80
+ 663              	.L81:
+ 664 0072 2023     		movs	r3, #32
+ 665 0074 E363     		str	r3, [r4, #60]
+ 666 0076 0120     		movs	r0, #1
+ 667 0078 84F82500 		strb	r0, [r4, #37]
+ 668 007c 0023     		movs	r3, #0
+ 669 007e 84F82430 		strb	r3, [r4, #36]
+ 670 0082 CAE7     		b	.L74
+ 671              	.L88:
+ 672 0084 4FF48073 		mov	r3, #256
+ 673 0088 C363     		str	r3, [r0, #60]
+ 674 008a 0120     		movs	r0, #1
+ 675 008c C5E7     		b	.L74
+ 676              	.L76:
+ 677 008e 436C     		ldr	r3, [r0, #68]
+ 678 0090 03F01F03 		and	r3, r3, #31
+ 679 0094 0426     		movs	r6, #4
+ 680 0096 9E40     		lsls	r6, r6, r3
+ 681 0098 CEE7     		b	.L77
+ 682              	.L90:
+ 683 009a 0120     		movs	r0, #1
+ 684 009c 00FA03F3 		lsl	r3, r0, r3
+ 685 00a0 5360     		str	r3, [r2, #4]
+ 686 00a2 E063     		str	r0, [r4, #60]
+ 687 00a4 84F82500 		strb	r0, [r4, #37]
+ 688 00a8 0023     		movs	r3, #0
+ 689 00aa 84F82430 		strb	r3, [r4, #36]
+ 690 00ae B4E7     		b	.L74
+ 691              	.L89:
+ 692 00b0 636D     		ldr	r3, [r4, #84]
+ 693 00b2 7BB1     		cbz	r3, .L83
+ 694 00b4 A26D     		ldr	r2, [r4, #88]
+ 695 00b6 1168     		ldr	r1, [r2]
+ 696 00b8 E26D     		ldr	r2, [r4, #92]
+ 697 00ba 1142     		tst	r1, r2
+ 698 00bc 0AD0     		beq	.L83
+ 699 00be 1A68     		ldr	r2, [r3]
+ 700 00c0 42F48072 		orr	r2, r2, #256
+ 701 00c4 1A60     		str	r2, [r3]
+ 702 00c6 A36D     		ldr	r3, [r4, #88]
+ 703 00c8 E26D     		ldr	r2, [r4, #92]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 13
+
+
+ 704 00ca 5A60     		str	r2, [r3, #4]
+ 705 00cc E36B     		ldr	r3, [r4, #60]
+ 706 00ce 43F48063 		orr	r3, r3, #1024
+ 707 00d2 E363     		str	r3, [r4, #60]
+ 708              	.L83:
+ 709 00d4 E36C     		ldr	r3, [r4, #76]
+ 710 00d6 1968     		ldr	r1, [r3]
+ 711 00d8 226D     		ldr	r2, [r4, #80]
+ 712 00da 1142     		tst	r1, r2
+ 713 00dc 04D0     		beq	.L84
+ 714 00de 5A60     		str	r2, [r3, #4]
+ 715 00e0 E36B     		ldr	r3, [r4, #60]
+ 716 00e2 43F40073 		orr	r3, r3, #512
+ 717 00e6 E363     		str	r3, [r4, #60]
+ 718              	.L84:
+ 719 00e8 6FB9     		cbnz	r7, .L85
+ 720 00ea 636C     		ldr	r3, [r4, #68]
+ 721 00ec 03F01F02 		and	r2, r3, #31
+ 722 00f0 216C     		ldr	r1, [r4, #64]
+ 723 00f2 0223     		movs	r3, #2
+ 724 00f4 9340     		lsls	r3, r3, r2
+ 725 00f6 4B60     		str	r3, [r1, #4]
+ 726 00f8 0123     		movs	r3, #1
+ 727 00fa 84F82530 		strb	r3, [r4, #37]
+ 728              	.L86:
+ 729 00fe 0020     		movs	r0, #0
+ 730 0100 84F82400 		strb	r0, [r4, #36]
+ 731 0104 89E7     		b	.L74
+ 732              	.L85:
+ 733 0106 636C     		ldr	r3, [r4, #68]
+ 734 0108 03F01F02 		and	r2, r3, #31
+ 735 010c 216C     		ldr	r1, [r4, #64]
+ 736 010e 0423     		movs	r3, #4
+ 737 0110 9340     		lsls	r3, r3, r2
+ 738 0112 4B60     		str	r3, [r1, #4]
+ 739 0114 F3E7     		b	.L86
+ 741              		.section	.text.HAL_DMA_IRQHandler,"ax",%progbits
+ 742              		.align	1
+ 743              		.global	HAL_DMA_IRQHandler
+ 744              		.syntax unified
+ 745              		.thumb
+ 746              		.thumb_func
+ 748              	HAL_DMA_IRQHandler:
+ 749              		@ args = 0, pretend = 0, frame = 0
+ 750              		@ frame_needed = 0, uses_anonymous_args = 0
+ 751 0000 08B5     		push	{r3, lr}
+ 752 0002 036C     		ldr	r3, [r0, #64]
+ 753 0004 1968     		ldr	r1, [r3]
+ 754 0006 D0F800C0 		ldr	ip, [r0]
+ 755 000a DCF800E0 		ldr	lr, [ip]
+ 756 000e 436C     		ldr	r3, [r0, #68]
+ 757 0010 03F01F03 		and	r3, r3, #31
+ 758 0014 0422     		movs	r2, #4
+ 759 0016 9A40     		lsls	r2, r2, r3
+ 760 0018 0A42     		tst	r2, r1
+ 761 001a 18D0     		beq	.L92
+ 762 001c 1EF0040F 		tst	lr, #4
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 14
+
+
+ 763 0020 15D0     		beq	.L92
+ 764 0022 DCF80030 		ldr	r3, [ip]
+ 765 0026 13F0200F 		tst	r3, #32
+ 766 002a 05D1     		bne	.L93
+ 767 002c DCF80030 		ldr	r3, [ip]
+ 768 0030 23F00403 		bic	r3, r3, #4
+ 769 0034 CCF80030 		str	r3, [ip]
+ 770              	.L93:
+ 771 0038 436C     		ldr	r3, [r0, #68]
+ 772 003a 03F01F02 		and	r2, r3, #31
+ 773 003e 016C     		ldr	r1, [r0, #64]
+ 774 0040 0423     		movs	r3, #4
+ 775 0042 9340     		lsls	r3, r3, r2
+ 776 0044 4B60     		str	r3, [r1, #4]
+ 777 0046 036B     		ldr	r3, [r0, #48]
+ 778 0048 03B1     		cbz	r3, .L91
+ 779 004a 9847     		blx	r3
+ 780              	.L91:
+ 781 004c 08BD     		pop	{r3, pc}
+ 782              	.L92:
+ 783 004e 0222     		movs	r2, #2
+ 784 0050 9A40     		lsls	r2, r2, r3
+ 785 0052 0A42     		tst	r2, r1
+ 786 0054 1FD0     		beq	.L95
+ 787 0056 1EF0020F 		tst	lr, #2
+ 788 005a 1CD0     		beq	.L95
+ 789 005c DCF80030 		ldr	r3, [ip]
+ 790 0060 13F0200F 		tst	r3, #32
+ 791 0064 08D1     		bne	.L96
+ 792 0066 DCF80030 		ldr	r3, [ip]
+ 793 006a 23F00A03 		bic	r3, r3, #10
+ 794 006e CCF80030 		str	r3, [ip]
+ 795 0072 0123     		movs	r3, #1
+ 796 0074 80F82530 		strb	r3, [r0, #37]
+ 797              	.L96:
+ 798 0078 436C     		ldr	r3, [r0, #68]
+ 799 007a 03F01F02 		and	r2, r3, #31
+ 800 007e 016C     		ldr	r1, [r0, #64]
+ 801 0080 0223     		movs	r3, #2
+ 802 0082 9340     		lsls	r3, r3, r2
+ 803 0084 4B60     		str	r3, [r1, #4]
+ 804 0086 0023     		movs	r3, #0
+ 805 0088 80F82430 		strb	r3, [r0, #36]
+ 806 008c C36A     		ldr	r3, [r0, #44]
+ 807 008e 002B     		cmp	r3, #0
+ 808 0090 DCD0     		beq	.L91
+ 809 0092 9847     		blx	r3
+ 810 0094 DAE7     		b	.L91
+ 811              	.L95:
+ 812 0096 0822     		movs	r2, #8
+ 813 0098 02FA03F3 		lsl	r3, r2, r3
+ 814 009c 0B42     		tst	r3, r1
+ 815 009e D5D0     		beq	.L91
+ 816 00a0 1EF0080F 		tst	lr, #8
+ 817 00a4 D2D0     		beq	.L91
+ 818 00a6 DCF80030 		ldr	r3, [ip]
+ 819 00aa 23F00E03 		bic	r3, r3, #14
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 15
+
+
+ 820 00ae CCF80030 		str	r3, [ip]
+ 821 00b2 436C     		ldr	r3, [r0, #68]
+ 822 00b4 03F01F03 		and	r3, r3, #31
+ 823 00b8 016C     		ldr	r1, [r0, #64]
+ 824 00ba 0122     		movs	r2, #1
+ 825 00bc 02FA03F3 		lsl	r3, r2, r3
+ 826 00c0 4B60     		str	r3, [r1, #4]
+ 827 00c2 C263     		str	r2, [r0, #60]
+ 828 00c4 80F82520 		strb	r2, [r0, #37]
+ 829 00c8 0023     		movs	r3, #0
+ 830 00ca 80F82430 		strb	r3, [r0, #36]
+ 831 00ce 436B     		ldr	r3, [r0, #52]
+ 832 00d0 002B     		cmp	r3, #0
+ 833 00d2 BBD0     		beq	.L91
+ 834 00d4 9847     		blx	r3
+ 835 00d6 B9E7     		b	.L91
+ 837              		.section	.text.HAL_DMA_RegisterCallback,"ax",%progbits
+ 838              		.align	1
+ 839              		.global	HAL_DMA_RegisterCallback
+ 840              		.syntax unified
+ 841              		.thumb
+ 842              		.thumb_func
+ 844              	HAL_DMA_RegisterCallback:
+ 845              		@ args = 0, pretend = 0, frame = 0
+ 846              		@ frame_needed = 0, uses_anonymous_args = 0
+ 847              		@ link register save eliminated.
+ 848 0000 0346     		mov	r3, r0
+ 849 0002 90F82400 		ldrb	r0, [r0, #36]	@ zero_extendqisi2
+ 850 0006 0128     		cmp	r0, #1
+ 851 0008 22D0     		beq	.L106
+ 852 000a 0120     		movs	r0, #1
+ 853 000c 83F82400 		strb	r0, [r3, #36]
+ 854 0010 93F825C0 		ldrb	ip, [r3, #37]	@ zero_extendqisi2
+ 855 0014 5FFA8CF0 		uxtb	r0, ip
+ 856 0018 BCF1010F 		cmp	ip, #1
+ 857 001c 04D0     		beq	.L108
+ 858 001e 0120     		movs	r0, #1
+ 859              	.L100:
+ 860 0020 0022     		movs	r2, #0
+ 861 0022 83F82420 		strb	r2, [r3, #36]
+ 862 0026 7047     		bx	lr
+ 863              	.L108:
+ 864 0028 0229     		cmp	r1, #2
+ 865 002a 0ED0     		beq	.L101
+ 866 002c 05D8     		bhi	.L102
+ 867 002e 49B1     		cbz	r1, .L103
+ 868 0030 0129     		cmp	r1, #1
+ 869 0032 F5D1     		bne	.L100
+ 870 0034 1A63     		str	r2, [r3, #48]
+ 871 0036 0020     		movs	r0, #0
+ 872 0038 F2E7     		b	.L100
+ 873              	.L102:
+ 874 003a 0329     		cmp	r1, #3
+ 875 003c F0D1     		bne	.L100
+ 876 003e 9A63     		str	r2, [r3, #56]
+ 877 0040 0020     		movs	r0, #0
+ 878 0042 EDE7     		b	.L100
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 16
+
+
+ 879              	.L103:
+ 880 0044 DA62     		str	r2, [r3, #44]
+ 881 0046 0846     		mov	r0, r1
+ 882 0048 EAE7     		b	.L100
+ 883              	.L101:
+ 884 004a 5A63     		str	r2, [r3, #52]
+ 885 004c 0020     		movs	r0, #0
+ 886 004e E7E7     		b	.L100
+ 887              	.L106:
+ 888 0050 0220     		movs	r0, #2
+ 889 0052 7047     		bx	lr
+ 891              		.section	.text.HAL_DMA_UnRegisterCallback,"ax",%progbits
+ 892              		.align	1
+ 893              		.global	HAL_DMA_UnRegisterCallback
+ 894              		.syntax unified
+ 895              		.thumb
+ 896              		.thumb_func
+ 898              	HAL_DMA_UnRegisterCallback:
+ 899              		@ args = 0, pretend = 0, frame = 0
+ 900              		@ frame_needed = 0, uses_anonymous_args = 0
+ 901              		@ link register save eliminated.
+ 902 0000 0346     		mov	r3, r0
+ 903 0002 90F82420 		ldrb	r2, [r0, #36]	@ zero_extendqisi2
+ 904 0006 012A     		cmp	r2, #1
+ 905 0008 28D0     		beq	.L118
+ 906 000a 0122     		movs	r2, #1
+ 907 000c 80F82420 		strb	r2, [r0, #36]
+ 908 0010 90F82520 		ldrb	r2, [r0, #37]	@ zero_extendqisi2
+ 909 0014 D0B2     		uxtb	r0, r2
+ 910 0016 012A     		cmp	r2, #1
+ 911 0018 04D0     		beq	.L120
+ 912 001a 0120     		movs	r0, #1
+ 913              	.L111:
+ 914 001c 0022     		movs	r2, #0
+ 915 001e 83F82420 		strb	r2, [r3, #36]
+ 916 0022 7047     		bx	lr
+ 917              	.L120:
+ 918 0024 0229     		cmp	r1, #2
+ 919 0026 13D0     		beq	.L112
+ 920 0028 09D9     		bls	.L121
+ 921 002a 0329     		cmp	r1, #3
+ 922 002c 13D0     		beq	.L116
+ 923 002e 0429     		cmp	r1, #4
+ 924 0030 F4D1     		bne	.L111
+ 925 0032 0020     		movs	r0, #0
+ 926 0034 D862     		str	r0, [r3, #44]
+ 927 0036 1863     		str	r0, [r3, #48]
+ 928 0038 5863     		str	r0, [r3, #52]
+ 929 003a 9863     		str	r0, [r3, #56]
+ 930 003c EEE7     		b	.L111
+ 931              	.L121:
+ 932 003e 21B1     		cbz	r1, .L114
+ 933 0040 0129     		cmp	r1, #1
+ 934 0042 EBD1     		bne	.L111
+ 935 0044 0020     		movs	r0, #0
+ 936 0046 1863     		str	r0, [r3, #48]
+ 937 0048 E8E7     		b	.L111
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 17
+
+
+ 938              	.L114:
+ 939 004a D962     		str	r1, [r3, #44]
+ 940 004c 0846     		mov	r0, r1
+ 941 004e E5E7     		b	.L111
+ 942              	.L112:
+ 943 0050 0020     		movs	r0, #0
+ 944 0052 5863     		str	r0, [r3, #52]
+ 945 0054 E2E7     		b	.L111
+ 946              	.L116:
+ 947 0056 0020     		movs	r0, #0
+ 948 0058 9863     		str	r0, [r3, #56]
+ 949 005a DFE7     		b	.L111
+ 950              	.L118:
+ 951 005c 0220     		movs	r0, #2
+ 952 005e 7047     		bx	lr
+ 954              		.section	.text.HAL_DMA_GetState,"ax",%progbits
+ 955              		.align	1
+ 956              		.global	HAL_DMA_GetState
+ 957              		.syntax unified
+ 958              		.thumb
+ 959              		.thumb_func
+ 961              	HAL_DMA_GetState:
+ 962              		@ args = 0, pretend = 0, frame = 0
+ 963              		@ frame_needed = 0, uses_anonymous_args = 0
+ 964              		@ link register save eliminated.
+ 965 0000 90F82500 		ldrb	r0, [r0, #37]	@ zero_extendqisi2
+ 966 0004 7047     		bx	lr
+ 968              		.section	.text.HAL_DMA_GetError,"ax",%progbits
+ 969              		.align	1
+ 970              		.global	HAL_DMA_GetError
+ 971              		.syntax unified
+ 972              		.thumb
+ 973              		.thumb_func
+ 975              	HAL_DMA_GetError:
+ 976              		@ args = 0, pretend = 0, frame = 0
+ 977              		@ frame_needed = 0, uses_anonymous_args = 0
+ 978              		@ link register save eliminated.
+ 979 0000 C06B     		ldr	r0, [r0, #60]
+ 980 0002 7047     		bx	lr
+ 982              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 15.2.1 20251203"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32g4xx_hal_dma.c
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:18     .text.DMA_SetConfig:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:23     .text.DMA_SetConfig:00000000 DMA_SetConfig
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:61     .text.DMA_CalcDMAMUXChannelBaseAndMask:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:66     .text.DMA_CalcDMAMUXChannelBaseAndMask:00000000 DMA_CalcDMAMUXChannelBaseAndMask
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:104    .text.DMA_CalcDMAMUXChannelBaseAndMask:00000044 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:111    .text.DMA_CalcDMAMUXRequestGenBaseAndMask:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:116    .text.DMA_CalcDMAMUXRequestGenBaseAndMask:00000000 DMA_CalcDMAMUXRequestGenBaseAndMask
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:137    .text.DMA_CalcDMAMUXRequestGenBaseAndMask:00000024 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:141    .text.HAL_DMA_Init:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:147    .text.HAL_DMA_Init:00000000 HAL_DMA_Init
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:246    .text.HAL_DMA_Init:000000c0 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:254    .text.HAL_DMA_DeInit:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:260    .text.HAL_DMA_DeInit:00000000 HAL_DMA_DeInit
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:343    .text.HAL_DMA_DeInit:000000a0 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:351    .text.HAL_DMA_Start:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:357    .text.HAL_DMA_Start:00000000 HAL_DMA_Start
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:397    .text.HAL_DMA_Start_IT:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:403    .text.HAL_DMA_Start_IT:00000000 HAL_DMA_Start_IT
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:474    .text.HAL_DMA_Abort:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:480    .text.HAL_DMA_Abort:00000000 HAL_DMA_Abort
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:539    .text.HAL_DMA_Abort_IT:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:545    .text.HAL_DMA_Abort_IT:00000000 HAL_DMA_Abort_IT
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:606    .text.HAL_DMA_PollForTransfer:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:612    .text.HAL_DMA_PollForTransfer:00000000 HAL_DMA_PollForTransfer
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:742    .text.HAL_DMA_IRQHandler:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:748    .text.HAL_DMA_IRQHandler:00000000 HAL_DMA_IRQHandler
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:838    .text.HAL_DMA_RegisterCallback:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:844    .text.HAL_DMA_RegisterCallback:00000000 HAL_DMA_RegisterCallback
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:892    .text.HAL_DMA_UnRegisterCallback:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:898    .text.HAL_DMA_UnRegisterCallback:00000000 HAL_DMA_UnRegisterCallback
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:955    .text.HAL_DMA_GetState:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:961    .text.HAL_DMA_GetState:00000000 HAL_DMA_GetState
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:969    .text.HAL_DMA_GetError:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccCDVL0f.s:975    .text.HAL_DMA_GetError:00000000 HAL_DMA_GetError
+
+UNDEFINED SYMBOLS
+HAL_GetTick

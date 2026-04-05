@@ -1,0 +1,158 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"system_stm32g4xx.c"
+  16              		.text
+  17              		.section	.text.SystemInit,"ax",%progbits
+  18              		.align	1
+  19              		.global	SystemInit
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	SystemInit:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 034A     		ldr	r2, .L2
+  29 0002 D2F88830 		ldr	r3, [r2, #136]
+  30 0006 43F47003 		orr	r3, r3, #15728640
+  31 000a C2F88830 		str	r3, [r2, #136]
+  32 000e 7047     		bx	lr
+  33              	.L3:
+  34              		.align	2
+  35              	.L2:
+  36 0010 00ED00E0 		.word	-536810240
+  38              		.section	.text.SystemCoreClockUpdate,"ax",%progbits
+  39              		.align	1
+  40              		.global	SystemCoreClockUpdate
+  41              		.syntax unified
+  42              		.thumb
+  43              		.thumb_func
+  45              	SystemCoreClockUpdate:
+  46              		@ args = 0, pretend = 0, frame = 0
+  47              		@ frame_needed = 0, uses_anonymous_args = 0
+  48              		@ link register save eliminated.
+  49 0000 1E4B     		ldr	r3, .L11
+  50 0002 9B68     		ldr	r3, [r3, #8]
+  51 0004 03F00C03 		and	r3, r3, #12
+  52 0008 082B     		cmp	r3, #8
+  53 000a 11D0     		beq	.L5
+  54 000c 0C2B     		cmp	r3, #12
+  55 000e 13D0     		beq	.L6
+  56 0010 042B     		cmp	r3, #4
+  57 0012 02D1     		bne	.L7
+  58 0014 1A4B     		ldr	r3, .L11+4
+  59 0016 1B4A     		ldr	r2, .L11+8
+  60 0018 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s 			page 2
+
+
+  61              	.L7:
+  62 001a 184B     		ldr	r3, .L11
+  63 001c 9B68     		ldr	r3, [r3, #8]
+  64 001e C3F30313 		ubfx	r3, r3, #4, #4
+  65 0022 194A     		ldr	r2, .L11+12
+  66 0024 D15C     		ldrb	r1, [r2, r3]	@ zero_extendqisi2
+  67 0026 164A     		ldr	r2, .L11+4
+  68 0028 1368     		ldr	r3, [r2]
+  69 002a CB40     		lsrs	r3, r3, r1
+  70 002c 1360     		str	r3, [r2]
+  71 002e 7047     		bx	lr
+  72              	.L5:
+  73 0030 134B     		ldr	r3, .L11+4
+  74 0032 164A     		ldr	r2, .L11+16
+  75 0034 1A60     		str	r2, [r3]
+  76 0036 F0E7     		b	.L7
+  77              	.L6:
+  78 0038 104A     		ldr	r2, .L11
+  79 003a D368     		ldr	r3, [r2, #12]
+  80 003c 03F00303 		and	r3, r3, #3
+  81 0040 D268     		ldr	r2, [r2, #12]
+  82 0042 C2F30312 		ubfx	r2, r2, #4, #4
+  83 0046 0132     		adds	r2, r2, #1
+  84 0048 022B     		cmp	r3, #2
+  85 004a 12D0     		beq	.L10
+  86 004c 0F4B     		ldr	r3, .L11+16
+  87 004e B3FBF2F2 		udiv	r2, r3, r2
+  88              	.L9:
+  89 0052 0A49     		ldr	r1, .L11
+  90 0054 CB68     		ldr	r3, [r1, #12]
+  91 0056 C3F30623 		ubfx	r3, r3, #8, #7
+  92 005a 02FB03F3 		mul	r3, r2, r3
+  93 005e CA68     		ldr	r2, [r1, #12]
+  94 0060 C2F34162 		ubfx	r2, r2, #25, #2
+  95 0064 0132     		adds	r2, r2, #1
+  96 0066 5200     		lsls	r2, r2, #1
+  97 0068 B3FBF2F3 		udiv	r3, r3, r2
+  98 006c 044A     		ldr	r2, .L11+4
+  99 006e 1360     		str	r3, [r2]
+ 100 0070 D3E7     		b	.L7
+ 101              	.L10:
+ 102 0072 044B     		ldr	r3, .L11+8
+ 103 0074 B3FBF2F2 		udiv	r2, r3, r2
+ 104 0078 EBE7     		b	.L9
+ 105              	.L12:
+ 106 007a 00BF     		.align	2
+ 107              	.L11:
+ 108 007c 00100240 		.word	1073876992
+ 109 0080 00000000 		.word	SystemCoreClock
+ 110 0084 0024F400 		.word	16000000
+ 111 0088 00000000 		.word	AHBPrescTable
+ 112 008c 00127A00 		.word	8000000
+ 114              		.global	APBPrescTable
+ 115              		.section	.rodata.APBPrescTable,"a"
+ 116              		.align	2
+ 119              	APBPrescTable:
+ 120 0000 00000000 		.ascii	"\000\000\000\000\001\002\003\004"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s 			page 3
+
+
+ 120      01020304 
+ 121              		.global	AHBPrescTable
+ 122              		.section	.rodata.AHBPrescTable,"a"
+ 123              		.align	2
+ 126              	AHBPrescTable:
+ 127 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\001\002\003\004\006"
+ 127      00000000 
+ 127      01020304 
+ 127      06
+ 128 000d 070809   		.ascii	"\007\010\011"
+ 129              		.global	SystemCoreClock
+ 130              		.section	.data.SystemCoreClock,"aw"
+ 131              		.align	2
+ 134              	SystemCoreClock:
+ 135 0000 0024F400 		.word	16000000
+ 136              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 15.2.1 20251203"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 system_stm32g4xx.c
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:18     .text.SystemInit:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:24     .text.SystemInit:00000000 SystemInit
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:36     .text.SystemInit:00000010 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:39     .text.SystemCoreClockUpdate:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:45     .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:108    .text.SystemCoreClockUpdate:0000007c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:134    .data.SystemCoreClock:00000000 SystemCoreClock
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:126    .rodata.AHBPrescTable:00000000 AHBPrescTable
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:119    .rodata.APBPrescTable:00000000 APBPrescTable
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:116    .rodata.APBPrescTable:00000000 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:123    .rodata.AHBPrescTable:00000000 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccb9dEwA.s:131    .data.SystemCoreClock:00000000 $d
+
+NO UNDEFINED SYMBOLS

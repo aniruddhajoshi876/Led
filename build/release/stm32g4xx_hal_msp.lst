@@ -1,0 +1,63 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccb1qlak.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32g4xx_hal_msp.c"
+  16              		.text
+  17              		.section	.text.HAL_MspInit,"ax",%progbits
+  18              		.align	1
+  19              		.global	HAL_MspInit
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	HAL_MspInit:
+  25              		@ args = 0, pretend = 0, frame = 8
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 82B0     		sub	sp, sp, #8
+  29 0002 0A4B     		ldr	r3, .L3
+  30 0004 1A6E     		ldr	r2, [r3, #96]
+  31 0006 42F00102 		orr	r2, r2, #1
+  32 000a 1A66     		str	r2, [r3, #96]
+  33 000c 1A6E     		ldr	r2, [r3, #96]
+  34 000e 02F00102 		and	r2, r2, #1
+  35 0012 0092     		str	r2, [sp]
+  36 0014 009A     		ldr	r2, [sp]
+  37 0016 9A6D     		ldr	r2, [r3, #88]
+  38 0018 42F08052 		orr	r2, r2, #268435456
+  39 001c 9A65     		str	r2, [r3, #88]
+  40 001e 9B6D     		ldr	r3, [r3, #88]
+  41 0020 03F08053 		and	r3, r3, #268435456
+  42 0024 0193     		str	r3, [sp, #4]
+  43 0026 019B     		ldr	r3, [sp, #4]
+  44 0028 02B0     		add	sp, sp, #8
+  45              		@ sp needed
+  46 002a 7047     		bx	lr
+  47              	.L4:
+  48              		.align	2
+  49              	.L3:
+  50 002c 00100240 		.word	1073876992
+  52              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 15.2.1 20251203"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccb1qlak.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32g4xx_hal_msp.c
+C:\Users\aniru.000\AppData\Local\Temp\ccb1qlak.s:18     .text.HAL_MspInit:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccb1qlak.s:24     .text.HAL_MspInit:00000000 HAL_MspInit
+C:\Users\aniru.000\AppData\Local\Temp\ccb1qlak.s:50     .text.HAL_MspInit:0000002c $d
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,1686 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32g4xx_hal_pwr_ex.c"
+  16              		.text
+  17              		.section	.text.HAL_PWREx_GetVoltageRange,"ax",%progbits
+  18              		.align	1
+  19              		.global	HAL_PWREx_GetVoltageRange
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	HAL_PWREx_GetVoltageRange:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 074B     		ldr	r3, .L4
+  29 0002 1868     		ldr	r0, [r3]
+  30 0004 00F4C060 		and	r0, r0, #1536
+  31 0008 B0F5806F 		cmp	r0, #1024
+  32 000c 04D0     		beq	.L1
+  33 000e D3F88000 		ldr	r0, [r3, #128]
+  34 0012 10F48070 		ands	r0, r0, #256
+  35 0016 00D1     		bne	.L3
+  36              	.L1:
+  37 0018 7047     		bx	lr
+  38              	.L3:
+  39 001a 4FF40070 		mov	r0, #512
+  40 001e FBE7     		b	.L1
+  41              	.L5:
+  42              		.align	2
+  43              	.L4:
+  44 0020 00700040 		.word	1073770496
+  46              		.section	.text.HAL_PWREx_ControlVoltageScaling,"ax",%progbits
+  47              		.align	1
+  48              		.global	HAL_PWREx_ControlVoltageScaling
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  53              	HAL_PWREx_ControlVoltageScaling:
+  54              		@ args = 0, pretend = 0, frame = 0
+  55              		@ frame_needed = 0, uses_anonymous_args = 0
+  56              		@ link register save eliminated.
+  57 0000 0028     		cmp	r0, #0
+  58 0002 36D1     		bne	.L7
+  59 0004 3E4B     		ldr	r3, .L23
+  60 0006 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 2
+
+
+  61 0008 03F4C063 		and	r3, r3, #1536
+  62 000c B3F5806F 		cmp	r3, #1024
+  63 0010 08D0     		beq	.L20
+  64 0012 3B4A     		ldr	r2, .L23
+  65 0014 D2F88030 		ldr	r3, [r2, #128]
+  66 0018 23F48073 		bic	r3, r3, #256
+  67 001c C2F88030 		str	r3, [r2, #128]
+  68 0020 0020     		movs	r0, #0
+  69 0022 7047     		bx	lr
+  70              	.L20:
+  71 0024 364A     		ldr	r2, .L23
+  72 0026 D2F88030 		ldr	r3, [r2, #128]
+  73 002a 23F48073 		bic	r3, r3, #256
+  74 002e C2F88030 		str	r3, [r2, #128]
+  75 0032 1368     		ldr	r3, [r2]
+  76 0034 23F4C063 		bic	r3, r3, #1536
+  77 0038 43F40073 		orr	r3, r3, #512
+  78 003c 1360     		str	r3, [r2]
+  79 003e 314B     		ldr	r3, .L23+4
+  80 0040 1B68     		ldr	r3, [r3]
+  81 0042 3222     		movs	r2, #50
+  82 0044 02FB03F3 		mul	r3, r2, r3
+  83 0048 2F4A     		ldr	r2, .L23+8
+  84 004a A2FB0323 		umull	r2, r3, r2, r3
+  85 004e 9B0C     		lsrs	r3, r3, #18
+  86 0050 0133     		adds	r3, r3, #1
+  87 0052 00E0     		b	.L9
+  88              	.L11:
+  89 0054 013B     		subs	r3, r3, #1
+  90              	.L9:
+  91 0056 2A4A     		ldr	r2, .L23
+  92 0058 5269     		ldr	r2, [r2, #20]
+  93 005a 12F4806F 		tst	r2, #1024
+  94 005e 01D0     		beq	.L10
+  95 0060 002B     		cmp	r3, #0
+  96 0062 F7D1     		bne	.L11
+  97              	.L10:
+  98 0064 264B     		ldr	r3, .L23
+  99 0066 5B69     		ldr	r3, [r3, #20]
+ 100 0068 13F4806F 		tst	r3, #1024
+ 101 006c 44D1     		bne	.L18
+ 102 006e 0020     		movs	r0, #0
+ 103 0070 7047     		bx	lr
+ 104              	.L7:
+ 105 0072 B0F5007F 		cmp	r0, #512
+ 106 0076 08D0     		beq	.L21
+ 107 0078 214A     		ldr	r2, .L23
+ 108 007a 1368     		ldr	r3, [r2]
+ 109 007c 23F4C063 		bic	r3, r3, #1536
+ 110 0080 43F48063 		orr	r3, r3, #1024
+ 111 0084 1360     		str	r3, [r2]
+ 112 0086 0020     		movs	r0, #0
+ 113 0088 7047     		bx	lr
+ 114              	.L21:
+ 115 008a 1D4B     		ldr	r3, .L23
+ 116 008c 1B68     		ldr	r3, [r3]
+ 117 008e 03F4C063 		and	r3, r3, #1536
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 3
+
+
+ 118 0092 B3F5806F 		cmp	r3, #1024
+ 119 0096 08D0     		beq	.L22
+ 120 0098 194A     		ldr	r2, .L23
+ 121 009a D2F88030 		ldr	r3, [r2, #128]
+ 122 009e 43F48073 		orr	r3, r3, #256
+ 123 00a2 C2F88030 		str	r3, [r2, #128]
+ 124 00a6 0020     		movs	r0, #0
+ 125 00a8 7047     		bx	lr
+ 126              	.L22:
+ 127 00aa 154A     		ldr	r2, .L23
+ 128 00ac D2F88030 		ldr	r3, [r2, #128]
+ 129 00b0 43F48073 		orr	r3, r3, #256
+ 130 00b4 C2F88030 		str	r3, [r2, #128]
+ 131 00b8 1368     		ldr	r3, [r2]
+ 132 00ba 23F4C063 		bic	r3, r3, #1536
+ 133 00be 43F40073 		orr	r3, r3, #512
+ 134 00c2 1360     		str	r3, [r2]
+ 135 00c4 0F4B     		ldr	r3, .L23+4
+ 136 00c6 1B68     		ldr	r3, [r3]
+ 137 00c8 3222     		movs	r2, #50
+ 138 00ca 02FB03F3 		mul	r3, r2, r3
+ 139 00ce 0E4A     		ldr	r2, .L23+8
+ 140 00d0 A2FB0323 		umull	r2, r3, r2, r3
+ 141 00d4 9B0C     		lsrs	r3, r3, #18
+ 142 00d6 0133     		adds	r3, r3, #1
+ 143 00d8 00E0     		b	.L15
+ 144              	.L17:
+ 145 00da 013B     		subs	r3, r3, #1
+ 146              	.L15:
+ 147 00dc 084A     		ldr	r2, .L23
+ 148 00de 5269     		ldr	r2, [r2, #20]
+ 149 00e0 12F4806F 		tst	r2, #1024
+ 150 00e4 01D0     		beq	.L16
+ 151 00e6 002B     		cmp	r3, #0
+ 152 00e8 F7D1     		bne	.L17
+ 153              	.L16:
+ 154 00ea 054B     		ldr	r3, .L23
+ 155 00ec 5B69     		ldr	r3, [r3, #20]
+ 156 00ee 13F4806F 		tst	r3, #1024
+ 157 00f2 03D1     		bne	.L19
+ 158 00f4 0020     		movs	r0, #0
+ 159 00f6 7047     		bx	lr
+ 160              	.L18:
+ 161 00f8 0320     		movs	r0, #3
+ 162 00fa 7047     		bx	lr
+ 163              	.L19:
+ 164 00fc 0320     		movs	r0, #3
+ 165 00fe 7047     		bx	lr
+ 166              	.L24:
+ 167              		.align	2
+ 168              	.L23:
+ 169 0100 00700040 		.word	1073770496
+ 170 0104 00000000 		.word	SystemCoreClock
+ 171 0108 83DE1B43 		.word	1125899907
+ 173              		.section	.text.HAL_PWREx_EnableBatteryCharging,"ax",%progbits
+ 174              		.align	1
+ 175              		.global	HAL_PWREx_EnableBatteryCharging
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 4
+
+
+ 176              		.syntax unified
+ 177              		.thumb
+ 178              		.thumb_func
+ 180              	HAL_PWREx_EnableBatteryCharging:
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183              		@ link register save eliminated.
+ 184 0000 054A     		ldr	r2, .L26
+ 185 0002 D368     		ldr	r3, [r2, #12]
+ 186 0004 23F40073 		bic	r3, r3, #512
+ 187 0008 0343     		orrs	r3, r3, r0
+ 188 000a D360     		str	r3, [r2, #12]
+ 189 000c D368     		ldr	r3, [r2, #12]
+ 190 000e 43F48073 		orr	r3, r3, #256
+ 191 0012 D360     		str	r3, [r2, #12]
+ 192 0014 7047     		bx	lr
+ 193              	.L27:
+ 194 0016 00BF     		.align	2
+ 195              	.L26:
+ 196 0018 00700040 		.word	1073770496
+ 198              		.section	.text.HAL_PWREx_DisableBatteryCharging,"ax",%progbits
+ 199              		.align	1
+ 200              		.global	HAL_PWREx_DisableBatteryCharging
+ 201              		.syntax unified
+ 202              		.thumb
+ 203              		.thumb_func
+ 205              	HAL_PWREx_DisableBatteryCharging:
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208              		@ link register save eliminated.
+ 209 0000 024A     		ldr	r2, .L29
+ 210 0002 D368     		ldr	r3, [r2, #12]
+ 211 0004 23F48073 		bic	r3, r3, #256
+ 212 0008 D360     		str	r3, [r2, #12]
+ 213 000a 7047     		bx	lr
+ 214              	.L30:
+ 215              		.align	2
+ 216              	.L29:
+ 217 000c 00700040 		.word	1073770496
+ 219              		.section	.text.HAL_PWREx_EnableInternalWakeUpLine,"ax",%progbits
+ 220              		.align	1
+ 221              		.global	HAL_PWREx_EnableInternalWakeUpLine
+ 222              		.syntax unified
+ 223              		.thumb
+ 224              		.thumb_func
+ 226              	HAL_PWREx_EnableInternalWakeUpLine:
+ 227              		@ args = 0, pretend = 0, frame = 0
+ 228              		@ frame_needed = 0, uses_anonymous_args = 0
+ 229              		@ link register save eliminated.
+ 230 0000 024A     		ldr	r2, .L32
+ 231 0002 9368     		ldr	r3, [r2, #8]
+ 232 0004 43F40043 		orr	r3, r3, #32768
+ 233 0008 9360     		str	r3, [r2, #8]
+ 234 000a 7047     		bx	lr
+ 235              	.L33:
+ 236              		.align	2
+ 237              	.L32:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 5
+
+
+ 238 000c 00700040 		.word	1073770496
+ 240              		.section	.text.HAL_PWREx_DisableInternalWakeUpLine,"ax",%progbits
+ 241              		.align	1
+ 242              		.global	HAL_PWREx_DisableInternalWakeUpLine
+ 243              		.syntax unified
+ 244              		.thumb
+ 245              		.thumb_func
+ 247              	HAL_PWREx_DisableInternalWakeUpLine:
+ 248              		@ args = 0, pretend = 0, frame = 0
+ 249              		@ frame_needed = 0, uses_anonymous_args = 0
+ 250              		@ link register save eliminated.
+ 251 0000 024A     		ldr	r2, .L35
+ 252 0002 9368     		ldr	r3, [r2, #8]
+ 253 0004 23F40043 		bic	r3, r3, #32768
+ 254 0008 9360     		str	r3, [r2, #8]
+ 255 000a 7047     		bx	lr
+ 256              	.L36:
+ 257              		.align	2
+ 258              	.L35:
+ 259 000c 00700040 		.word	1073770496
+ 261              		.section	.text.HAL_PWREx_EnableGPIOPullUp,"ax",%progbits
+ 262              		.align	1
+ 263              		.global	HAL_PWREx_EnableGPIOPullUp
+ 264              		.syntax unified
+ 265              		.thumb
+ 266              		.thumb_func
+ 268              	HAL_PWREx_EnableGPIOPullUp:
+ 269              		@ args = 0, pretend = 0, frame = 0
+ 270              		@ frame_needed = 0, uses_anonymous_args = 0
+ 271              		@ link register save eliminated.
+ 272 0000 0328     		cmp	r0, #3
+ 273 0002 3DD0     		beq	.L38
+ 274 0004 14D8     		bhi	.L39
+ 275 0006 0128     		cmp	r0, #1
+ 276 0008 24D0     		beq	.L40
+ 277 000a 0228     		cmp	r0, #2
+ 278 000c 2ED0     		beq	.L41
+ 279 000e 68B9     		cbnz	r0, .L47
+ 280 0010 2C4B     		ldr	r3, .L49
+ 281 0012 1A6A     		ldr	r2, [r3, #32]
+ 282 0014 21F48040 		bic	r0, r1, #16384
+ 283 0018 0243     		orrs	r2, r2, r0
+ 284 001a 1A62     		str	r2, [r3, #32]
+ 285 001c 5A6A     		ldr	r2, [r3, #36]
+ 286 001e 21F42041 		bic	r1, r1, #40960
+ 287 0022 22EA0102 		bic	r2, r2, r1
+ 288 0026 5A62     		str	r2, [r3, #36]
+ 289 0028 0020     		movs	r0, #0
+ 290 002a 7047     		bx	lr
+ 291              	.L47:
+ 292 002c 0120     		movs	r0, #1
+ 293 002e 7047     		bx	lr
+ 294              	.L39:
+ 295 0030 0528     		cmp	r0, #5
+ 296 0032 2FD0     		beq	.L44
+ 297 0034 0628     		cmp	r0, #6
+ 298 0036 3BD0     		beq	.L45
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 6
+
+
+ 299 0038 0428     		cmp	r0, #4
+ 300 003a 09D1     		bne	.L48
+ 301 003c 214B     		ldr	r3, .L49
+ 302 003e 1A6C     		ldr	r2, [r3, #64]
+ 303 0040 0A43     		orrs	r2, r2, r1
+ 304 0042 1A64     		str	r2, [r3, #64]
+ 305 0044 5A6C     		ldr	r2, [r3, #68]
+ 306 0046 22EA0102 		bic	r2, r2, r1
+ 307 004a 5A64     		str	r2, [r3, #68]
+ 308 004c 0020     		movs	r0, #0
+ 309 004e 7047     		bx	lr
+ 310              	.L48:
+ 311 0050 0120     		movs	r0, #1
+ 312 0052 7047     		bx	lr
+ 313              	.L40:
+ 314 0054 1B4B     		ldr	r3, .L49
+ 315 0056 9A6A     		ldr	r2, [r3, #40]
+ 316 0058 0A43     		orrs	r2, r2, r1
+ 317 005a 9A62     		str	r2, [r3, #40]
+ 318 005c DA6A     		ldr	r2, [r3, #44]
+ 319 005e 21F01001 		bic	r1, r1, #16
+ 320 0062 22EA0102 		bic	r2, r2, r1
+ 321 0066 DA62     		str	r2, [r3, #44]
+ 322 0068 0020     		movs	r0, #0
+ 323 006a 7047     		bx	lr
+ 324              	.L41:
+ 325 006c 154B     		ldr	r3, .L49
+ 326 006e 1A6B     		ldr	r2, [r3, #48]
+ 327 0070 0A43     		orrs	r2, r2, r1
+ 328 0072 1A63     		str	r2, [r3, #48]
+ 329 0074 5A6B     		ldr	r2, [r3, #52]
+ 330 0076 22EA0102 		bic	r2, r2, r1
+ 331 007a 5A63     		str	r2, [r3, #52]
+ 332 007c 0020     		movs	r0, #0
+ 333 007e 7047     		bx	lr
+ 334              	.L38:
+ 335 0080 104B     		ldr	r3, .L49
+ 336 0082 9A6B     		ldr	r2, [r3, #56]
+ 337 0084 0A43     		orrs	r2, r2, r1
+ 338 0086 9A63     		str	r2, [r3, #56]
+ 339 0088 DA6B     		ldr	r2, [r3, #60]
+ 340 008a 22EA0102 		bic	r2, r2, r1
+ 341 008e DA63     		str	r2, [r3, #60]
+ 342 0090 0020     		movs	r0, #0
+ 343 0092 7047     		bx	lr
+ 344              	.L44:
+ 345 0094 0B4B     		ldr	r3, .L49
+ 346 0096 9A6C     		ldr	r2, [r3, #72]
+ 347 0098 21F4FC71 		bic	r1, r1, #504
+ 348 009c 4905     		lsls	r1, r1, #21
+ 349 009e 490D     		lsrs	r1, r1, #21
+ 350 00a0 0A43     		orrs	r2, r2, r1
+ 351 00a2 9A64     		str	r2, [r3, #72]
+ 352 00a4 DA6C     		ldr	r2, [r3, #76]
+ 353 00a6 22EA0102 		bic	r2, r2, r1
+ 354 00aa DA64     		str	r2, [r3, #76]
+ 355 00ac 0020     		movs	r0, #0
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 7
+
+
+ 356 00ae 7047     		bx	lr
+ 357              	.L45:
+ 358 00b0 044B     		ldr	r3, .L49
+ 359 00b2 1A6D     		ldr	r2, [r3, #80]
+ 360 00b4 01F48061 		and	r1, r1, #1024
+ 361 00b8 0A43     		orrs	r2, r2, r1
+ 362 00ba 1A65     		str	r2, [r3, #80]
+ 363 00bc 5A6D     		ldr	r2, [r3, #84]
+ 364 00be 5A65     		str	r2, [r3, #84]
+ 365 00c0 0020     		movs	r0, #0
+ 366 00c2 7047     		bx	lr
+ 367              	.L50:
+ 368              		.align	2
+ 369              	.L49:
+ 370 00c4 00700040 		.word	1073770496
+ 372              		.section	.text.HAL_PWREx_DisableGPIOPullUp,"ax",%progbits
+ 373              		.align	1
+ 374              		.global	HAL_PWREx_DisableGPIOPullUp
+ 375              		.syntax unified
+ 376              		.thumb
+ 377              		.thumb_func
+ 379              	HAL_PWREx_DisableGPIOPullUp:
+ 380              		@ args = 0, pretend = 0, frame = 0
+ 381              		@ frame_needed = 0, uses_anonymous_args = 0
+ 382              		@ link register save eliminated.
+ 383 0000 0328     		cmp	r0, #3
+ 384 0002 2CD0     		beq	.L52
+ 385 0004 0ED8     		bhi	.L53
+ 386 0006 0128     		cmp	r0, #1
+ 387 0008 1BD0     		beq	.L54
+ 388 000a 0228     		cmp	r0, #2
+ 389 000c 20D0     		beq	.L55
+ 390 000e 38B9     		cbnz	r0, .L61
+ 391 0010 204A     		ldr	r2, .L63
+ 392 0012 136A     		ldr	r3, [r2, #32]
+ 393 0014 21F48041 		bic	r1, r1, #16384
+ 394 0018 23EA0101 		bic	r1, r3, r1
+ 395 001c 1162     		str	r1, [r2, #32]
+ 396 001e 7047     		bx	lr
+ 397              	.L61:
+ 398 0020 0120     		movs	r0, #1
+ 399 0022 7047     		bx	lr
+ 400              	.L53:
+ 401 0024 0528     		cmp	r0, #5
+ 402 0026 21D0     		beq	.L58
+ 403 0028 0628     		cmp	r0, #6
+ 404 002a 2AD0     		beq	.L59
+ 405 002c 0428     		cmp	r0, #4
+ 406 002e 06D1     		bne	.L62
+ 407 0030 184A     		ldr	r2, .L63
+ 408 0032 136C     		ldr	r3, [r2, #64]
+ 409 0034 23EA0103 		bic	r3, r3, r1
+ 410 0038 1364     		str	r3, [r2, #64]
+ 411 003a 0020     		movs	r0, #0
+ 412 003c 7047     		bx	lr
+ 413              	.L62:
+ 414 003e 0120     		movs	r0, #1
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 8
+
+
+ 415 0040 7047     		bx	lr
+ 416              	.L54:
+ 417 0042 144A     		ldr	r2, .L63
+ 418 0044 936A     		ldr	r3, [r2, #40]
+ 419 0046 23EA0103 		bic	r3, r3, r1
+ 420 004a 9362     		str	r3, [r2, #40]
+ 421 004c 0020     		movs	r0, #0
+ 422 004e 7047     		bx	lr
+ 423              	.L55:
+ 424 0050 104A     		ldr	r2, .L63
+ 425 0052 136B     		ldr	r3, [r2, #48]
+ 426 0054 23EA0103 		bic	r3, r3, r1
+ 427 0058 1363     		str	r3, [r2, #48]
+ 428 005a 0020     		movs	r0, #0
+ 429 005c 7047     		bx	lr
+ 430              	.L52:
+ 431 005e 0D4A     		ldr	r2, .L63
+ 432 0060 936B     		ldr	r3, [r2, #56]
+ 433 0062 23EA0103 		bic	r3, r3, r1
+ 434 0066 9363     		str	r3, [r2, #56]
+ 435 0068 0020     		movs	r0, #0
+ 436 006a 7047     		bx	lr
+ 437              	.L58:
+ 438 006c 094A     		ldr	r2, .L63
+ 439 006e 936C     		ldr	r3, [r2, #72]
+ 440 0070 21F4FC71 		bic	r1, r1, #504
+ 441 0074 4905     		lsls	r1, r1, #21
+ 442 0076 490D     		lsrs	r1, r1, #21
+ 443 0078 23EA0101 		bic	r1, r3, r1
+ 444 007c 9164     		str	r1, [r2, #72]
+ 445 007e 0020     		movs	r0, #0
+ 446 0080 7047     		bx	lr
+ 447              	.L59:
+ 448 0082 044A     		ldr	r2, .L63
+ 449 0084 136D     		ldr	r3, [r2, #80]
+ 450 0086 01F48061 		and	r1, r1, #1024
+ 451 008a 23EA0103 		bic	r3, r3, r1
+ 452 008e 1365     		str	r3, [r2, #80]
+ 453 0090 0020     		movs	r0, #0
+ 454 0092 7047     		bx	lr
+ 455              	.L64:
+ 456              		.align	2
+ 457              	.L63:
+ 458 0094 00700040 		.word	1073770496
+ 460              		.section	.text.HAL_PWREx_EnableGPIOPullDown,"ax",%progbits
+ 461              		.align	1
+ 462              		.global	HAL_PWREx_EnableGPIOPullDown
+ 463              		.syntax unified
+ 464              		.thumb
+ 465              		.thumb_func
+ 467              	HAL_PWREx_EnableGPIOPullDown:
+ 468              		@ args = 0, pretend = 0, frame = 0
+ 469              		@ frame_needed = 0, uses_anonymous_args = 0
+ 470              		@ link register save eliminated.
+ 471 0000 0328     		cmp	r0, #3
+ 472 0002 3DD0     		beq	.L66
+ 473 0004 14D8     		bhi	.L67
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 9
+
+
+ 474 0006 0128     		cmp	r0, #1
+ 475 0008 24D0     		beq	.L68
+ 476 000a 0228     		cmp	r0, #2
+ 477 000c 2ED0     		beq	.L69
+ 478 000e 68B9     		cbnz	r0, .L75
+ 479 0010 2D4B     		ldr	r3, .L77
+ 480 0012 5A6A     		ldr	r2, [r3, #36]
+ 481 0014 21F42040 		bic	r0, r1, #40960
+ 482 0018 0243     		orrs	r2, r2, r0
+ 483 001a 5A62     		str	r2, [r3, #36]
+ 484 001c 1A6A     		ldr	r2, [r3, #32]
+ 485 001e 21F48041 		bic	r1, r1, #16384
+ 486 0022 22EA0102 		bic	r2, r2, r1
+ 487 0026 1A62     		str	r2, [r3, #32]
+ 488 0028 0020     		movs	r0, #0
+ 489 002a 7047     		bx	lr
+ 490              	.L75:
+ 491 002c 0120     		movs	r0, #1
+ 492 002e 7047     		bx	lr
+ 493              	.L67:
+ 494 0030 0528     		cmp	r0, #5
+ 495 0032 2FD0     		beq	.L72
+ 496 0034 0628     		cmp	r0, #6
+ 497 0036 3BD0     		beq	.L73
+ 498 0038 0428     		cmp	r0, #4
+ 499 003a 09D1     		bne	.L76
+ 500 003c 224B     		ldr	r3, .L77
+ 501 003e 5A6C     		ldr	r2, [r3, #68]
+ 502 0040 0A43     		orrs	r2, r2, r1
+ 503 0042 5A64     		str	r2, [r3, #68]
+ 504 0044 1A6C     		ldr	r2, [r3, #64]
+ 505 0046 22EA0102 		bic	r2, r2, r1
+ 506 004a 1A64     		str	r2, [r3, #64]
+ 507 004c 0020     		movs	r0, #0
+ 508 004e 7047     		bx	lr
+ 509              	.L76:
+ 510 0050 0120     		movs	r0, #1
+ 511 0052 7047     		bx	lr
+ 512              	.L68:
+ 513 0054 1C4B     		ldr	r3, .L77
+ 514 0056 DA6A     		ldr	r2, [r3, #44]
+ 515 0058 21F01000 		bic	r0, r1, #16
+ 516 005c 0243     		orrs	r2, r2, r0
+ 517 005e DA62     		str	r2, [r3, #44]
+ 518 0060 9A6A     		ldr	r2, [r3, #40]
+ 519 0062 22EA0102 		bic	r2, r2, r1
+ 520 0066 9A62     		str	r2, [r3, #40]
+ 521 0068 0020     		movs	r0, #0
+ 522 006a 7047     		bx	lr
+ 523              	.L69:
+ 524 006c 164B     		ldr	r3, .L77
+ 525 006e 5A6B     		ldr	r2, [r3, #52]
+ 526 0070 0A43     		orrs	r2, r2, r1
+ 527 0072 5A63     		str	r2, [r3, #52]
+ 528 0074 1A6B     		ldr	r2, [r3, #48]
+ 529 0076 22EA0102 		bic	r2, r2, r1
+ 530 007a 1A63     		str	r2, [r3, #48]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 10
+
+
+ 531 007c 0020     		movs	r0, #0
+ 532 007e 7047     		bx	lr
+ 533              	.L66:
+ 534 0080 114B     		ldr	r3, .L77
+ 535 0082 DA6B     		ldr	r2, [r3, #60]
+ 536 0084 0A43     		orrs	r2, r2, r1
+ 537 0086 DA63     		str	r2, [r3, #60]
+ 538 0088 9A6B     		ldr	r2, [r3, #56]
+ 539 008a 22EA0102 		bic	r2, r2, r1
+ 540 008e 9A63     		str	r2, [r3, #56]
+ 541 0090 0020     		movs	r0, #0
+ 542 0092 7047     		bx	lr
+ 543              	.L72:
+ 544 0094 0C4B     		ldr	r3, .L77
+ 545 0096 DA6C     		ldr	r2, [r3, #76]
+ 546 0098 21F4FC71 		bic	r1, r1, #504
+ 547 009c 4905     		lsls	r1, r1, #21
+ 548 009e 490D     		lsrs	r1, r1, #21
+ 549 00a0 0A43     		orrs	r2, r2, r1
+ 550 00a2 DA64     		str	r2, [r3, #76]
+ 551 00a4 9A6C     		ldr	r2, [r3, #72]
+ 552 00a6 22EA0102 		bic	r2, r2, r1
+ 553 00aa 9A64     		str	r2, [r3, #72]
+ 554 00ac 0020     		movs	r0, #0
+ 555 00ae 7047     		bx	lr
+ 556              	.L73:
+ 557 00b0 054B     		ldr	r3, .L77
+ 558 00b2 5A6D     		ldr	r2, [r3, #84]
+ 559 00b4 5A65     		str	r2, [r3, #84]
+ 560 00b6 1A6D     		ldr	r2, [r3, #80]
+ 561 00b8 01F48061 		and	r1, r1, #1024
+ 562 00bc 22EA0102 		bic	r2, r2, r1
+ 563 00c0 1A65     		str	r2, [r3, #80]
+ 564 00c2 0020     		movs	r0, #0
+ 565 00c4 7047     		bx	lr
+ 566              	.L78:
+ 567 00c6 00BF     		.align	2
+ 568              	.L77:
+ 569 00c8 00700040 		.word	1073770496
+ 571              		.section	.text.HAL_PWREx_DisableGPIOPullDown,"ax",%progbits
+ 572              		.align	1
+ 573              		.global	HAL_PWREx_DisableGPIOPullDown
+ 574              		.syntax unified
+ 575              		.thumb
+ 576              		.thumb_func
+ 578              	HAL_PWREx_DisableGPIOPullDown:
+ 579              		@ args = 0, pretend = 0, frame = 0
+ 580              		@ frame_needed = 0, uses_anonymous_args = 0
+ 581              		@ link register save eliminated.
+ 582 0000 0328     		cmp	r0, #3
+ 583 0002 2ED0     		beq	.L80
+ 584 0004 0ED8     		bhi	.L81
+ 585 0006 0128     		cmp	r0, #1
+ 586 0008 1BD0     		beq	.L82
+ 587 000a 0228     		cmp	r0, #2
+ 588 000c 22D0     		beq	.L83
+ 589 000e 38B9     		cbnz	r0, .L89
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 11
+
+
+ 590 0010 1F4A     		ldr	r2, .L91
+ 591 0012 536A     		ldr	r3, [r2, #36]
+ 592 0014 21F42041 		bic	r1, r1, #40960
+ 593 0018 23EA0103 		bic	r3, r3, r1
+ 594 001c 5362     		str	r3, [r2, #36]
+ 595 001e 7047     		bx	lr
+ 596              	.L89:
+ 597 0020 0120     		movs	r0, #1
+ 598 0022 7047     		bx	lr
+ 599              	.L81:
+ 600 0024 0528     		cmp	r0, #5
+ 601 0026 23D0     		beq	.L86
+ 602 0028 0628     		cmp	r0, #6
+ 603 002a 2CD0     		beq	.L87
+ 604 002c 0428     		cmp	r0, #4
+ 605 002e 06D1     		bne	.L90
+ 606 0030 174A     		ldr	r2, .L91
+ 607 0032 536C     		ldr	r3, [r2, #68]
+ 608 0034 23EA0103 		bic	r3, r3, r1
+ 609 0038 5364     		str	r3, [r2, #68]
+ 610 003a 0020     		movs	r0, #0
+ 611 003c 7047     		bx	lr
+ 612              	.L90:
+ 613 003e 0120     		movs	r0, #1
+ 614 0040 7047     		bx	lr
+ 615              	.L82:
+ 616 0042 134A     		ldr	r2, .L91
+ 617 0044 D36A     		ldr	r3, [r2, #44]
+ 618 0046 21F01001 		bic	r1, r1, #16
+ 619 004a 23EA0103 		bic	r3, r3, r1
+ 620 004e D362     		str	r3, [r2, #44]
+ 621 0050 0020     		movs	r0, #0
+ 622 0052 7047     		bx	lr
+ 623              	.L83:
+ 624 0054 0E4A     		ldr	r2, .L91
+ 625 0056 536B     		ldr	r3, [r2, #52]
+ 626 0058 23EA0103 		bic	r3, r3, r1
+ 627 005c 5363     		str	r3, [r2, #52]
+ 628 005e 0020     		movs	r0, #0
+ 629 0060 7047     		bx	lr
+ 630              	.L80:
+ 631 0062 0B4A     		ldr	r2, .L91
+ 632 0064 D36B     		ldr	r3, [r2, #60]
+ 633 0066 23EA0103 		bic	r3, r3, r1
+ 634 006a D363     		str	r3, [r2, #60]
+ 635 006c 0020     		movs	r0, #0
+ 636 006e 7047     		bx	lr
+ 637              	.L86:
+ 638 0070 074A     		ldr	r2, .L91
+ 639 0072 D36C     		ldr	r3, [r2, #76]
+ 640 0074 21F4FC71 		bic	r1, r1, #504
+ 641 0078 4905     		lsls	r1, r1, #21
+ 642 007a 490D     		lsrs	r1, r1, #21
+ 643 007c 23EA0103 		bic	r3, r3, r1
+ 644 0080 D364     		str	r3, [r2, #76]
+ 645 0082 0020     		movs	r0, #0
+ 646 0084 7047     		bx	lr
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 12
+
+
+ 647              	.L87:
+ 648 0086 024B     		ldr	r3, .L91
+ 649 0088 5A6D     		ldr	r2, [r3, #84]
+ 650 008a 5A65     		str	r2, [r3, #84]
+ 651 008c 0020     		movs	r0, #0
+ 652 008e 7047     		bx	lr
+ 653              	.L92:
+ 654              		.align	2
+ 655              	.L91:
+ 656 0090 00700040 		.word	1073770496
+ 658              		.section	.text.HAL_PWREx_EnablePullUpPullDownConfig,"ax",%progbits
+ 659              		.align	1
+ 660              		.global	HAL_PWREx_EnablePullUpPullDownConfig
+ 661              		.syntax unified
+ 662              		.thumb
+ 663              		.thumb_func
+ 665              	HAL_PWREx_EnablePullUpPullDownConfig:
+ 666              		@ args = 0, pretend = 0, frame = 0
+ 667              		@ frame_needed = 0, uses_anonymous_args = 0
+ 668              		@ link register save eliminated.
+ 669 0000 024A     		ldr	r2, .L94
+ 670 0002 9368     		ldr	r3, [r2, #8]
+ 671 0004 43F48063 		orr	r3, r3, #1024
+ 672 0008 9360     		str	r3, [r2, #8]
+ 673 000a 7047     		bx	lr
+ 674              	.L95:
+ 675              		.align	2
+ 676              	.L94:
+ 677 000c 00700040 		.word	1073770496
+ 679              		.section	.text.HAL_PWREx_DisablePullUpPullDownConfig,"ax",%progbits
+ 680              		.align	1
+ 681              		.global	HAL_PWREx_DisablePullUpPullDownConfig
+ 682              		.syntax unified
+ 683              		.thumb
+ 684              		.thumb_func
+ 686              	HAL_PWREx_DisablePullUpPullDownConfig:
+ 687              		@ args = 0, pretend = 0, frame = 0
+ 688              		@ frame_needed = 0, uses_anonymous_args = 0
+ 689              		@ link register save eliminated.
+ 690 0000 024A     		ldr	r2, .L97
+ 691 0002 9368     		ldr	r3, [r2, #8]
+ 692 0004 23F48063 		bic	r3, r3, #1024
+ 693 0008 9360     		str	r3, [r2, #8]
+ 694 000a 7047     		bx	lr
+ 695              	.L98:
+ 696              		.align	2
+ 697              	.L97:
+ 698 000c 00700040 		.word	1073770496
+ 700              		.section	.text.HAL_PWREx_EnableSRAM2ContentRetention,"ax",%progbits
+ 701              		.align	1
+ 702              		.global	HAL_PWREx_EnableSRAM2ContentRetention
+ 703              		.syntax unified
+ 704              		.thumb
+ 705              		.thumb_func
+ 707              	HAL_PWREx_EnableSRAM2ContentRetention:
+ 708              		@ args = 0, pretend = 0, frame = 0
+ 709              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 13
+
+
+ 710              		@ link register save eliminated.
+ 711 0000 024A     		ldr	r2, .L100
+ 712 0002 9368     		ldr	r3, [r2, #8]
+ 713 0004 43F48073 		orr	r3, r3, #256
+ 714 0008 9360     		str	r3, [r2, #8]
+ 715 000a 7047     		bx	lr
+ 716              	.L101:
+ 717              		.align	2
+ 718              	.L100:
+ 719 000c 00700040 		.word	1073770496
+ 721              		.section	.text.HAL_PWREx_DisableSRAM2ContentRetention,"ax",%progbits
+ 722              		.align	1
+ 723              		.global	HAL_PWREx_DisableSRAM2ContentRetention
+ 724              		.syntax unified
+ 725              		.thumb
+ 726              		.thumb_func
+ 728              	HAL_PWREx_DisableSRAM2ContentRetention:
+ 729              		@ args = 0, pretend = 0, frame = 0
+ 730              		@ frame_needed = 0, uses_anonymous_args = 0
+ 731              		@ link register save eliminated.
+ 732 0000 024A     		ldr	r2, .L103
+ 733 0002 9368     		ldr	r3, [r2, #8]
+ 734 0004 23F48073 		bic	r3, r3, #256
+ 735 0008 9360     		str	r3, [r2, #8]
+ 736 000a 7047     		bx	lr
+ 737              	.L104:
+ 738              		.align	2
+ 739              	.L103:
+ 740 000c 00700040 		.word	1073770496
+ 742              		.section	.text.HAL_PWREx_EnablePVM1,"ax",%progbits
+ 743              		.align	1
+ 744              		.global	HAL_PWREx_EnablePVM1
+ 745              		.syntax unified
+ 746              		.thumb
+ 747              		.thumb_func
+ 749              	HAL_PWREx_EnablePVM1:
+ 750              		@ args = 0, pretend = 0, frame = 0
+ 751              		@ frame_needed = 0, uses_anonymous_args = 0
+ 752              		@ link register save eliminated.
+ 753 0000 024A     		ldr	r2, .L106
+ 754 0002 5368     		ldr	r3, [r2, #4]
+ 755 0004 43F01003 		orr	r3, r3, #16
+ 756 0008 5360     		str	r3, [r2, #4]
+ 757 000a 7047     		bx	lr
+ 758              	.L107:
+ 759              		.align	2
+ 760              	.L106:
+ 761 000c 00700040 		.word	1073770496
+ 763              		.section	.text.HAL_PWREx_DisablePVM1,"ax",%progbits
+ 764              		.align	1
+ 765              		.global	HAL_PWREx_DisablePVM1
+ 766              		.syntax unified
+ 767              		.thumb
+ 768              		.thumb_func
+ 770              	HAL_PWREx_DisablePVM1:
+ 771              		@ args = 0, pretend = 0, frame = 0
+ 772              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 14
+
+
+ 773              		@ link register save eliminated.
+ 774 0000 024A     		ldr	r2, .L109
+ 775 0002 5368     		ldr	r3, [r2, #4]
+ 776 0004 23F01003 		bic	r3, r3, #16
+ 777 0008 5360     		str	r3, [r2, #4]
+ 778 000a 7047     		bx	lr
+ 779              	.L110:
+ 780              		.align	2
+ 781              	.L109:
+ 782 000c 00700040 		.word	1073770496
+ 784              		.section	.text.HAL_PWREx_EnablePVM2,"ax",%progbits
+ 785              		.align	1
+ 786              		.global	HAL_PWREx_EnablePVM2
+ 787              		.syntax unified
+ 788              		.thumb
+ 789              		.thumb_func
+ 791              	HAL_PWREx_EnablePVM2:
+ 792              		@ args = 0, pretend = 0, frame = 0
+ 793              		@ frame_needed = 0, uses_anonymous_args = 0
+ 794              		@ link register save eliminated.
+ 795 0000 024A     		ldr	r2, .L112
+ 796 0002 5368     		ldr	r3, [r2, #4]
+ 797 0004 43F02003 		orr	r3, r3, #32
+ 798 0008 5360     		str	r3, [r2, #4]
+ 799 000a 7047     		bx	lr
+ 800              	.L113:
+ 801              		.align	2
+ 802              	.L112:
+ 803 000c 00700040 		.word	1073770496
+ 805              		.section	.text.HAL_PWREx_DisablePVM2,"ax",%progbits
+ 806              		.align	1
+ 807              		.global	HAL_PWREx_DisablePVM2
+ 808              		.syntax unified
+ 809              		.thumb
+ 810              		.thumb_func
+ 812              	HAL_PWREx_DisablePVM2:
+ 813              		@ args = 0, pretend = 0, frame = 0
+ 814              		@ frame_needed = 0, uses_anonymous_args = 0
+ 815              		@ link register save eliminated.
+ 816 0000 024A     		ldr	r2, .L115
+ 817 0002 5368     		ldr	r3, [r2, #4]
+ 818 0004 23F02003 		bic	r3, r3, #32
+ 819 0008 5360     		str	r3, [r2, #4]
+ 820 000a 7047     		bx	lr
+ 821              	.L116:
+ 822              		.align	2
+ 823              	.L115:
+ 824 000c 00700040 		.word	1073770496
+ 826              		.section	.text.HAL_PWREx_EnablePVM3,"ax",%progbits
+ 827              		.align	1
+ 828              		.global	HAL_PWREx_EnablePVM3
+ 829              		.syntax unified
+ 830              		.thumb
+ 831              		.thumb_func
+ 833              	HAL_PWREx_EnablePVM3:
+ 834              		@ args = 0, pretend = 0, frame = 0
+ 835              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 15
+
+
+ 836              		@ link register save eliminated.
+ 837 0000 024A     		ldr	r2, .L118
+ 838 0002 5368     		ldr	r3, [r2, #4]
+ 839 0004 43F04003 		orr	r3, r3, #64
+ 840 0008 5360     		str	r3, [r2, #4]
+ 841 000a 7047     		bx	lr
+ 842              	.L119:
+ 843              		.align	2
+ 844              	.L118:
+ 845 000c 00700040 		.word	1073770496
+ 847              		.section	.text.HAL_PWREx_DisablePVM3,"ax",%progbits
+ 848              		.align	1
+ 849              		.global	HAL_PWREx_DisablePVM3
+ 850              		.syntax unified
+ 851              		.thumb
+ 852              		.thumb_func
+ 854              	HAL_PWREx_DisablePVM3:
+ 855              		@ args = 0, pretend = 0, frame = 0
+ 856              		@ frame_needed = 0, uses_anonymous_args = 0
+ 857              		@ link register save eliminated.
+ 858 0000 024A     		ldr	r2, .L121
+ 859 0002 5368     		ldr	r3, [r2, #4]
+ 860 0004 23F04003 		bic	r3, r3, #64
+ 861 0008 5360     		str	r3, [r2, #4]
+ 862 000a 7047     		bx	lr
+ 863              	.L122:
+ 864              		.align	2
+ 865              	.L121:
+ 866 000c 00700040 		.word	1073770496
+ 868              		.section	.text.HAL_PWREx_EnablePVM4,"ax",%progbits
+ 869              		.align	1
+ 870              		.global	HAL_PWREx_EnablePVM4
+ 871              		.syntax unified
+ 872              		.thumb
+ 873              		.thumb_func
+ 875              	HAL_PWREx_EnablePVM4:
+ 876              		@ args = 0, pretend = 0, frame = 0
+ 877              		@ frame_needed = 0, uses_anonymous_args = 0
+ 878              		@ link register save eliminated.
+ 879 0000 024A     		ldr	r2, .L124
+ 880 0002 5368     		ldr	r3, [r2, #4]
+ 881 0004 43F08003 		orr	r3, r3, #128
+ 882 0008 5360     		str	r3, [r2, #4]
+ 883 000a 7047     		bx	lr
+ 884              	.L125:
+ 885              		.align	2
+ 886              	.L124:
+ 887 000c 00700040 		.word	1073770496
+ 889              		.section	.text.HAL_PWREx_DisablePVM4,"ax",%progbits
+ 890              		.align	1
+ 891              		.global	HAL_PWREx_DisablePVM4
+ 892              		.syntax unified
+ 893              		.thumb
+ 894              		.thumb_func
+ 896              	HAL_PWREx_DisablePVM4:
+ 897              		@ args = 0, pretend = 0, frame = 0
+ 898              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 16
+
+
+ 899              		@ link register save eliminated.
+ 900 0000 024A     		ldr	r2, .L127
+ 901 0002 5368     		ldr	r3, [r2, #4]
+ 902 0004 23F08003 		bic	r3, r3, #128
+ 903 0008 5360     		str	r3, [r2, #4]
+ 904 000a 7047     		bx	lr
+ 905              	.L128:
+ 906              		.align	2
+ 907              	.L127:
+ 908 000c 00700040 		.word	1073770496
+ 910              		.section	.text.HAL_PWREx_ConfigPVM,"ax",%progbits
+ 911              		.align	1
+ 912              		.global	HAL_PWREx_ConfigPVM
+ 913              		.syntax unified
+ 914              		.thumb
+ 915              		.thumb_func
+ 917              	HAL_PWREx_ConfigPVM:
+ 918              		@ args = 0, pretend = 0, frame = 0
+ 919              		@ frame_needed = 0, uses_anonymous_args = 0
+ 920              		@ link register save eliminated.
+ 921 0000 0368     		ldr	r3, [r0]
+ 922 0002 402B     		cmp	r3, #64
+ 923 0004 00F0B180 		beq	.L130
+ 924 0008 3DD8     		bhi	.L131
+ 925 000a 102B     		cmp	r3, #16
+ 926 000c 76D0     		beq	.L132
+ 927 000e 202B     		cmp	r3, #32
+ 928 0010 37D1     		bne	.L152
+ 929 0012 754B     		ldr	r3, .L154
+ 930 0014 5A6A     		ldr	r2, [r3, #36]
+ 931 0016 22F01002 		bic	r2, r2, #16
+ 932 001a 5A62     		str	r2, [r3, #36]
+ 933 001c 1A6A     		ldr	r2, [r3, #32]
+ 934 001e 22F01002 		bic	r2, r2, #16
+ 935 0022 1A62     		str	r2, [r3, #32]
+ 936 0024 DA6A     		ldr	r2, [r3, #44]
+ 937 0026 22F01002 		bic	r2, r2, #16
+ 938 002a DA62     		str	r2, [r3, #44]
+ 939 002c 9A6A     		ldr	r2, [r3, #40]
+ 940 002e 22F01002 		bic	r2, r2, #16
+ 941 0032 9A62     		str	r2, [r3, #40]
+ 942 0034 4368     		ldr	r3, [r0, #4]
+ 943 0036 13F4803F 		tst	r3, #65536
+ 944 003a 04D0     		beq	.L139
+ 945 003c 6A4A     		ldr	r2, .L154
+ 946 003e 136A     		ldr	r3, [r2, #32]
+ 947 0040 43F01003 		orr	r3, r3, #16
+ 948 0044 1362     		str	r3, [r2, #32]
+ 949              	.L139:
+ 950 0046 4368     		ldr	r3, [r0, #4]
+ 951 0048 13F4003F 		tst	r3, #131072
+ 952 004c 04D0     		beq	.L140
+ 953 004e 664A     		ldr	r2, .L154
+ 954 0050 536A     		ldr	r3, [r2, #36]
+ 955 0052 43F01003 		orr	r3, r3, #16
+ 956 0056 5362     		str	r3, [r2, #36]
+ 957              	.L140:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 17
+
+
+ 958 0058 4368     		ldr	r3, [r0, #4]
+ 959 005a 13F0010F 		tst	r3, #1
+ 960 005e 04D0     		beq	.L141
+ 961 0060 614A     		ldr	r2, .L154
+ 962 0062 936A     		ldr	r3, [r2, #40]
+ 963 0064 43F01003 		orr	r3, r3, #16
+ 964 0068 9362     		str	r3, [r2, #40]
+ 965              	.L141:
+ 966 006a 4368     		ldr	r3, [r0, #4]
+ 967 006c 13F0020F 		tst	r3, #2
+ 968 0070 00F0B480 		beq	.L149
+ 969 0074 5C4A     		ldr	r2, .L154
+ 970 0076 D36A     		ldr	r3, [r2, #44]
+ 971 0078 43F01003 		orr	r3, r3, #16
+ 972 007c D362     		str	r3, [r2, #44]
+ 973 007e 0020     		movs	r0, #0
+ 974 0080 7047     		bx	lr
+ 975              	.L152:
+ 976 0082 0120     		movs	r0, #1
+ 977 0084 7047     		bx	lr
+ 978              	.L131:
+ 979 0086 802B     		cmp	r3, #128
+ 980 0088 36D1     		bne	.L153
+ 981 008a 574B     		ldr	r3, .L154
+ 982 008c 5A6A     		ldr	r2, [r3, #36]
+ 983 008e 22F04002 		bic	r2, r2, #64
+ 984 0092 5A62     		str	r2, [r3, #36]
+ 985 0094 1A6A     		ldr	r2, [r3, #32]
+ 986 0096 22F04002 		bic	r2, r2, #64
+ 987 009a 1A62     		str	r2, [r3, #32]
+ 988 009c DA6A     		ldr	r2, [r3, #44]
+ 989 009e 22F04002 		bic	r2, r2, #64
+ 990 00a2 DA62     		str	r2, [r3, #44]
+ 991 00a4 9A6A     		ldr	r2, [r3, #40]
+ 992 00a6 22F04002 		bic	r2, r2, #64
+ 993 00aa 9A62     		str	r2, [r3, #40]
+ 994 00ac 4368     		ldr	r3, [r0, #4]
+ 995 00ae 13F4803F 		tst	r3, #65536
+ 996 00b2 04D0     		beq	.L145
+ 997 00b4 4C4A     		ldr	r2, .L154
+ 998 00b6 136A     		ldr	r3, [r2, #32]
+ 999 00b8 43F04003 		orr	r3, r3, #64
+ 1000 00bc 1362     		str	r3, [r2, #32]
+ 1001              	.L145:
+ 1002 00be 4368     		ldr	r3, [r0, #4]
+ 1003 00c0 13F4003F 		tst	r3, #131072
+ 1004 00c4 04D0     		beq	.L146
+ 1005 00c6 484A     		ldr	r2, .L154
+ 1006 00c8 536A     		ldr	r3, [r2, #36]
+ 1007 00ca 43F04003 		orr	r3, r3, #64
+ 1008 00ce 5362     		str	r3, [r2, #36]
+ 1009              	.L146:
+ 1010 00d0 4368     		ldr	r3, [r0, #4]
+ 1011 00d2 13F0010F 		tst	r3, #1
+ 1012 00d6 04D0     		beq	.L147
+ 1013 00d8 434A     		ldr	r2, .L154
+ 1014 00da 936A     		ldr	r3, [r2, #40]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 18
+
+
+ 1015 00dc 43F04003 		orr	r3, r3, #64
+ 1016 00e0 9362     		str	r3, [r2, #40]
+ 1017              	.L147:
+ 1018 00e2 4368     		ldr	r3, [r0, #4]
+ 1019 00e4 13F0020F 		tst	r3, #2
+ 1020 00e8 7CD0     		beq	.L151
+ 1021 00ea 3F4A     		ldr	r2, .L154
+ 1022 00ec D36A     		ldr	r3, [r2, #44]
+ 1023 00ee 43F04003 		orr	r3, r3, #64
+ 1024 00f2 D362     		str	r3, [r2, #44]
+ 1025 00f4 0020     		movs	r0, #0
+ 1026 00f6 7047     		bx	lr
+ 1027              	.L153:
+ 1028 00f8 0120     		movs	r0, #1
+ 1029 00fa 7047     		bx	lr
+ 1030              	.L132:
+ 1031 00fc 3A4B     		ldr	r3, .L154
+ 1032 00fe 5A6A     		ldr	r2, [r3, #36]
+ 1033 0100 22F00802 		bic	r2, r2, #8
+ 1034 0104 5A62     		str	r2, [r3, #36]
+ 1035 0106 1A6A     		ldr	r2, [r3, #32]
+ 1036 0108 22F00802 		bic	r2, r2, #8
+ 1037 010c 1A62     		str	r2, [r3, #32]
+ 1038 010e DA6A     		ldr	r2, [r3, #44]
+ 1039 0110 22F00802 		bic	r2, r2, #8
+ 1040 0114 DA62     		str	r2, [r3, #44]
+ 1041 0116 9A6A     		ldr	r2, [r3, #40]
+ 1042 0118 22F00802 		bic	r2, r2, #8
+ 1043 011c 9A62     		str	r2, [r3, #40]
+ 1044 011e 4368     		ldr	r3, [r0, #4]
+ 1045 0120 13F4803F 		tst	r3, #65536
+ 1046 0124 04D0     		beq	.L136
+ 1047 0126 304A     		ldr	r2, .L154
+ 1048 0128 136A     		ldr	r3, [r2, #32]
+ 1049 012a 43F00803 		orr	r3, r3, #8
+ 1050 012e 1362     		str	r3, [r2, #32]
+ 1051              	.L136:
+ 1052 0130 4368     		ldr	r3, [r0, #4]
+ 1053 0132 13F4003F 		tst	r3, #131072
+ 1054 0136 04D0     		beq	.L137
+ 1055 0138 2B4A     		ldr	r2, .L154
+ 1056 013a 536A     		ldr	r3, [r2, #36]
+ 1057 013c 43F00803 		orr	r3, r3, #8
+ 1058 0140 5362     		str	r3, [r2, #36]
+ 1059              	.L137:
+ 1060 0142 4368     		ldr	r3, [r0, #4]
+ 1061 0144 13F0010F 		tst	r3, #1
+ 1062 0148 04D0     		beq	.L138
+ 1063 014a 274A     		ldr	r2, .L154
+ 1064 014c 936A     		ldr	r3, [r2, #40]
+ 1065 014e 43F00803 		orr	r3, r3, #8
+ 1066 0152 9362     		str	r3, [r2, #40]
+ 1067              	.L138:
+ 1068 0154 4368     		ldr	r3, [r0, #4]
+ 1069 0156 13F0020F 		tst	r3, #2
+ 1070 015a 3DD0     		beq	.L148
+ 1071 015c 224A     		ldr	r2, .L154
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 19
+
+
+ 1072 015e D36A     		ldr	r3, [r2, #44]
+ 1073 0160 43F00803 		orr	r3, r3, #8
+ 1074 0164 D362     		str	r3, [r2, #44]
+ 1075 0166 0020     		movs	r0, #0
+ 1076 0168 7047     		bx	lr
+ 1077              	.L130:
+ 1078 016a 1F4B     		ldr	r3, .L154
+ 1079 016c 5A6A     		ldr	r2, [r3, #36]
+ 1080 016e 22F02002 		bic	r2, r2, #32
+ 1081 0172 5A62     		str	r2, [r3, #36]
+ 1082 0174 1A6A     		ldr	r2, [r3, #32]
+ 1083 0176 22F02002 		bic	r2, r2, #32
+ 1084 017a 1A62     		str	r2, [r3, #32]
+ 1085 017c DA6A     		ldr	r2, [r3, #44]
+ 1086 017e 22F02002 		bic	r2, r2, #32
+ 1087 0182 DA62     		str	r2, [r3, #44]
+ 1088 0184 9A6A     		ldr	r2, [r3, #40]
+ 1089 0186 22F02002 		bic	r2, r2, #32
+ 1090 018a 9A62     		str	r2, [r3, #40]
+ 1091 018c 4368     		ldr	r3, [r0, #4]
+ 1092 018e 13F4803F 		tst	r3, #65536
+ 1093 0192 04D0     		beq	.L142
+ 1094 0194 144A     		ldr	r2, .L154
+ 1095 0196 136A     		ldr	r3, [r2, #32]
+ 1096 0198 43F02003 		orr	r3, r3, #32
+ 1097 019c 1362     		str	r3, [r2, #32]
+ 1098              	.L142:
+ 1099 019e 4368     		ldr	r3, [r0, #4]
+ 1100 01a0 13F4003F 		tst	r3, #131072
+ 1101 01a4 04D0     		beq	.L143
+ 1102 01a6 104A     		ldr	r2, .L154
+ 1103 01a8 536A     		ldr	r3, [r2, #36]
+ 1104 01aa 43F02003 		orr	r3, r3, #32
+ 1105 01ae 5362     		str	r3, [r2, #36]
+ 1106              	.L143:
+ 1107 01b0 4368     		ldr	r3, [r0, #4]
+ 1108 01b2 13F0010F 		tst	r3, #1
+ 1109 01b6 04D0     		beq	.L144
+ 1110 01b8 0B4A     		ldr	r2, .L154
+ 1111 01ba 936A     		ldr	r3, [r2, #40]
+ 1112 01bc 43F02003 		orr	r3, r3, #32
+ 1113 01c0 9362     		str	r3, [r2, #40]
+ 1114              	.L144:
+ 1115 01c2 4368     		ldr	r3, [r0, #4]
+ 1116 01c4 13F0020F 		tst	r3, #2
+ 1117 01c8 0AD0     		beq	.L150
+ 1118 01ca 074A     		ldr	r2, .L154
+ 1119 01cc D36A     		ldr	r3, [r2, #44]
+ 1120 01ce 43F02003 		orr	r3, r3, #32
+ 1121 01d2 D362     		str	r3, [r2, #44]
+ 1122 01d4 0020     		movs	r0, #0
+ 1123 01d6 7047     		bx	lr
+ 1124              	.L148:
+ 1125 01d8 0020     		movs	r0, #0
+ 1126 01da 7047     		bx	lr
+ 1127              	.L149:
+ 1128 01dc 0020     		movs	r0, #0
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 20
+
+
+ 1129 01de 7047     		bx	lr
+ 1130              	.L150:
+ 1131 01e0 0020     		movs	r0, #0
+ 1132 01e2 7047     		bx	lr
+ 1133              	.L151:
+ 1134 01e4 0020     		movs	r0, #0
+ 1135 01e6 7047     		bx	lr
+ 1136              	.L155:
+ 1137              		.align	2
+ 1138              	.L154:
+ 1139 01e8 00040140 		.word	1073808384
+ 1141              		.section	.text.HAL_PWREx_EnableLowPowerRunMode,"ax",%progbits
+ 1142              		.align	1
+ 1143              		.global	HAL_PWREx_EnableLowPowerRunMode
+ 1144              		.syntax unified
+ 1145              		.thumb
+ 1146              		.thumb_func
+ 1148              	HAL_PWREx_EnableLowPowerRunMode:
+ 1149              		@ args = 0, pretend = 0, frame = 0
+ 1150              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1151              		@ link register save eliminated.
+ 1152 0000 024A     		ldr	r2, .L157
+ 1153 0002 1368     		ldr	r3, [r2]
+ 1154 0004 43F48043 		orr	r3, r3, #16384
+ 1155 0008 1360     		str	r3, [r2]
+ 1156 000a 7047     		bx	lr
+ 1157              	.L158:
+ 1158              		.align	2
+ 1159              	.L157:
+ 1160 000c 00700040 		.word	1073770496
+ 1162              		.section	.text.HAL_PWREx_DisableLowPowerRunMode,"ax",%progbits
+ 1163              		.align	1
+ 1164              		.global	HAL_PWREx_DisableLowPowerRunMode
+ 1165              		.syntax unified
+ 1166              		.thumb
+ 1167              		.thumb_func
+ 1169              	HAL_PWREx_DisableLowPowerRunMode:
+ 1170              		@ args = 0, pretend = 0, frame = 0
+ 1171              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1172              		@ link register save eliminated.
+ 1173 0000 124A     		ldr	r2, .L165
+ 1174 0002 1368     		ldr	r3, [r2]
+ 1175 0004 23F48043 		bic	r3, r3, #16384
+ 1176 0008 1360     		str	r3, [r2]
+ 1177 000a 114B     		ldr	r3, .L165+4
+ 1178 000c 1B68     		ldr	r3, [r3]
+ 1179 000e 02F14672 		add	r2, r2, #51904512
+ 1180 0012 02F55B32 		add	r2, r2, #224256
+ 1181 0016 02F28322 		addw	r2, r2, #643
+ 1182 001a A2FB0323 		umull	r2, r3, r2, r3
+ 1183 001e 9B0C     		lsrs	r3, r3, #18
+ 1184 0020 3222     		movs	r2, #50
+ 1185 0022 02FB03F3 		mul	r3, r2, r3
+ 1186 0026 00E0     		b	.L160
+ 1187              	.L162:
+ 1188 0028 013B     		subs	r3, r3, #1
+ 1189              	.L160:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 21
+
+
+ 1190 002a 084A     		ldr	r2, .L165
+ 1191 002c 5269     		ldr	r2, [r2, #20]
+ 1192 002e 12F4007F 		tst	r2, #512
+ 1193 0032 01D0     		beq	.L161
+ 1194 0034 002B     		cmp	r3, #0
+ 1195 0036 F7D1     		bne	.L162
+ 1196              	.L161:
+ 1197 0038 044B     		ldr	r3, .L165
+ 1198 003a 5B69     		ldr	r3, [r3, #20]
+ 1199 003c 13F4007F 		tst	r3, #512
+ 1200 0040 01D1     		bne	.L164
+ 1201 0042 0020     		movs	r0, #0
+ 1202 0044 7047     		bx	lr
+ 1203              	.L164:
+ 1204 0046 0320     		movs	r0, #3
+ 1205 0048 7047     		bx	lr
+ 1206              	.L166:
+ 1207 004a 00BF     		.align	2
+ 1208              	.L165:
+ 1209 004c 00700040 		.word	1073770496
+ 1210 0050 00000000 		.word	SystemCoreClock
+ 1212              		.section	.text.HAL_PWREx_EnterSTOP0Mode,"ax",%progbits
+ 1213              		.align	1
+ 1214              		.global	HAL_PWREx_EnterSTOP0Mode
+ 1215              		.syntax unified
+ 1216              		.thumb
+ 1217              		.thumb_func
+ 1219              	HAL_PWREx_EnterSTOP0Mode:
+ 1220              		@ args = 0, pretend = 0, frame = 0
+ 1221              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1222              		@ link register save eliminated.
+ 1223 0000 0B4A     		ldr	r2, .L171
+ 1224 0002 1368     		ldr	r3, [r2]
+ 1225 0004 23F00703 		bic	r3, r3, #7
+ 1226 0008 1360     		str	r3, [r2]
+ 1227 000a 0A4A     		ldr	r2, .L171+4
+ 1228 000c 1369     		ldr	r3, [r2, #16]
+ 1229 000e 43F00403 		orr	r3, r3, #4
+ 1230 0012 1361     		str	r3, [r2, #16]
+ 1231 0014 0128     		cmp	r0, #1
+ 1232 0016 08D0     		beq	.L170
+ 1233              		.syntax unified
+ 1234              	@ 914 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
+ 1235 0018 40BF     		sev
+ 1236              	@ 0 "" 2
+ 1237              	@ 915 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
+ 1238 001a 20BF     		wfe
+ 1239              	@ 0 "" 2
+ 1240              	@ 916 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
+ 1241 001c 20BF     		wfe
+ 1242              	@ 0 "" 2
+ 1243              		.thumb
+ 1244              		.syntax unified
+ 1245              	.L169:
+ 1246 001e 054A     		ldr	r2, .L171+4
+ 1247 0020 1369     		ldr	r3, [r2, #16]
+ 1248 0022 23F00403 		bic	r3, r3, #4
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 22
+
+
+ 1249 0026 1361     		str	r3, [r2, #16]
+ 1250 0028 7047     		bx	lr
+ 1251              	.L170:
+ 1252              		.syntax unified
+ 1253              	@ 909 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
+ 1254 002a 30BF     		wfi
+ 1255              	@ 0 "" 2
+ 1256              		.thumb
+ 1257              		.syntax unified
+ 1258 002c F7E7     		b	.L169
+ 1259              	.L172:
+ 1260 002e 00BF     		.align	2
+ 1261              	.L171:
+ 1262 0030 00700040 		.word	1073770496
+ 1263 0034 00ED00E0 		.word	-536810240
+ 1265              		.section	.text.HAL_PWREx_EnterSTOP1Mode,"ax",%progbits
+ 1266              		.align	1
+ 1267              		.global	HAL_PWREx_EnterSTOP1Mode
+ 1268              		.syntax unified
+ 1269              		.thumb
+ 1270              		.thumb_func
+ 1272              	HAL_PWREx_EnterSTOP1Mode:
+ 1273              		@ args = 0, pretend = 0, frame = 0
+ 1274              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1275              		@ link register save eliminated.
+ 1276 0000 0C4A     		ldr	r2, .L177
+ 1277 0002 1368     		ldr	r3, [r2]
+ 1278 0004 23F00703 		bic	r3, r3, #7
+ 1279 0008 43F00103 		orr	r3, r3, #1
+ 1280 000c 1360     		str	r3, [r2]
+ 1281 000e 0A4A     		ldr	r2, .L177+4
+ 1282 0010 1369     		ldr	r3, [r2, #16]
+ 1283 0012 43F00403 		orr	r3, r3, #4
+ 1284 0016 1361     		str	r3, [r2, #16]
+ 1285 0018 0128     		cmp	r0, #1
+ 1286 001a 08D0     		beq	.L176
+ 1287              		.syntax unified
+ 1288              	@ 965 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
+ 1289 001c 40BF     		sev
+ 1290              	@ 0 "" 2
+ 1291              	@ 966 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
+ 1292 001e 20BF     		wfe
+ 1293              	@ 0 "" 2
+ 1294              	@ 967 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
+ 1295 0020 20BF     		wfe
+ 1296              	@ 0 "" 2
+ 1297              		.thumb
+ 1298              		.syntax unified
+ 1299              	.L175:
+ 1300 0022 054A     		ldr	r2, .L177+4
+ 1301 0024 1369     		ldr	r3, [r2, #16]
+ 1302 0026 23F00403 		bic	r3, r3, #4
+ 1303 002a 1361     		str	r3, [r2, #16]
+ 1304 002c 7047     		bx	lr
+ 1305              	.L176:
+ 1306              		.syntax unified
+ 1307              	@ 960 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 23
+
+
+ 1308 002e 30BF     		wfi
+ 1309              	@ 0 "" 2
+ 1310              		.thumb
+ 1311              		.syntax unified
+ 1312 0030 F7E7     		b	.L175
+ 1313              	.L178:
+ 1314 0032 00BF     		.align	2
+ 1315              	.L177:
+ 1316 0034 00700040 		.word	1073770496
+ 1317 0038 00ED00E0 		.word	-536810240
+ 1319              		.section	.text.HAL_PWREx_EnterSHUTDOWNMode,"ax",%progbits
+ 1320              		.align	1
+ 1321              		.global	HAL_PWREx_EnterSHUTDOWNMode
+ 1322              		.syntax unified
+ 1323              		.thumb
+ 1324              		.thumb_func
+ 1326              	HAL_PWREx_EnterSHUTDOWNMode:
+ 1327              		@ args = 0, pretend = 0, frame = 0
+ 1328              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1329              		@ link register save eliminated.
+ 1330 0000 064A     		ldr	r2, .L180
+ 1331 0002 1368     		ldr	r3, [r2]
+ 1332 0004 23F00703 		bic	r3, r3, #7
+ 1333 0008 43F00403 		orr	r3, r3, #4
+ 1334 000c 1360     		str	r3, [r2]
+ 1335 000e 044A     		ldr	r2, .L180+4
+ 1336 0010 1369     		ldr	r3, [r2, #16]
+ 1337 0012 43F00403 		orr	r3, r3, #4
+ 1338 0016 1361     		str	r3, [r2, #16]
+ 1339              		.syntax unified
+ 1340              	@ 1000 "Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c" 1
+ 1341 0018 30BF     		wfi
+ 1342              	@ 0 "" 2
+ 1343              		.thumb
+ 1344              		.syntax unified
+ 1345 001a 7047     		bx	lr
+ 1346              	.L181:
+ 1347              		.align	2
+ 1348              	.L180:
+ 1349 001c 00700040 		.word	1073770496
+ 1350 0020 00ED00E0 		.word	-536810240
+ 1352              		.section	.text.HAL_PWREx_PVM1Callback,"ax",%progbits
+ 1353              		.align	1
+ 1354              		.weak	HAL_PWREx_PVM1Callback
+ 1355              		.syntax unified
+ 1356              		.thumb
+ 1357              		.thumb_func
+ 1359              	HAL_PWREx_PVM1Callback:
+ 1360              		@ args = 0, pretend = 0, frame = 0
+ 1361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1362              		@ link register save eliminated.
+ 1363 0000 7047     		bx	lr
+ 1365              		.section	.text.HAL_PWREx_PVM2Callback,"ax",%progbits
+ 1366              		.align	1
+ 1367              		.weak	HAL_PWREx_PVM2Callback
+ 1368              		.syntax unified
+ 1369              		.thumb
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 24
+
+
+ 1370              		.thumb_func
+ 1372              	HAL_PWREx_PVM2Callback:
+ 1373              		@ args = 0, pretend = 0, frame = 0
+ 1374              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1375              		@ link register save eliminated.
+ 1376 0000 7047     		bx	lr
+ 1378              		.section	.text.HAL_PWREx_PVM3Callback,"ax",%progbits
+ 1379              		.align	1
+ 1380              		.weak	HAL_PWREx_PVM3Callback
+ 1381              		.syntax unified
+ 1382              		.thumb
+ 1383              		.thumb_func
+ 1385              	HAL_PWREx_PVM3Callback:
+ 1386              		@ args = 0, pretend = 0, frame = 0
+ 1387              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1388              		@ link register save eliminated.
+ 1389 0000 7047     		bx	lr
+ 1391              		.section	.text.HAL_PWREx_PVM4Callback,"ax",%progbits
+ 1392              		.align	1
+ 1393              		.weak	HAL_PWREx_PVM4Callback
+ 1394              		.syntax unified
+ 1395              		.thumb
+ 1396              		.thumb_func
+ 1398              	HAL_PWREx_PVM4Callback:
+ 1399              		@ args = 0, pretend = 0, frame = 0
+ 1400              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1401              		@ link register save eliminated.
+ 1402 0000 7047     		bx	lr
+ 1404              		.section	.text.HAL_PWREx_PVD_PVM_IRQHandler,"ax",%progbits
+ 1405              		.align	1
+ 1406              		.global	HAL_PWREx_PVD_PVM_IRQHandler
+ 1407              		.syntax unified
+ 1408              		.thumb
+ 1409              		.thumb_func
+ 1411              	HAL_PWREx_PVD_PVM_IRQHandler:
+ 1412              		@ args = 0, pretend = 0, frame = 0
+ 1413              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1414 0000 08B5     		push	{r3, lr}
+ 1415 0002 1C4B     		ldr	r3, .L198
+ 1416 0004 5B69     		ldr	r3, [r3, #20]
+ 1417 0006 13F4803F 		tst	r3, #65536
+ 1418 000a 14D1     		bne	.L193
+ 1419              	.L187:
+ 1420 000c 194B     		ldr	r3, .L198
+ 1421 000e 5B6B     		ldr	r3, [r3, #52]
+ 1422 0010 13F0080F 		tst	r3, #8
+ 1423 0014 16D1     		bne	.L194
+ 1424              	.L188:
+ 1425 0016 174B     		ldr	r3, .L198
+ 1426 0018 5B6B     		ldr	r3, [r3, #52]
+ 1427 001a 13F0100F 		tst	r3, #16
+ 1428 001e 17D1     		bne	.L195
+ 1429              	.L189:
+ 1430 0020 144B     		ldr	r3, .L198
+ 1431 0022 5B6B     		ldr	r3, [r3, #52]
+ 1432 0024 13F0200F 		tst	r3, #32
+ 1433 0028 18D1     		bne	.L196
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 25
+
+
+ 1434              	.L190:
+ 1435 002a 124B     		ldr	r3, .L198
+ 1436 002c 5B6B     		ldr	r3, [r3, #52]
+ 1437 002e 13F0400F 		tst	r3, #64
+ 1438 0032 19D1     		bne	.L197
+ 1439              	.L186:
+ 1440 0034 08BD     		pop	{r3, pc}
+ 1441              	.L193:
+ 1442 0036 FFF7FEFF 		bl	HAL_PWR_PVDCallback
+ 1443 003a 0E4B     		ldr	r3, .L198
+ 1444 003c 4FF48032 		mov	r2, #65536
+ 1445 0040 5A61     		str	r2, [r3, #20]
+ 1446 0042 E3E7     		b	.L187
+ 1447              	.L194:
+ 1448 0044 FFF7FEFF 		bl	HAL_PWREx_PVM1Callback
+ 1449 0048 0A4B     		ldr	r3, .L198
+ 1450 004a 0822     		movs	r2, #8
+ 1451 004c 5A63     		str	r2, [r3, #52]
+ 1452 004e E2E7     		b	.L188
+ 1453              	.L195:
+ 1454 0050 FFF7FEFF 		bl	HAL_PWREx_PVM2Callback
+ 1455 0054 074B     		ldr	r3, .L198
+ 1456 0056 1022     		movs	r2, #16
+ 1457 0058 5A63     		str	r2, [r3, #52]
+ 1458 005a E1E7     		b	.L189
+ 1459              	.L196:
+ 1460 005c FFF7FEFF 		bl	HAL_PWREx_PVM3Callback
+ 1461 0060 044B     		ldr	r3, .L198
+ 1462 0062 2022     		movs	r2, #32
+ 1463 0064 5A63     		str	r2, [r3, #52]
+ 1464 0066 E0E7     		b	.L190
+ 1465              	.L197:
+ 1466 0068 FFF7FEFF 		bl	HAL_PWREx_PVM4Callback
+ 1467 006c 014B     		ldr	r3, .L198
+ 1468 006e 4022     		movs	r2, #64
+ 1469 0070 5A63     		str	r2, [r3, #52]
+ 1470 0072 DFE7     		b	.L186
+ 1471              	.L199:
+ 1472              		.align	2
+ 1473              	.L198:
+ 1474 0074 00040140 		.word	1073808384
+ 1476              		.section	.text.HAL_PWREx_EnableUCPDStandbyMode,"ax",%progbits
+ 1477              		.align	1
+ 1478              		.global	HAL_PWREx_EnableUCPDStandbyMode
+ 1479              		.syntax unified
+ 1480              		.thumb
+ 1481              		.thumb_func
+ 1483              	HAL_PWREx_EnableUCPDStandbyMode:
+ 1484              		@ args = 0, pretend = 0, frame = 0
+ 1485              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1486              		@ link register save eliminated.
+ 1487 0000 024A     		ldr	r2, .L201
+ 1488 0002 9368     		ldr	r3, [r2, #8]
+ 1489 0004 43F40053 		orr	r3, r3, #8192
+ 1490 0008 9360     		str	r3, [r2, #8]
+ 1491 000a 7047     		bx	lr
+ 1492              	.L202:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 26
+
+
+ 1493              		.align	2
+ 1494              	.L201:
+ 1495 000c 00700040 		.word	1073770496
+ 1497              		.section	.text.HAL_PWREx_DisableUCPDStandbyMode,"ax",%progbits
+ 1498              		.align	1
+ 1499              		.global	HAL_PWREx_DisableUCPDStandbyMode
+ 1500              		.syntax unified
+ 1501              		.thumb
+ 1502              		.thumb_func
+ 1504              	HAL_PWREx_DisableUCPDStandbyMode:
+ 1505              		@ args = 0, pretend = 0, frame = 0
+ 1506              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1507              		@ link register save eliminated.
+ 1508 0000 024A     		ldr	r2, .L204
+ 1509 0002 9368     		ldr	r3, [r2, #8]
+ 1510 0004 23F40053 		bic	r3, r3, #8192
+ 1511 0008 9360     		str	r3, [r2, #8]
+ 1512 000a 7047     		bx	lr
+ 1513              	.L205:
+ 1514              		.align	2
+ 1515              	.L204:
+ 1516 000c 00700040 		.word	1073770496
+ 1518              		.section	.text.HAL_PWREx_EnableUCPDDeadBattery,"ax",%progbits
+ 1519              		.align	1
+ 1520              		.global	HAL_PWREx_EnableUCPDDeadBattery
+ 1521              		.syntax unified
+ 1522              		.thumb
+ 1523              		.thumb_func
+ 1525              	HAL_PWREx_EnableUCPDDeadBattery:
+ 1526              		@ args = 0, pretend = 0, frame = 0
+ 1527              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1528              		@ link register save eliminated.
+ 1529 0000 024A     		ldr	r2, .L207
+ 1530 0002 9368     		ldr	r3, [r2, #8]
+ 1531 0004 23F48043 		bic	r3, r3, #16384
+ 1532 0008 9360     		str	r3, [r2, #8]
+ 1533 000a 7047     		bx	lr
+ 1534              	.L208:
+ 1535              		.align	2
+ 1536              	.L207:
+ 1537 000c 00700040 		.word	1073770496
+ 1539              		.section	.text.HAL_PWREx_DisableUCPDDeadBattery,"ax",%progbits
+ 1540              		.align	1
+ 1541              		.global	HAL_PWREx_DisableUCPDDeadBattery
+ 1542              		.syntax unified
+ 1543              		.thumb
+ 1544              		.thumb_func
+ 1546              	HAL_PWREx_DisableUCPDDeadBattery:
+ 1547              		@ args = 0, pretend = 0, frame = 0
+ 1548              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1549              		@ link register save eliminated.
+ 1550 0000 024A     		ldr	r2, .L210
+ 1551 0002 9368     		ldr	r3, [r2, #8]
+ 1552 0004 43F48043 		orr	r3, r3, #16384
+ 1553 0008 9360     		str	r3, [r2, #8]
+ 1554 000a 7047     		bx	lr
+ 1555              	.L211:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 27
+
+
+ 1556              		.align	2
+ 1557              	.L210:
+ 1558 000c 00700040 		.word	1073770496
+ 1560              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 15.2.1 20251203"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 28
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32g4xx_hal_pwr_ex.c
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:18     .text.HAL_PWREx_GetVoltageRange:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:24     .text.HAL_PWREx_GetVoltageRange:00000000 HAL_PWREx_GetVoltageRange
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:44     .text.HAL_PWREx_GetVoltageRange:00000020 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:47     .text.HAL_PWREx_ControlVoltageScaling:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:53     .text.HAL_PWREx_ControlVoltageScaling:00000000 HAL_PWREx_ControlVoltageScaling
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:169    .text.HAL_PWREx_ControlVoltageScaling:00000100 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:174    .text.HAL_PWREx_EnableBatteryCharging:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:180    .text.HAL_PWREx_EnableBatteryCharging:00000000 HAL_PWREx_EnableBatteryCharging
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:196    .text.HAL_PWREx_EnableBatteryCharging:00000018 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:199    .text.HAL_PWREx_DisableBatteryCharging:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:205    .text.HAL_PWREx_DisableBatteryCharging:00000000 HAL_PWREx_DisableBatteryCharging
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:217    .text.HAL_PWREx_DisableBatteryCharging:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:220    .text.HAL_PWREx_EnableInternalWakeUpLine:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:226    .text.HAL_PWREx_EnableInternalWakeUpLine:00000000 HAL_PWREx_EnableInternalWakeUpLine
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:238    .text.HAL_PWREx_EnableInternalWakeUpLine:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:241    .text.HAL_PWREx_DisableInternalWakeUpLine:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:247    .text.HAL_PWREx_DisableInternalWakeUpLine:00000000 HAL_PWREx_DisableInternalWakeUpLine
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:259    .text.HAL_PWREx_DisableInternalWakeUpLine:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:262    .text.HAL_PWREx_EnableGPIOPullUp:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:268    .text.HAL_PWREx_EnableGPIOPullUp:00000000 HAL_PWREx_EnableGPIOPullUp
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:370    .text.HAL_PWREx_EnableGPIOPullUp:000000c4 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:373    .text.HAL_PWREx_DisableGPIOPullUp:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:379    .text.HAL_PWREx_DisableGPIOPullUp:00000000 HAL_PWREx_DisableGPIOPullUp
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:458    .text.HAL_PWREx_DisableGPIOPullUp:00000094 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:461    .text.HAL_PWREx_EnableGPIOPullDown:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:467    .text.HAL_PWREx_EnableGPIOPullDown:00000000 HAL_PWREx_EnableGPIOPullDown
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:569    .text.HAL_PWREx_EnableGPIOPullDown:000000c8 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:572    .text.HAL_PWREx_DisableGPIOPullDown:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:578    .text.HAL_PWREx_DisableGPIOPullDown:00000000 HAL_PWREx_DisableGPIOPullDown
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:656    .text.HAL_PWREx_DisableGPIOPullDown:00000090 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:659    .text.HAL_PWREx_EnablePullUpPullDownConfig:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:665    .text.HAL_PWREx_EnablePullUpPullDownConfig:00000000 HAL_PWREx_EnablePullUpPullDownConfig
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:677    .text.HAL_PWREx_EnablePullUpPullDownConfig:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:680    .text.HAL_PWREx_DisablePullUpPullDownConfig:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:686    .text.HAL_PWREx_DisablePullUpPullDownConfig:00000000 HAL_PWREx_DisablePullUpPullDownConfig
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:698    .text.HAL_PWREx_DisablePullUpPullDownConfig:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:701    .text.HAL_PWREx_EnableSRAM2ContentRetention:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:707    .text.HAL_PWREx_EnableSRAM2ContentRetention:00000000 HAL_PWREx_EnableSRAM2ContentRetention
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:719    .text.HAL_PWREx_EnableSRAM2ContentRetention:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:722    .text.HAL_PWREx_DisableSRAM2ContentRetention:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:728    .text.HAL_PWREx_DisableSRAM2ContentRetention:00000000 HAL_PWREx_DisableSRAM2ContentRetention
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:740    .text.HAL_PWREx_DisableSRAM2ContentRetention:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:743    .text.HAL_PWREx_EnablePVM1:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:749    .text.HAL_PWREx_EnablePVM1:00000000 HAL_PWREx_EnablePVM1
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:761    .text.HAL_PWREx_EnablePVM1:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:764    .text.HAL_PWREx_DisablePVM1:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:770    .text.HAL_PWREx_DisablePVM1:00000000 HAL_PWREx_DisablePVM1
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:782    .text.HAL_PWREx_DisablePVM1:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:785    .text.HAL_PWREx_EnablePVM2:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:791    .text.HAL_PWREx_EnablePVM2:00000000 HAL_PWREx_EnablePVM2
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:803    .text.HAL_PWREx_EnablePVM2:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:806    .text.HAL_PWREx_DisablePVM2:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:812    .text.HAL_PWREx_DisablePVM2:00000000 HAL_PWREx_DisablePVM2
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:824    .text.HAL_PWREx_DisablePVM2:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:827    .text.HAL_PWREx_EnablePVM3:00000000 $t
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s 			page 29
+
+
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:833    .text.HAL_PWREx_EnablePVM3:00000000 HAL_PWREx_EnablePVM3
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:845    .text.HAL_PWREx_EnablePVM3:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:848    .text.HAL_PWREx_DisablePVM3:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:854    .text.HAL_PWREx_DisablePVM3:00000000 HAL_PWREx_DisablePVM3
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:866    .text.HAL_PWREx_DisablePVM3:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:869    .text.HAL_PWREx_EnablePVM4:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:875    .text.HAL_PWREx_EnablePVM4:00000000 HAL_PWREx_EnablePVM4
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:887    .text.HAL_PWREx_EnablePVM4:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:890    .text.HAL_PWREx_DisablePVM4:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:896    .text.HAL_PWREx_DisablePVM4:00000000 HAL_PWREx_DisablePVM4
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:908    .text.HAL_PWREx_DisablePVM4:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:911    .text.HAL_PWREx_ConfigPVM:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:917    .text.HAL_PWREx_ConfigPVM:00000000 HAL_PWREx_ConfigPVM
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1139   .text.HAL_PWREx_ConfigPVM:000001e8 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1142   .text.HAL_PWREx_EnableLowPowerRunMode:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1148   .text.HAL_PWREx_EnableLowPowerRunMode:00000000 HAL_PWREx_EnableLowPowerRunMode
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1160   .text.HAL_PWREx_EnableLowPowerRunMode:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1163   .text.HAL_PWREx_DisableLowPowerRunMode:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1169   .text.HAL_PWREx_DisableLowPowerRunMode:00000000 HAL_PWREx_DisableLowPowerRunMode
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1209   .text.HAL_PWREx_DisableLowPowerRunMode:0000004c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1213   .text.HAL_PWREx_EnterSTOP0Mode:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1219   .text.HAL_PWREx_EnterSTOP0Mode:00000000 HAL_PWREx_EnterSTOP0Mode
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1262   .text.HAL_PWREx_EnterSTOP0Mode:00000030 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1266   .text.HAL_PWREx_EnterSTOP1Mode:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1272   .text.HAL_PWREx_EnterSTOP1Mode:00000000 HAL_PWREx_EnterSTOP1Mode
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1316   .text.HAL_PWREx_EnterSTOP1Mode:00000034 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1320   .text.HAL_PWREx_EnterSHUTDOWNMode:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1326   .text.HAL_PWREx_EnterSHUTDOWNMode:00000000 HAL_PWREx_EnterSHUTDOWNMode
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1349   .text.HAL_PWREx_EnterSHUTDOWNMode:0000001c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1353   .text.HAL_PWREx_PVM1Callback:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1359   .text.HAL_PWREx_PVM1Callback:00000000 HAL_PWREx_PVM1Callback
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1366   .text.HAL_PWREx_PVM2Callback:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1372   .text.HAL_PWREx_PVM2Callback:00000000 HAL_PWREx_PVM2Callback
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1379   .text.HAL_PWREx_PVM3Callback:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1385   .text.HAL_PWREx_PVM3Callback:00000000 HAL_PWREx_PVM3Callback
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1392   .text.HAL_PWREx_PVM4Callback:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1398   .text.HAL_PWREx_PVM4Callback:00000000 HAL_PWREx_PVM4Callback
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1405   .text.HAL_PWREx_PVD_PVM_IRQHandler:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1411   .text.HAL_PWREx_PVD_PVM_IRQHandler:00000000 HAL_PWREx_PVD_PVM_IRQHandler
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1474   .text.HAL_PWREx_PVD_PVM_IRQHandler:00000074 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1477   .text.HAL_PWREx_EnableUCPDStandbyMode:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1483   .text.HAL_PWREx_EnableUCPDStandbyMode:00000000 HAL_PWREx_EnableUCPDStandbyMode
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1495   .text.HAL_PWREx_EnableUCPDStandbyMode:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1498   .text.HAL_PWREx_DisableUCPDStandbyMode:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1504   .text.HAL_PWREx_DisableUCPDStandbyMode:00000000 HAL_PWREx_DisableUCPDStandbyMode
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1516   .text.HAL_PWREx_DisableUCPDStandbyMode:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1519   .text.HAL_PWREx_EnableUCPDDeadBattery:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1525   .text.HAL_PWREx_EnableUCPDDeadBattery:00000000 HAL_PWREx_EnableUCPDDeadBattery
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1537   .text.HAL_PWREx_EnableUCPDDeadBattery:0000000c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1540   .text.HAL_PWREx_DisableUCPDDeadBattery:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1546   .text.HAL_PWREx_DisableUCPDDeadBattery:00000000 HAL_PWREx_DisableUCPDDeadBattery
+C:\Users\aniru.000\AppData\Local\Temp\ccrBhoPp.s:1558   .text.HAL_PWREx_DisableUCPDDeadBattery:0000000c $d
+
+UNDEFINED SYMBOLS
+SystemCoreClock
+HAL_PWR_PVDCallback

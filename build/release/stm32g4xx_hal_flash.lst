@@ -1,0 +1,762 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32g4xx_hal_flash.c"
+  16              		.text
+  17              		.section	.text.FLASH_Program_DoubleWord,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	FLASH_Program_DoubleWord:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 DFF818C0 		ldr	ip, .L2
+  28 0004 DCF81410 		ldr	r1, [ip, #20]
+  29 0008 41F00101 		orr	r1, r1, #1
+  30 000c CCF81410 		str	r1, [ip, #20]
+  31 0010 0260     		str	r2, [r0]
+  32              		.syntax unified
+  33              	@ 935 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  34 0012 BFF36F8F 		isb 0xF
+  35              	@ 0 "" 2
+  36              		.thumb
+  37              		.syntax unified
+  38 0016 4360     		str	r3, [r0, #4]
+  39 0018 7047     		bx	lr
+  40              	.L3:
+  41 001a 00BF     		.align	2
+  42              	.L2:
+  43 001c 00200240 		.word	1073881088
+  45              		.section	.text.FLASH_Program_Fast,"ax",%progbits
+  46              		.align	1
+  47              		.syntax unified
+  48              		.thumb
+  49              		.thumb_func
+  51              	FLASH_Program_Fast:
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+  54              		@ link register save eliminated.
+  55 0000 094A     		ldr	r2, .L6
+  56 0002 5369     		ldr	r3, [r2, #20]
+  57 0004 43F48023 		orr	r3, r3, #262144
+  58 0008 5361     		str	r3, [r2, #20]
+  59              		.syntax unified
+  60              	@ 453 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 2
+
+
+  61 000a EFF3108C 		MRS ip, primask
+  62              	@ 0 "" 2
+  63              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  64 000e 72B6     		cpsid i
+  65              	@ 0 "" 2
+  66              		.thumb
+  67              		.syntax unified
+  68 0010 4023     		movs	r3, #64
+  69              	.L5:
+  70 0012 51F8042B 		ldr	r2, [r1], #4
+  71 0016 40F8042B 		str	r2, [r0], #4
+  72 001a 013B     		subs	r3, r3, #1
+  73 001c 13F0FF03 		ands	r3, r3, #255
+  74 0020 F7D1     		bne	.L5
+  75              		.syntax unified
+  76              	@ 481 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  77 0022 8CF31088 		MSR primask, ip
+  78              	@ 0 "" 2
+  79              		.thumb
+  80              		.syntax unified
+  81 0026 7047     		bx	lr
+  82              	.L7:
+  83              		.align	2
+  84              	.L6:
+  85 0028 00200240 		.word	1073881088
+  87              		.section	.text.HAL_FLASH_EndOfOperationCallback,"ax",%progbits
+  88              		.align	1
+  89              		.weak	HAL_FLASH_EndOfOperationCallback
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  94              	HAL_FLASH_EndOfOperationCallback:
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97              		@ link register save eliminated.
+  98 0000 7047     		bx	lr
+ 100              		.section	.text.HAL_FLASH_OperationErrorCallback,"ax",%progbits
+ 101              		.align	1
+ 102              		.weak	HAL_FLASH_OperationErrorCallback
+ 103              		.syntax unified
+ 104              		.thumb
+ 105              		.thumb_func
+ 107              	HAL_FLASH_OperationErrorCallback:
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110              		@ link register save eliminated.
+ 111 0000 7047     		bx	lr
+ 113              		.section	.text.HAL_FLASH_IRQHandler,"ax",%progbits
+ 114              		.align	1
+ 115              		.global	HAL_FLASH_IRQHandler
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ 120              	HAL_FLASH_IRQHandler:
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 3
+
+
+ 124 0002 444A     		ldr	r2, .L30
+ 125 0004 5369     		ldr	r3, [r2, #20]
+ 126 0006 6FF30A03 		bfc	r3, #0, #11
+ 127 000a 5361     		str	r3, [r2, #20]
+ 128 000c 424B     		ldr	r3, .L30+4
+ 129 000e 1B7A     		ldrb	r3, [r3, #8]	@ zero_extendqisi2
+ 130 0010 042B     		cmp	r3, #4
+ 131 0012 39D0     		beq	.L24
+ 132              	.L11:
+ 133 0014 3F4B     		ldr	r3, .L30
+ 134 0016 1B69     		ldr	r3, [r3, #16]
+ 135 0018 4CF2FA32 		movw	r2, #50170
+ 136 001c 1340     		ands	r3, r3, r2
+ 137 001e 15D0     		beq	.L12
+ 138 0020 3D49     		ldr	r1, .L30+4
+ 139 0022 4A68     		ldr	r2, [r1, #4]
+ 140 0024 1A43     		orrs	r2, r2, r3
+ 141 0026 4A60     		str	r2, [r1, #4]
+ 142 0028 3A4A     		ldr	r2, .L30
+ 143 002a 1361     		str	r3, [r2, #16]
+ 144 002c FFF7FEFF 		bl	FLASH_FlushCaches
+ 145 0030 394B     		ldr	r3, .L30+4
+ 146 0032 1A7A     		ldrb	r2, [r3, #8]	@ zero_extendqisi2
+ 147 0034 D3B2     		uxtb	r3, r2
+ 148 0036 012A     		cmp	r2, #1
+ 149 0038 2BD0     		beq	.L25
+ 150 003a 022B     		cmp	r3, #2
+ 151 003c 2ED0     		beq	.L26
+ 152 003e 033B     		subs	r3, r3, #3
+ 153 0040 DBB2     		uxtb	r3, r3
+ 154 0042 012B     		cmp	r3, #1
+ 155 0044 2FD9     		bls	.L27
+ 156              	.L15:
+ 157 0046 344B     		ldr	r3, .L30+4
+ 158 0048 0022     		movs	r2, #0
+ 159 004a 1A72     		strb	r2, [r3, #8]
+ 160              	.L12:
+ 161 004c 314B     		ldr	r3, .L30
+ 162 004e 1B69     		ldr	r3, [r3, #16]
+ 163 0050 13F0010F 		tst	r3, #1
+ 164 0054 47D0     		beq	.L17
+ 165 0056 2F4B     		ldr	r3, .L30
+ 166 0058 0122     		movs	r2, #1
+ 167 005a 1A61     		str	r2, [r3, #16]
+ 168 005c 2E4B     		ldr	r3, .L30+4
+ 169 005e 1B7A     		ldrb	r3, [r3, #8]	@ zero_extendqisi2
+ 170 0060 9342     		cmp	r3, r2
+ 171 0062 32D1     		bne	.L18
+ 172 0064 2C4B     		ldr	r3, .L30+4
+ 173 0066 9A69     		ldr	r2, [r3, #24]
+ 174 0068 013A     		subs	r2, r2, #1
+ 175 006a 9A61     		str	r2, [r3, #24]
+ 176 006c 9B69     		ldr	r3, [r3, #24]
+ 177 006e FBB1     		cbz	r3, .L19
+ 178 0070 294C     		ldr	r4, .L30+4
+ 179 0072 6069     		ldr	r0, [r4, #20]
+ 180 0074 FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 4
+
+
+ 181 0078 6369     		ldr	r3, [r4, #20]
+ 182 007a 0133     		adds	r3, r3, #1
+ 183 007c 6361     		str	r3, [r4, #20]
+ 184 007e 6069     		ldr	r0, [r4, #20]
+ 185 0080 2169     		ldr	r1, [r4, #16]
+ 186 0082 FFF7FEFF 		bl	FLASH_PageErase
+ 187 0086 2EE0     		b	.L17
+ 188              	.L24:
+ 189 0088 5369     		ldr	r3, [r2, #20]
+ 190 008a 23F48023 		bic	r3, r3, #262144
+ 191 008e 5361     		str	r3, [r2, #20]
+ 192 0090 C0E7     		b	.L11
+ 193              	.L25:
+ 194 0092 214B     		ldr	r3, .L30+4
+ 195 0094 5869     		ldr	r0, [r3, #20]
+ 196 0096 FFF7FEFF 		bl	HAL_FLASH_OperationErrorCallback
+ 197 009a D4E7     		b	.L15
+ 198              	.L26:
+ 199 009c 1E4B     		ldr	r3, .L30+4
+ 200 009e 1869     		ldr	r0, [r3, #16]
+ 201 00a0 FFF7FEFF 		bl	HAL_FLASH_OperationErrorCallback
+ 202 00a4 CFE7     		b	.L15
+ 203              	.L27:
+ 204 00a6 1C4B     		ldr	r3, .L30+4
+ 205 00a8 D868     		ldr	r0, [r3, #12]
+ 206 00aa FFF7FEFF 		bl	HAL_FLASH_OperationErrorCallback
+ 207 00ae CAE7     		b	.L15
+ 208              	.L19:
+ 209 00b0 4FF0FF33 		mov	r3, #-1
+ 210 00b4 184A     		ldr	r2, .L30+4
+ 211 00b6 5361     		str	r3, [r2, #20]
+ 212 00b8 0023     		movs	r3, #0
+ 213 00ba 1446     		mov	r4, r2
+ 214 00bc 1372     		strb	r3, [r2, #8]
+ 215 00be FFF7FEFF 		bl	FLASH_FlushCaches
+ 216 00c2 6069     		ldr	r0, [r4, #20]
+ 217 00c4 FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ 218 00c8 0DE0     		b	.L17
+ 219              	.L18:
+ 220 00ca FFF7FEFF 		bl	FLASH_FlushCaches
+ 221 00ce 124B     		ldr	r3, .L30+4
+ 222 00d0 1A7A     		ldrb	r2, [r3, #8]	@ zero_extendqisi2
+ 223 00d2 D3B2     		uxtb	r3, r2
+ 224 00d4 022A     		cmp	r2, #2
+ 225 00d6 12D0     		beq	.L28
+ 226 00d8 033B     		subs	r3, r3, #3
+ 227 00da DBB2     		uxtb	r3, r3
+ 228 00dc 012B     		cmp	r3, #1
+ 229 00de 13D9     		bls	.L29
+ 230              	.L21:
+ 231 00e0 0D4B     		ldr	r3, .L30+4
+ 232 00e2 0022     		movs	r2, #0
+ 233 00e4 1A72     		strb	r2, [r3, #8]
+ 234              	.L17:
+ 235 00e6 0C4B     		ldr	r3, .L30+4
+ 236 00e8 1B7A     		ldrb	r3, [r3, #8]	@ zero_extendqisi2
+ 237 00ea 3BB9     		cbnz	r3, .L10
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 5
+
+
+ 238 00ec 094A     		ldr	r2, .L30
+ 239 00ee 5369     		ldr	r3, [r2, #20]
+ 240 00f0 23F04073 		bic	r3, r3, #50331648
+ 241 00f4 5361     		str	r3, [r2, #20]
+ 242 00f6 084B     		ldr	r3, .L30+4
+ 243 00f8 0022     		movs	r2, #0
+ 244 00fa 1A70     		strb	r2, [r3]
+ 245              	.L10:
+ 246 00fc 10BD     		pop	{r4, pc}
+ 247              	.L28:
+ 248 00fe 064B     		ldr	r3, .L30+4
+ 249 0100 1869     		ldr	r0, [r3, #16]
+ 250 0102 FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ 251 0106 EBE7     		b	.L21
+ 252              	.L29:
+ 253 0108 034B     		ldr	r3, .L30+4
+ 254 010a D868     		ldr	r0, [r3, #12]
+ 255 010c FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ 256 0110 E6E7     		b	.L21
+ 257              	.L31:
+ 258 0112 00BF     		.align	2
+ 259              	.L30:
+ 260 0114 00200240 		.word	1073881088
+ 261 0118 00000000 		.word	pFlash
+ 263              		.section	.text.HAL_FLASH_Unlock,"ax",%progbits
+ 264              		.align	1
+ 265              		.global	HAL_FLASH_Unlock
+ 266              		.syntax unified
+ 267              		.thumb
+ 268              		.thumb_func
+ 270              	HAL_FLASH_Unlock:
+ 271              		@ args = 0, pretend = 0, frame = 0
+ 272              		@ frame_needed = 0, uses_anonymous_args = 0
+ 273              		@ link register save eliminated.
+ 274 0000 094B     		ldr	r3, .L37
+ 275 0002 5B69     		ldr	r3, [r3, #20]
+ 276 0004 002B     		cmp	r3, #0
+ 277 0006 01DB     		blt	.L36
+ 278 0008 0020     		movs	r0, #0
+ 279 000a 7047     		bx	lr
+ 280              	.L36:
+ 281 000c 064B     		ldr	r3, .L37
+ 282 000e 074A     		ldr	r2, .L37+4
+ 283 0010 9A60     		str	r2, [r3, #8]
+ 284 0012 02F18832 		add	r2, r2, #-2004318072
+ 285 0016 9A60     		str	r2, [r3, #8]
+ 286 0018 5B69     		ldr	r3, [r3, #20]
+ 287 001a 002B     		cmp	r3, #0
+ 288 001c 01DB     		blt	.L35
+ 289 001e 0020     		movs	r0, #0
+ 290 0020 7047     		bx	lr
+ 291              	.L35:
+ 292 0022 0120     		movs	r0, #1
+ 293 0024 7047     		bx	lr
+ 294              	.L38:
+ 295 0026 00BF     		.align	2
+ 296              	.L37:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 6
+
+
+ 297 0028 00200240 		.word	1073881088
+ 298 002c 23016745 		.word	1164378403
+ 300              		.section	.text.HAL_FLASH_Lock,"ax",%progbits
+ 301              		.align	1
+ 302              		.global	HAL_FLASH_Lock
+ 303              		.syntax unified
+ 304              		.thumb
+ 305              		.thumb_func
+ 307              	HAL_FLASH_Lock:
+ 308              		@ args = 0, pretend = 0, frame = 0
+ 309              		@ frame_needed = 0, uses_anonymous_args = 0
+ 310              		@ link register save eliminated.
+ 311 0000 054B     		ldr	r3, .L42
+ 312 0002 5A69     		ldr	r2, [r3, #20]
+ 313 0004 42F00042 		orr	r2, r2, #-2147483648
+ 314 0008 5A61     		str	r2, [r3, #20]
+ 315 000a 5B69     		ldr	r3, [r3, #20]
+ 316 000c 002B     		cmp	r3, #0
+ 317 000e 01DB     		blt	.L41
+ 318 0010 0120     		movs	r0, #1
+ 319 0012 7047     		bx	lr
+ 320              	.L41:
+ 321 0014 0020     		movs	r0, #0
+ 322 0016 7047     		bx	lr
+ 323              	.L43:
+ 324              		.align	2
+ 325              	.L42:
+ 326 0018 00200240 		.word	1073881088
+ 328              		.section	.text.HAL_FLASH_OB_Unlock,"ax",%progbits
+ 329              		.align	1
+ 330              		.global	HAL_FLASH_OB_Unlock
+ 331              		.syntax unified
+ 332              		.thumb
+ 333              		.thumb_func
+ 335              	HAL_FLASH_OB_Unlock:
+ 336              		@ args = 0, pretend = 0, frame = 0
+ 337              		@ frame_needed = 0, uses_anonymous_args = 0
+ 338              		@ link register save eliminated.
+ 339 0000 0A4B     		ldr	r3, .L48
+ 340 0002 5B69     		ldr	r3, [r3, #20]
+ 341 0004 13F0804F 		tst	r3, #1073741824
+ 342 0008 0BD0     		beq	.L46
+ 343 000a 084B     		ldr	r3, .L48
+ 344 000c 084A     		ldr	r2, .L48+4
+ 345 000e DA60     		str	r2, [r3, #12]
+ 346 0010 02F14432 		add	r2, r2, #1145324612
+ 347 0014 DA60     		str	r2, [r3, #12]
+ 348 0016 5B69     		ldr	r3, [r3, #20]
+ 349 0018 13F0804F 		tst	r3, #1073741824
+ 350 001c 03D1     		bne	.L47
+ 351 001e 0020     		movs	r0, #0
+ 352 0020 7047     		bx	lr
+ 353              	.L46:
+ 354 0022 0020     		movs	r0, #0
+ 355 0024 7047     		bx	lr
+ 356              	.L47:
+ 357 0026 0120     		movs	r0, #1
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 7
+
+
+ 358 0028 7047     		bx	lr
+ 359              	.L49:
+ 360 002a 00BF     		.align	2
+ 361              	.L48:
+ 362 002c 00200240 		.word	1073881088
+ 363 0030 3B2A1908 		.word	135866939
+ 365              		.section	.text.HAL_FLASH_OB_Lock,"ax",%progbits
+ 366              		.align	1
+ 367              		.global	HAL_FLASH_OB_Lock
+ 368              		.syntax unified
+ 369              		.thumb
+ 370              		.thumb_func
+ 372              	HAL_FLASH_OB_Lock:
+ 373              		@ args = 0, pretend = 0, frame = 0
+ 374              		@ frame_needed = 0, uses_anonymous_args = 0
+ 375              		@ link register save eliminated.
+ 376 0000 064B     		ldr	r3, .L53
+ 377 0002 5A69     		ldr	r2, [r3, #20]
+ 378 0004 42F08042 		orr	r2, r2, #1073741824
+ 379 0008 5A61     		str	r2, [r3, #20]
+ 380 000a 5B69     		ldr	r3, [r3, #20]
+ 381 000c 13F0804F 		tst	r3, #1073741824
+ 382 0010 01D1     		bne	.L52
+ 383 0012 0120     		movs	r0, #1
+ 384 0014 7047     		bx	lr
+ 385              	.L52:
+ 386 0016 0020     		movs	r0, #0
+ 387 0018 7047     		bx	lr
+ 388              	.L54:
+ 389 001a 00BF     		.align	2
+ 390              	.L53:
+ 391 001c 00200240 		.word	1073881088
+ 393              		.section	.text.HAL_FLASH_GetError,"ax",%progbits
+ 394              		.align	1
+ 395              		.global	HAL_FLASH_GetError
+ 396              		.syntax unified
+ 397              		.thumb
+ 398              		.thumb_func
+ 400              	HAL_FLASH_GetError:
+ 401              		@ args = 0, pretend = 0, frame = 0
+ 402              		@ frame_needed = 0, uses_anonymous_args = 0
+ 403              		@ link register save eliminated.
+ 404 0000 014B     		ldr	r3, .L56
+ 405 0002 5868     		ldr	r0, [r3, #4]
+ 406 0004 7047     		bx	lr
+ 407              	.L57:
+ 408 0006 00BF     		.align	2
+ 409              	.L56:
+ 410 0008 00000000 		.word	pFlash
+ 412              		.section	.text.FLASH_WaitForLastOperation,"ax",%progbits
+ 413              		.align	1
+ 414              		.global	FLASH_WaitForLastOperation
+ 415              		.syntax unified
+ 416              		.thumb
+ 417              		.thumb_func
+ 419              	FLASH_WaitForLastOperation:
+ 420              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 8
+
+
+ 421              		@ frame_needed = 0, uses_anonymous_args = 0
+ 422 0000 38B5     		push	{r3, r4, r5, lr}
+ 423 0002 0546     		mov	r5, r0
+ 424 0004 FFF7FEFF 		bl	HAL_GetTick
+ 425 0008 0446     		mov	r4, r0
+ 426              	.L59:
+ 427 000a 134B     		ldr	r3, .L69
+ 428 000c 1B69     		ldr	r3, [r3, #16]
+ 429 000e 13F4803F 		tst	r3, #65536
+ 430 0012 06D0     		beq	.L67
+ 431 0014 FFF7FEFF 		bl	HAL_GetTick
+ 432 0018 001B     		subs	r0, r0, r4
+ 433 001a A842     		cmp	r0, r5
+ 434 001c F5D9     		bls	.L59
+ 435 001e 0320     		movs	r0, #3
+ 436              	.L60:
+ 437 0020 38BD     		pop	{r3, r4, r5, pc}
+ 438              	.L67:
+ 439 0022 0D4B     		ldr	r3, .L69
+ 440 0024 1B69     		ldr	r3, [r3, #16]
+ 441 0026 4CF2FA32 		movw	r2, #50170
+ 442 002a 1340     		ands	r3, r3, r2
+ 443 002c 09D1     		bne	.L68
+ 444 002e 0A4B     		ldr	r3, .L69
+ 445 0030 1B69     		ldr	r3, [r3, #16]
+ 446 0032 13F0010F 		tst	r3, #1
+ 447 0036 0CD0     		beq	.L65
+ 448 0038 074B     		ldr	r3, .L69
+ 449 003a 0122     		movs	r2, #1
+ 450 003c 1A61     		str	r2, [r3, #16]
+ 451 003e 0020     		movs	r0, #0
+ 452 0040 EEE7     		b	.L60
+ 453              	.L68:
+ 454 0042 0649     		ldr	r1, .L69+4
+ 455 0044 4A68     		ldr	r2, [r1, #4]
+ 456 0046 1A43     		orrs	r2, r2, r3
+ 457 0048 4A60     		str	r2, [r1, #4]
+ 458 004a 034A     		ldr	r2, .L69
+ 459 004c 1361     		str	r3, [r2, #16]
+ 460 004e 0120     		movs	r0, #1
+ 461 0050 E6E7     		b	.L60
+ 462              	.L65:
+ 463 0052 0020     		movs	r0, #0
+ 464 0054 E4E7     		b	.L60
+ 465              	.L70:
+ 466 0056 00BF     		.align	2
+ 467              	.L69:
+ 468 0058 00200240 		.word	1073881088
+ 469 005c 00000000 		.word	pFlash
+ 471              		.section	.text.HAL_FLASH_Program,"ax",%progbits
+ 472              		.align	1
+ 473              		.global	HAL_FLASH_Program
+ 474              		.syntax unified
+ 475              		.thumb
+ 476              		.thumb_func
+ 478              	HAL_FLASH_Program:
+ 479              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 9
+
+
+ 480              		@ frame_needed = 0, uses_anonymous_args = 0
+ 481 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 482 0004 1746     		mov	r7, r2
+ 483 0006 2A4A     		ldr	r2, .L85
+ 484 0008 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 485 000a 012A     		cmp	r2, #1
+ 486 000c 4CD0     		beq	.L79
+ 487 000e 0546     		mov	r5, r0
+ 488 0010 0E46     		mov	r6, r1
+ 489 0012 9846     		mov	r8, r3
+ 490 0014 264B     		ldr	r3, .L85
+ 491 0016 0122     		movs	r2, #1
+ 492 0018 1A70     		strb	r2, [r3]
+ 493 001a 4FF47A70 		mov	r0, #1000
+ 494 001e FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 495 0022 0446     		mov	r4, r0
+ 496 0024 08BB     		cbnz	r0, .L73
+ 497 0026 224B     		ldr	r3, .L85
+ 498 0028 5860     		str	r0, [r3, #4]
+ 499 002a 224B     		ldr	r3, .L85+4
+ 500 002c 1B68     		ldr	r3, [r3]
+ 501 002e 13F4806F 		tst	r3, #1024
+ 502 0032 20D0     		beq	.L74
+ 503 0034 1F4A     		ldr	r2, .L85+4
+ 504 0036 1368     		ldr	r3, [r2]
+ 505 0038 23F48063 		bic	r3, r3, #1024
+ 506 003c 1360     		str	r3, [r2]
+ 507 003e 1C4B     		ldr	r3, .L85
+ 508 0040 0222     		movs	r2, #2
+ 509 0042 1A77     		strb	r2, [r3, #28]
+ 510              	.L75:
+ 511 0044 DDB1     		cbz	r5, .L83
+ 512 0046 6B1E     		subs	r3, r5, #1
+ 513 0048 012B     		cmp	r3, #1
+ 514 004a 20D9     		bls	.L84
+ 515 004c 0023     		movs	r3, #0
+ 516 004e 1D46     		mov	r5, r3
+ 517              	.L77:
+ 518 0050 4FF47A70 		mov	r0, #1000
+ 519 0054 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 520 0058 0446     		mov	r4, r0
+ 521 005a 25B1     		cbz	r5, .L78
+ 522 005c 154A     		ldr	r2, .L85+4
+ 523 005e 5369     		ldr	r3, [r2, #20]
+ 524 0060 23EA0503 		bic	r3, r3, r5
+ 525 0064 5361     		str	r3, [r2, #20]
+ 526              	.L78:
+ 527 0066 FFF7FEFF 		bl	FLASH_FlushCaches
+ 528              	.L73:
+ 529 006a 114B     		ldr	r3, .L85
+ 530 006c 0022     		movs	r2, #0
+ 531 006e 1A70     		strb	r2, [r3]
+ 532              	.L72:
+ 533 0070 2046     		mov	r0, r4
+ 534 0072 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 535              	.L74:
+ 536 0076 0E4B     		ldr	r3, .L85
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 10
+
+
+ 537 0078 0022     		movs	r2, #0
+ 538 007a 1A77     		strb	r2, [r3, #28]
+ 539 007c E2E7     		b	.L75
+ 540              	.L83:
+ 541 007e 3A46     		mov	r2, r7
+ 542 0080 4346     		mov	r3, r8
+ 543 0082 3046     		mov	r0, r6
+ 544 0084 FFF7FEFF 		bl	FLASH_Program_DoubleWord
+ 545 0088 0123     		movs	r3, #1
+ 546 008a 1D46     		mov	r5, r3
+ 547 008c E0E7     		b	.L77
+ 548              	.L84:
+ 549 008e 3946     		mov	r1, r7
+ 550 0090 3046     		mov	r0, r6
+ 551 0092 FFF7FEFF 		bl	FLASH_Program_Fast
+ 552 0096 022D     		cmp	r5, #2
+ 553 0098 02D0     		beq	.L81
+ 554 009a 0023     		movs	r3, #0
+ 555 009c 1D46     		mov	r5, r3
+ 556 009e D7E7     		b	.L77
+ 557              	.L81:
+ 558 00a0 4FF48023 		mov	r3, #262144
+ 559 00a4 1D46     		mov	r5, r3
+ 560 00a6 D3E7     		b	.L77
+ 561              	.L79:
+ 562 00a8 0223     		movs	r3, #2
+ 563 00aa 1C46     		mov	r4, r3
+ 564 00ac E0E7     		b	.L72
+ 565              	.L86:
+ 566 00ae 00BF     		.align	2
+ 567              	.L85:
+ 568 00b0 00000000 		.word	pFlash
+ 569 00b4 00200240 		.word	1073881088
+ 571              		.section	.text.HAL_FLASH_Program_IT,"ax",%progbits
+ 572              		.align	1
+ 573              		.global	HAL_FLASH_Program_IT
+ 574              		.syntax unified
+ 575              		.thumb
+ 576              		.thumb_func
+ 578              	HAL_FLASH_Program_IT:
+ 579              		@ args = 0, pretend = 0, frame = 0
+ 580              		@ frame_needed = 0, uses_anonymous_args = 0
+ 581 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 582 0004 9846     		mov	r8, r3
+ 583 0006 254B     		ldr	r3, .L99
+ 584 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 585 000a 012B     		cmp	r3, #1
+ 586 000c 43D0     		beq	.L95
+ 587 000e 0446     		mov	r4, r0
+ 588 0010 0E46     		mov	r6, r1
+ 589 0012 1746     		mov	r7, r2
+ 590 0014 214B     		ldr	r3, .L99
+ 591 0016 0122     		movs	r2, #1
+ 592 0018 1A70     		strb	r2, [r3]
+ 593 001a 0022     		movs	r2, #0
+ 594 001c 5A60     		str	r2, [r3, #4]
+ 595 001e 204B     		ldr	r3, .L99+4
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 11
+
+
+ 596 0020 1B68     		ldr	r3, [r3]
+ 597 0022 13F4806F 		tst	r3, #1024
+ 598 0026 13D0     		beq	.L89
+ 599 0028 1D4A     		ldr	r2, .L99+4
+ 600 002a 1368     		ldr	r3, [r2]
+ 601 002c 23F48063 		bic	r3, r3, #1024
+ 602 0030 1360     		str	r3, [r2]
+ 603 0032 1A4B     		ldr	r3, .L99
+ 604 0034 0222     		movs	r2, #2
+ 605 0036 1A77     		strb	r2, [r3, #28]
+ 606              	.L90:
+ 607 0038 4FF47A70 		mov	r0, #1000
+ 608 003c FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 609 0040 0546     		mov	r5, r0
+ 610 0042 48B1     		cbz	r0, .L91
+ 611 0044 154B     		ldr	r3, .L99
+ 612 0046 0022     		movs	r2, #0
+ 613 0048 1A70     		strb	r2, [r3]
+ 614              	.L88:
+ 615 004a 2846     		mov	r0, r5
+ 616 004c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 617              	.L89:
+ 618 0050 124B     		ldr	r3, .L99
+ 619 0052 0022     		movs	r2, #0
+ 620 0054 1A77     		strb	r2, [r3, #28]
+ 621 0056 EFE7     		b	.L90
+ 622              	.L91:
+ 623 0058 022C     		cmp	r4, #2
+ 624 005a 12D0     		beq	.L97
+ 625 005c 0F4B     		ldr	r3, .L99
+ 626 005e 0322     		movs	r2, #3
+ 627 0060 1A72     		strb	r2, [r3, #8]
+ 628              	.L93:
+ 629 0062 0E4B     		ldr	r3, .L99
+ 630 0064 DE60     		str	r6, [r3, #12]
+ 631 0066 0E4A     		ldr	r2, .L99+4
+ 632 0068 5369     		ldr	r3, [r2, #20]
+ 633 006a 43F04073 		orr	r3, r3, #50331648
+ 634 006e 5361     		str	r3, [r2, #20]
+ 635 0070 5CB1     		cbz	r4, .L98
+ 636 0072 631E     		subs	r3, r4, #1
+ 637 0074 012B     		cmp	r3, #1
+ 638 0076 E8D8     		bhi	.L88
+ 639 0078 3946     		mov	r1, r7
+ 640 007a 3046     		mov	r0, r6
+ 641 007c FFF7FEFF 		bl	FLASH_Program_Fast
+ 642 0080 E3E7     		b	.L88
+ 643              	.L97:
+ 644 0082 064B     		ldr	r3, .L99
+ 645 0084 0422     		movs	r2, #4
+ 646 0086 1A72     		strb	r2, [r3, #8]
+ 647 0088 EBE7     		b	.L93
+ 648              	.L98:
+ 649 008a 3A46     		mov	r2, r7
+ 650 008c 4346     		mov	r3, r8
+ 651 008e 3046     		mov	r0, r6
+ 652 0090 FFF7FEFF 		bl	FLASH_Program_DoubleWord
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 12
+
+
+ 653 0094 D9E7     		b	.L88
+ 654              	.L95:
+ 655 0096 0223     		movs	r3, #2
+ 656 0098 1D46     		mov	r5, r3
+ 657 009a D6E7     		b	.L88
+ 658              	.L100:
+ 659              		.align	2
+ 660              	.L99:
+ 661 009c 00000000 		.word	pFlash
+ 662 00a0 00200240 		.word	1073881088
+ 664              		.section	.text.HAL_FLASH_OB_Launch,"ax",%progbits
+ 665              		.align	1
+ 666              		.global	HAL_FLASH_OB_Launch
+ 667              		.syntax unified
+ 668              		.thumb
+ 669              		.thumb_func
+ 671              	HAL_FLASH_OB_Launch:
+ 672              		@ args = 0, pretend = 0, frame = 0
+ 673              		@ frame_needed = 0, uses_anonymous_args = 0
+ 674 0000 08B5     		push	{r3, lr}
+ 675 0002 054A     		ldr	r2, .L103
+ 676 0004 5369     		ldr	r3, [r2, #20]
+ 677 0006 43F00063 		orr	r3, r3, #134217728
+ 678 000a 5361     		str	r3, [r2, #20]
+ 679 000c 4FF47A70 		mov	r0, #1000
+ 680 0010 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 681 0014 08BD     		pop	{r3, pc}
+ 682              	.L104:
+ 683 0016 00BF     		.align	2
+ 684              	.L103:
+ 685 0018 00200240 		.word	1073881088
+ 687              		.global	pFlash
+ 688              		.section	.data.pFlash,"aw"
+ 689              		.align	2
+ 692              	pFlash:
+ 693 0000 00       		.byte	0
+ 694 0001 000000   		.space	3
+ 695 0004 00000000 		.word	0
+ 696 0008 00       		.byte	0
+ 697 0009 000000   		.space	3
+ 698 000c 00000000 		.word	0
+ 699 0010 01000000 		.word	1
+ 700 0014 00000000 		.word	0
+ 701 0018 00000000 		.word	0
+ 702 001c 00       		.byte	0
+ 703 001d 000000   		.space	3
+ 704              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 15.2.1 20251203"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32g4xx_hal_flash.c
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:18     .text.FLASH_Program_DoubleWord:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:23     .text.FLASH_Program_DoubleWord:00000000 FLASH_Program_DoubleWord
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:43     .text.FLASH_Program_DoubleWord:0000001c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:46     .text.FLASH_Program_Fast:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:51     .text.FLASH_Program_Fast:00000000 FLASH_Program_Fast
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:85     .text.FLASH_Program_Fast:00000028 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:88     .text.HAL_FLASH_EndOfOperationCallback:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:94     .text.HAL_FLASH_EndOfOperationCallback:00000000 HAL_FLASH_EndOfOperationCallback
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:101    .text.HAL_FLASH_OperationErrorCallback:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:107    .text.HAL_FLASH_OperationErrorCallback:00000000 HAL_FLASH_OperationErrorCallback
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:114    .text.HAL_FLASH_IRQHandler:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:120    .text.HAL_FLASH_IRQHandler:00000000 HAL_FLASH_IRQHandler
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:260    .text.HAL_FLASH_IRQHandler:00000114 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:692    .data.pFlash:00000000 pFlash
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:264    .text.HAL_FLASH_Unlock:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:270    .text.HAL_FLASH_Unlock:00000000 HAL_FLASH_Unlock
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:297    .text.HAL_FLASH_Unlock:00000028 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:301    .text.HAL_FLASH_Lock:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:307    .text.HAL_FLASH_Lock:00000000 HAL_FLASH_Lock
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:326    .text.HAL_FLASH_Lock:00000018 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:329    .text.HAL_FLASH_OB_Unlock:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:335    .text.HAL_FLASH_OB_Unlock:00000000 HAL_FLASH_OB_Unlock
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:362    .text.HAL_FLASH_OB_Unlock:0000002c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:366    .text.HAL_FLASH_OB_Lock:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:372    .text.HAL_FLASH_OB_Lock:00000000 HAL_FLASH_OB_Lock
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:391    .text.HAL_FLASH_OB_Lock:0000001c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:394    .text.HAL_FLASH_GetError:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:400    .text.HAL_FLASH_GetError:00000000 HAL_FLASH_GetError
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:410    .text.HAL_FLASH_GetError:00000008 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:413    .text.FLASH_WaitForLastOperation:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:419    .text.FLASH_WaitForLastOperation:00000000 FLASH_WaitForLastOperation
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:468    .text.FLASH_WaitForLastOperation:00000058 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:472    .text.HAL_FLASH_Program:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:478    .text.HAL_FLASH_Program:00000000 HAL_FLASH_Program
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:568    .text.HAL_FLASH_Program:000000b0 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:572    .text.HAL_FLASH_Program_IT:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:578    .text.HAL_FLASH_Program_IT:00000000 HAL_FLASH_Program_IT
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:661    .text.HAL_FLASH_Program_IT:0000009c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:665    .text.HAL_FLASH_OB_Launch:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:671    .text.HAL_FLASH_OB_Launch:00000000 HAL_FLASH_OB_Launch
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:685    .text.HAL_FLASH_OB_Launch:00000018 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccDPOLUb.s:689    .data.pFlash:00000000 $d
+
+UNDEFINED SYMBOLS
+FLASH_FlushCaches
+FLASH_PageErase
+HAL_GetTick

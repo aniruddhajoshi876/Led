@@ -1,0 +1,114 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccQSfxVZ.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"IOPin.cpp"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/IOPin.cpp"
+  20              		.align	1
+  21              		.global	_ZN5IOPinC2EP12GPIO_TypeDeft
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_ZN5IOPinC2EP12GPIO_TypeDeft:
+  27              	.LVL0:
+  28              	.LFB133:
+   1:Core/Src/IOPin.cpp **** /*
+   2:Core/Src/IOPin.cpp ****  * IOPin.cpp
+   3:Core/Src/IOPin.cpp ****  *
+   4:Core/Src/IOPin.cpp ****  *  Created on: Apr 3, 2026
+   5:Core/Src/IOPin.cpp ****  *      Author: aniru
+   6:Core/Src/IOPin.cpp ****  */
+   7:Core/Src/IOPin.cpp **** 
+   8:Core/Src/IOPin.cpp **** #include "IOPin.hpp"
+   9:Core/Src/IOPin.cpp **** 
+  10:Core/Src/IOPin.cpp **** IOPin::IOPin(GPIO_TypeDef *port, uint16_t pin)
+  29              		.loc 1 10 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34              	.LBB2:
+  11:Core/Src/IOPin.cpp **** 	:port(port), pin(pin)
+  35              		.loc 1 11 3 is_stmt 0 view .LVU1
+  36 0000 0160     		str	r1, [r0]
+  37              		.loc 1 11 15 view .LVU2
+  38 0002 8280     		strh	r2, [r0, #4]	@ movhi
+  39              	.LBE2:
+  12:Core/Src/IOPin.cpp **** {
+  13:Core/Src/IOPin.cpp **** 	}
+  40              		.loc 1 13 2 view .LVU3
+  41 0004 7047     		bx	lr
+  42              		.cfi_endproc
+  43              	.LFE133:
+  45              		.global	_ZN5IOPinC1EP12GPIO_TypeDeft
+  46              		.thumb_set _ZN5IOPinC1EP12GPIO_TypeDeft,_ZN5IOPinC2EP12GPIO_TypeDeft
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccQSfxVZ.s 			page 2
+
+
+  47              		.align	1
+  48              		.global	_ZN5IOPin6toggleEv
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  53              	_ZN5IOPin6toggleEv:
+  54              	.LVL1:
+  55              	.LFB135:
+  14:Core/Src/IOPin.cpp **** 
+  15:Core/Src/IOPin.cpp **** void IOPin::toggle(){
+  56              		.loc 1 15 21 is_stmt 1 view -0
+  57              		.cfi_startproc
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+  60              		.loc 1 15 21 is_stmt 0 view .LVU5
+  61 0006 08B5     		push	{r3, lr}
+  62              		.cfi_def_cfa_offset 8
+  63              		.cfi_offset 3, -8
+  64              		.cfi_offset 14, -4
+  16:Core/Src/IOPin.cpp **** 	HAL_GPIO_TogglePin(port, pin);
+  65              		.loc 1 16 2 is_stmt 1 view .LVU6
+  66              		.loc 1 16 20 is_stmt 0 view .LVU7
+  67 0008 8188     		ldrh	r1, [r0, #4]
+  68 000a 0068     		ldr	r0, [r0]
+  69              	.LVL2:
+  70              		.loc 1 16 20 view .LVU8
+  71 000c FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  72              	.LVL3:
+  17:Core/Src/IOPin.cpp **** }
+  73              		.loc 1 17 1 view .LVU9
+  74 0010 08BD     		pop	{r3, pc}
+  75              		.cfi_endproc
+  76              	.LFE135:
+  78              	.Letext0:
+  79              		.file 2 "C:/Users/aniru.000/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-de
+  80              		.file 3 "C:/Users/aniru.000/AppData/Roaming/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-de
+  81              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g491xx.h"
+  82              		.file 5 "Core/Inc/IOPin.hpp"
+  83              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccQSfxVZ.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 IOPin.cpp
+C:\Users\aniru.000\AppData\Local\Temp\ccQSfxVZ.s:20     .text:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccQSfxVZ.s:26     .text:00000000 _ZN5IOPinC2EP12GPIO_TypeDeft
+C:\Users\aniru.000\AppData\Local\Temp\ccQSfxVZ.s:26     .text:00000000 _ZN5IOPinC1EP12GPIO_TypeDeft
+C:\Users\aniru.000\AppData\Local\Temp\ccQSfxVZ.s:53     .text:00000006 _ZN5IOPin6toggleEv
+
+UNDEFINED SYMBOLS
+HAL_GPIO_TogglePin

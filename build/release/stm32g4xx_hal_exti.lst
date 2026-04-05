@@ -1,0 +1,488 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32g4xx_hal_exti.c"
+  16              		.text
+  17              		.section	.text.HAL_EXTI_SetConfigLine,"ax",%progbits
+  18              		.align	1
+  19              		.global	HAL_EXTI_SetConfigLine
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	HAL_EXTI_SetConfigLine:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27 0000 0028     		cmp	r0, #0
+  28 0002 70D0     		beq	.L12
+  29 0004 0029     		cmp	r1, #0
+  30 0006 70D0     		beq	.L13
+  31 0008 30B5     		push	{r4, r5, lr}
+  32 000a 0A68     		ldr	r2, [r1]
+  33 000c 0260     		str	r2, [r0]
+  34 000e C2F30043 		ubfx	r3, r2, #16, #1
+  35 0012 02F01F0C 		and	ip, r2, #31
+  36 0016 0120     		movs	r0, #1
+  37 0018 00FA0CF0 		lsl	r0, r0, ip
+  38 001c 12F0007F 		tst	r2, #33554432
+  39 0020 1FD0     		beq	.L3
+  40 0022 4FEA431E 		lsl	lr, r3, #5
+  41 0026 324C     		ldr	r4, .L19
+  42 0028 5EF80440 		ldr	r4, [lr, r4]
+  43 002c 8D68     		ldr	r5, [r1, #8]
+  44 002e 15F0010F 		tst	r5, #1
+  45 0032 32D0     		beq	.L4
+  46 0034 0443     		orrs	r4, r4, r0
+  47 0036 2546     		mov	r5, r4
+  48              	.L5:
+  49 0038 2D4C     		ldr	r4, .L19
+  50 003a 4EF80450 		str	r5, [lr, r4]
+  51 003e 0434     		adds	r4, r4, #4
+  52 0040 5EF80440 		ldr	r4, [lr, r4]
+  53 0044 8D68     		ldr	r5, [r1, #8]
+  54 0046 15F0020F 		tst	r5, #2
+  55 004a 2AD0     		beq	.L6
+  56 004c 0443     		orrs	r4, r4, r0
+  57 004e 2546     		mov	r5, r4
+  58              	.L7:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s 			page 2
+
+
+  59 0050 284C     		ldr	r4, .L19+4
+  60 0052 4EF80450 		str	r5, [lr, r4]
+  61 0056 0C68     		ldr	r4, [r1]
+  62 0058 04F0C06E 		and	lr, r4, #100663296
+  63 005c BEF1C06F 		cmp	lr, #100663296
+  64 0060 23D0     		beq	.L18
+  65              	.L3:
+  66 0062 5B01     		lsls	r3, r3, #5
+  67 0064 03F18042 		add	r2, r3, #1073741824
+  68 0068 02F58232 		add	r2, r2, #66560
+  69 006c D2F800C0 		ldr	ip, [r2]
+  70 0070 4C68     		ldr	r4, [r1, #4]
+  71 0072 14F0010F 		tst	r4, #1
+  72 0076 30D0     		beq	.L8
+  73 0078 40EA0C0C 		orr	ip, r0, ip
+  74              	.L9:
+  75 007c C2F800C0 		str	ip, [r2]
+  76 0080 DFF878C0 		ldr	ip, .L19+12
+  77 0084 53F80C20 		ldr	r2, [r3, ip]
+  78 0088 4968     		ldr	r1, [r1, #4]
+  79 008a 11F0020F 		tst	r1, #2
+  80 008e 27D0     		beq	.L10
+  81 0090 0243     		orrs	r2, r2, r0
+  82              	.L11:
+  83 0092 43F80C20 		str	r2, [r3, ip]
+  84 0096 0020     		movs	r0, #0
+  85 0098 30BD     		pop	{r4, r5, pc}
+  86              	.L4:
+  87 009a 24EA0004 		bic	r4, r4, r0
+  88 009e 2546     		mov	r5, r4
+  89 00a0 CAE7     		b	.L5
+  90              	.L6:
+  91 00a2 24EA0004 		bic	r4, r4, r0
+  92 00a6 2546     		mov	r5, r4
+  93 00a8 D2E7     		b	.L7
+  94              	.L18:
+  95 00aa 4FEA9C0C 		lsr	ip, ip, #2
+  96 00ae 0CF1020C 		add	ip, ip, #2
+  97 00b2 114C     		ldr	r4, .L19+8
+  98 00b4 54F82C50 		ldr	r5, [r4, ip, lsl #2]
+  99 00b8 02F00302 		and	r2, r2, #3
+ 100 00bc 9200     		lsls	r2, r2, #2
+ 101 00be 4FF0070E 		mov	lr, #7
+ 102 00c2 0EFA02FE 		lsl	lr, lr, r2
+ 103 00c6 25EA0E0E 		bic	lr, r5, lr
+ 104 00ca CD68     		ldr	r5, [r1, #12]
+ 105 00cc 05FA02F2 		lsl	r2, r5, r2
+ 106 00d0 42EA0E02 		orr	r2, r2, lr
+ 107 00d4 44F82C20 		str	r2, [r4, ip, lsl #2]
+ 108 00d8 C3E7     		b	.L3
+ 109              	.L8:
+ 110 00da 2CEA000C 		bic	ip, ip, r0
+ 111 00de CDE7     		b	.L9
+ 112              	.L10:
+ 113 00e0 22EA0002 		bic	r2, r2, r0
+ 114 00e4 D5E7     		b	.L11
+ 115              	.L12:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s 			page 3
+
+
+ 116 00e6 0120     		movs	r0, #1
+ 117 00e8 7047     		bx	lr
+ 118              	.L13:
+ 119 00ea 0120     		movs	r0, #1
+ 120 00ec 7047     		bx	lr
+ 121              	.L20:
+ 122 00ee 00BF     		.align	2
+ 123              	.L19:
+ 124 00f0 08040140 		.word	1073808392
+ 125 00f4 0C040140 		.word	1073808396
+ 126 00f8 00000140 		.word	1073807360
+ 127 00fc 04040140 		.word	1073808388
+ 129              		.section	.text.HAL_EXTI_GetConfigLine,"ax",%progbits
+ 130              		.align	1
+ 131              		.global	HAL_EXTI_GetConfigLine
+ 132              		.syntax unified
+ 133              		.thumb
+ 134              		.thumb_func
+ 136              	HAL_EXTI_GetConfigLine:
+ 137              		@ args = 0, pretend = 0, frame = 0
+ 138              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139 0000 0028     		cmp	r0, #0
+ 140 0002 5FD0     		beq	.L28
+ 141 0004 0029     		cmp	r1, #0
+ 142 0006 5FD0     		beq	.L29
+ 143 0008 10B5     		push	{r4, lr}
+ 144 000a 0368     		ldr	r3, [r0]
+ 145 000c 0B60     		str	r3, [r1]
+ 146 000e C3F30040 		ubfx	r0, r3, #16, #1
+ 147 0012 03F01F0E 		and	lr, r3, #31
+ 148 0016 0122     		movs	r2, #1
+ 149 0018 02FA0EF2 		lsl	r2, r2, lr
+ 150 001c 4001     		lsls	r0, r0, #5
+ 151 001e 00F1804C 		add	ip, r0, #1073741824
+ 152 0022 0CF5823C 		add	ip, ip, #66560
+ 153 0026 DCF800C0 		ldr	ip, [ip]
+ 154 002a 12EA0C0F 		tst	r2, ip
+ 155 002e 34D0     		beq	.L23
+ 156 0030 4FF0010C 		mov	ip, #1
+ 157 0034 C1F804C0 		str	ip, [r1, #4]
+ 158              	.L24:
+ 159 0038 DFF898C0 		ldr	ip, .L37+4
+ 160 003c 50F80CC0 		ldr	ip, [r0, ip]
+ 161 0040 12EA0C0F 		tst	r2, ip
+ 162 0044 04D0     		beq	.L25
+ 163 0046 4C68     		ldr	r4, [r1, #4]
+ 164 0048 44F0020C 		orr	ip, r4, #2
+ 165 004c C1F804C0 		str	ip, [r1, #4]
+ 166              	.L25:
+ 167 0050 4FF0000C 		mov	ip, #0
+ 168 0054 C1F808C0 		str	ip, [r1, #8]
+ 169 0058 C1F80CC0 		str	ip, [r1, #12]
+ 170 005c 13F0007F 		tst	r3, #33554432
+ 171 0060 34D0     		beq	.L30
+ 172 0062 DFF874C0 		ldr	ip, .L37+8
+ 173 0066 50F80CC0 		ldr	ip, [r0, ip]
+ 174 006a 12EA0C0F 		tst	r2, ip
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s 			page 4
+
+
+ 175 006e 03D0     		beq	.L26
+ 176 0070 4FF0010C 		mov	ip, #1
+ 177 0074 C1F808C0 		str	ip, [r1, #8]
+ 178              	.L26:
+ 179 0078 DFF860C0 		ldr	ip, .L37+12
+ 180 007c 50F80C00 		ldr	r0, [r0, ip]
+ 181 0080 0242     		tst	r2, r0
+ 182 0082 03D0     		beq	.L27
+ 183 0084 8A68     		ldr	r2, [r1, #8]
+ 184 0086 42F00202 		orr	r2, r2, #2
+ 185 008a 8A60     		str	r2, [r1, #8]
+ 186              	.L27:
+ 187 008c 03F0C062 		and	r2, r3, #100663296
+ 188 0090 B2F1C06F 		cmp	r2, #100663296
+ 189 0094 06D0     		beq	.L36
+ 190 0096 0020     		movs	r0, #0
+ 191 0098 19E0     		b	.L22
+ 192              	.L23:
+ 193 009a 4FF0000C 		mov	ip, #0
+ 194 009e C1F804C0 		str	ip, [r1, #4]
+ 195 00a2 C9E7     		b	.L24
+ 196              	.L36:
+ 197 00a4 4FEA9E02 		lsr	r2, lr, #2
+ 198 00a8 0232     		adds	r2, r2, #2
+ 199 00aa 0948     		ldr	r0, .L37
+ 200 00ac 50F82220 		ldr	r2, [r0, r2, lsl #2]
+ 201 00b0 03F00303 		and	r3, r3, #3
+ 202 00b4 9B00     		lsls	r3, r3, #2
+ 203 00b6 22FA03F3 		lsr	r3, r2, r3
+ 204 00ba 03F00703 		and	r3, r3, #7
+ 205 00be CB60     		str	r3, [r1, #12]
+ 206 00c0 0020     		movs	r0, #0
+ 207 00c2 04E0     		b	.L22
+ 208              	.L28:
+ 209 00c4 0120     		movs	r0, #1
+ 210 00c6 7047     		bx	lr
+ 211              	.L29:
+ 212 00c8 0120     		movs	r0, #1
+ 213 00ca 7047     		bx	lr
+ 214              	.L30:
+ 215 00cc 0020     		movs	r0, #0
+ 216              	.L22:
+ 217 00ce 10BD     		pop	{r4, pc}
+ 218              	.L38:
+ 219              		.align	2
+ 220              	.L37:
+ 221 00d0 00000140 		.word	1073807360
+ 222 00d4 04040140 		.word	1073808388
+ 223 00d8 08040140 		.word	1073808392
+ 224 00dc 0C040140 		.word	1073808396
+ 226              		.section	.text.HAL_EXTI_ClearConfigLine,"ax",%progbits
+ 227              		.align	1
+ 228              		.global	HAL_EXTI_ClearConfigLine
+ 229              		.syntax unified
+ 230              		.thumb
+ 231              		.thumb_func
+ 233              	HAL_EXTI_ClearConfigLine:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s 			page 5
+
+
+ 234              		@ args = 0, pretend = 0, frame = 0
+ 235              		@ frame_needed = 0, uses_anonymous_args = 0
+ 236 0000 0028     		cmp	r0, #0
+ 237 0002 43D0     		beq	.L41
+ 238 0004 30B5     		push	{r4, r5, lr}
+ 239 0006 8646     		mov	lr, r0
+ 240 0008 D0F800C0 		ldr	ip, [r0]
+ 241 000c CCF30043 		ubfx	r3, ip, #16, #1
+ 242 0010 0CF01F02 		and	r2, ip, #31
+ 243 0014 1146     		mov	r1, r2
+ 244 0016 1546     		mov	r5, r2
+ 245 0018 0122     		movs	r2, #1
+ 246 001a 8A40     		lsls	r2, r2, r1
+ 247 001c 5B01     		lsls	r3, r3, #5
+ 248 001e 03F18041 		add	r1, r3, #1073741824
+ 249 0022 01F58231 		add	r1, r1, #66560
+ 250 0026 0868     		ldr	r0, [r1]
+ 251 0028 D443     		mvns	r4, r2
+ 252 002a 20EA0200 		bic	r0, r0, r2
+ 253 002e 0860     		str	r0, [r1]
+ 254 0030 1848     		ldr	r0, .L49
+ 255 0032 1958     		ldr	r1, [r3, r0]
+ 256 0034 21EA0202 		bic	r2, r1, r2
+ 257 0038 1A50     		str	r2, [r3, r0]
+ 258 003a DEF80020 		ldr	r2, [lr]
+ 259 003e 12F0007F 		tst	r2, #33554432
+ 260 0042 25D0     		beq	.L42
+ 261 0044 1449     		ldr	r1, .L49+4
+ 262 0046 5A58     		ldr	r2, [r3, r1]
+ 263 0048 2240     		ands	r2, r2, r4
+ 264 004a 5A50     		str	r2, [r3, r1]
+ 265 004c 0431     		adds	r1, r1, #4
+ 266 004e 5A58     		ldr	r2, [r3, r1]
+ 267 0050 2240     		ands	r2, r2, r4
+ 268 0052 5A50     		str	r2, [r3, r1]
+ 269 0054 DEF80030 		ldr	r3, [lr]
+ 270 0058 03F0C063 		and	r3, r3, #100663296
+ 271 005c B3F1C06F 		cmp	r3, #100663296
+ 272 0060 01D0     		beq	.L48
+ 273 0062 0020     		movs	r0, #0
+ 274 0064 15E0     		b	.L40
+ 275              	.L48:
+ 276 0066 AB08     		lsrs	r3, r5, #2
+ 277 0068 A0F20440 		subw	r0, r0, #1028
+ 278 006c 0233     		adds	r3, r3, #2
+ 279 006e 50F82320 		ldr	r2, [r0, r3, lsl #2]
+ 280 0072 0CF0030C 		and	ip, ip, #3
+ 281 0076 4FEA8C0C 		lsl	ip, ip, #2
+ 282 007a 0721     		movs	r1, #7
+ 283 007c 01FA0CF1 		lsl	r1, r1, ip
+ 284 0080 22EA0102 		bic	r2, r2, r1
+ 285 0084 40F82320 		str	r2, [r0, r3, lsl #2]
+ 286 0088 0020     		movs	r0, #0
+ 287 008a 02E0     		b	.L40
+ 288              	.L41:
+ 289 008c 0120     		movs	r0, #1
+ 290 008e 7047     		bx	lr
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s 			page 6
+
+
+ 291              	.L42:
+ 292 0090 0020     		movs	r0, #0
+ 293              	.L40:
+ 294 0092 30BD     		pop	{r4, r5, pc}
+ 295              	.L50:
+ 296              		.align	2
+ 297              	.L49:
+ 298 0094 04040140 		.word	1073808388
+ 299 0098 08040140 		.word	1073808392
+ 301              		.section	.text.HAL_EXTI_RegisterCallback,"ax",%progbits
+ 302              		.align	1
+ 303              		.global	HAL_EXTI_RegisterCallback
+ 304              		.syntax unified
+ 305              		.thumb
+ 306              		.thumb_func
+ 308              	HAL_EXTI_RegisterCallback:
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 311              		@ link register save eliminated.
+ 312 0000 11B9     		cbnz	r1, .L52
+ 313 0002 4260     		str	r2, [r0, #4]
+ 314 0004 0846     		mov	r0, r1
+ 315 0006 7047     		bx	lr
+ 316              	.L52:
+ 317 0008 0023     		movs	r3, #0
+ 318 000a 4360     		str	r3, [r0, #4]
+ 319 000c 0120     		movs	r0, #1
+ 320 000e 7047     		bx	lr
+ 322              		.section	.text.HAL_EXTI_GetHandle,"ax",%progbits
+ 323              		.align	1
+ 324              		.global	HAL_EXTI_GetHandle
+ 325              		.syntax unified
+ 326              		.thumb
+ 327              		.thumb_func
+ 329              	HAL_EXTI_GetHandle:
+ 330              		@ args = 0, pretend = 0, frame = 0
+ 331              		@ frame_needed = 0, uses_anonymous_args = 0
+ 332              		@ link register save eliminated.
+ 333 0000 10B1     		cbz	r0, .L56
+ 334 0002 0160     		str	r1, [r0]
+ 335 0004 0020     		movs	r0, #0
+ 336 0006 7047     		bx	lr
+ 337              	.L56:
+ 338 0008 0120     		movs	r0, #1
+ 339 000a 7047     		bx	lr
+ 341              		.section	.text.HAL_EXTI_IRQHandler,"ax",%progbits
+ 342              		.align	1
+ 343              		.global	HAL_EXTI_IRQHandler
+ 344              		.syntax unified
+ 345              		.thumb
+ 346              		.thumb_func
+ 348              	HAL_EXTI_IRQHandler:
+ 349              		@ args = 0, pretend = 0, frame = 0
+ 350              		@ frame_needed = 0, uses_anonymous_args = 0
+ 351 0000 08B5     		push	{r3, lr}
+ 352 0002 0368     		ldr	r3, [r0]
+ 353 0004 C3F30042 		ubfx	r2, r3, #16, #1
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s 			page 7
+
+
+ 354 0008 03F01F03 		and	r3, r3, #31
+ 355 000c 0121     		movs	r1, #1
+ 356 000e 9940     		lsls	r1, r1, r3
+ 357 0010 5301     		lsls	r3, r2, #5
+ 358 0012 054A     		ldr	r2, .L60
+ 359 0014 53F802C0 		ldr	ip, [r3, r2]
+ 360 0018 1CEA010F 		tst	ip, r1
+ 361 001c 03D0     		beq	.L57
+ 362 001e 9950     		str	r1, [r3, r2]
+ 363 0020 4368     		ldr	r3, [r0, #4]
+ 364 0022 03B1     		cbz	r3, .L57
+ 365 0024 9847     		blx	r3
+ 366              	.L57:
+ 367 0026 08BD     		pop	{r3, pc}
+ 368              	.L61:
+ 369              		.align	2
+ 370              	.L60:
+ 371 0028 14040140 		.word	1073808404
+ 373              		.section	.text.HAL_EXTI_GetPending,"ax",%progbits
+ 374              		.align	1
+ 375              		.global	HAL_EXTI_GetPending
+ 376              		.syntax unified
+ 377              		.thumb
+ 378              		.thumb_func
+ 380              	HAL_EXTI_GetPending:
+ 381              		@ args = 0, pretend = 0, frame = 0
+ 382              		@ frame_needed = 0, uses_anonymous_args = 0
+ 383              		@ link register save eliminated.
+ 384 0000 0368     		ldr	r3, [r0]
+ 385 0002 C3F30041 		ubfx	r1, r3, #16, #1
+ 386 0006 03F01F03 		and	r3, r3, #31
+ 387 000a 0122     		movs	r2, #1
+ 388 000c 9A40     		lsls	r2, r2, r3
+ 389 000e 4901     		lsls	r1, r1, #5
+ 390 0010 0248     		ldr	r0, .L63
+ 391 0012 0858     		ldr	r0, [r1, r0]
+ 392 0014 1040     		ands	r0, r0, r2
+ 393 0016 D840     		lsrs	r0, r0, r3
+ 394 0018 7047     		bx	lr
+ 395              	.L64:
+ 396 001a 00BF     		.align	2
+ 397              	.L63:
+ 398 001c 14040140 		.word	1073808404
+ 400              		.section	.text.HAL_EXTI_ClearPending,"ax",%progbits
+ 401              		.align	1
+ 402              		.global	HAL_EXTI_ClearPending
+ 403              		.syntax unified
+ 404              		.thumb
+ 405              		.thumb_func
+ 407              	HAL_EXTI_ClearPending:
+ 408              		@ args = 0, pretend = 0, frame = 0
+ 409              		@ frame_needed = 0, uses_anonymous_args = 0
+ 410              		@ link register save eliminated.
+ 411 0000 0368     		ldr	r3, [r0]
+ 412 0002 C3F30042 		ubfx	r2, r3, #16, #1
+ 413 0006 03F01F03 		and	r3, r3, #31
+ 414 000a 0121     		movs	r1, #1
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s 			page 8
+
+
+ 415 000c 9940     		lsls	r1, r1, r3
+ 416 000e 5301     		lsls	r3, r2, #5
+ 417 0010 014A     		ldr	r2, .L66
+ 418 0012 9950     		str	r1, [r3, r2]
+ 419 0014 7047     		bx	lr
+ 420              	.L67:
+ 421 0016 00BF     		.align	2
+ 422              	.L66:
+ 423 0018 14040140 		.word	1073808404
+ 425              		.section	.text.HAL_EXTI_GenerateSWI,"ax",%progbits
+ 426              		.align	1
+ 427              		.global	HAL_EXTI_GenerateSWI
+ 428              		.syntax unified
+ 429              		.thumb
+ 430              		.thumb_func
+ 432              	HAL_EXTI_GenerateSWI:
+ 433              		@ args = 0, pretend = 0, frame = 0
+ 434              		@ frame_needed = 0, uses_anonymous_args = 0
+ 435              		@ link register save eliminated.
+ 436 0000 0368     		ldr	r3, [r0]
+ 437 0002 C3F30042 		ubfx	r2, r3, #16, #1
+ 438 0006 03F01F03 		and	r3, r3, #31
+ 439 000a 0121     		movs	r1, #1
+ 440 000c 9940     		lsls	r1, r1, r3
+ 441 000e 5301     		lsls	r3, r2, #5
+ 442 0010 014A     		ldr	r2, .L69
+ 443 0012 9950     		str	r1, [r3, r2]
+ 444 0014 7047     		bx	lr
+ 445              	.L70:
+ 446 0016 00BF     		.align	2
+ 447              	.L69:
+ 448 0018 10040140 		.word	1073808400
+ 450              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 15.2.1 20251203"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32g4xx_hal_exti.c
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:18     .text.HAL_EXTI_SetConfigLine:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:24     .text.HAL_EXTI_SetConfigLine:00000000 HAL_EXTI_SetConfigLine
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:124    .text.HAL_EXTI_SetConfigLine:000000f0 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:130    .text.HAL_EXTI_GetConfigLine:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:136    .text.HAL_EXTI_GetConfigLine:00000000 HAL_EXTI_GetConfigLine
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:221    .text.HAL_EXTI_GetConfigLine:000000d0 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:227    .text.HAL_EXTI_ClearConfigLine:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:233    .text.HAL_EXTI_ClearConfigLine:00000000 HAL_EXTI_ClearConfigLine
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:298    .text.HAL_EXTI_ClearConfigLine:00000094 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:302    .text.HAL_EXTI_RegisterCallback:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:308    .text.HAL_EXTI_RegisterCallback:00000000 HAL_EXTI_RegisterCallback
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:323    .text.HAL_EXTI_GetHandle:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:329    .text.HAL_EXTI_GetHandle:00000000 HAL_EXTI_GetHandle
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:342    .text.HAL_EXTI_IRQHandler:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:348    .text.HAL_EXTI_IRQHandler:00000000 HAL_EXTI_IRQHandler
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:371    .text.HAL_EXTI_IRQHandler:00000028 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:374    .text.HAL_EXTI_GetPending:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:380    .text.HAL_EXTI_GetPending:00000000 HAL_EXTI_GetPending
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:398    .text.HAL_EXTI_GetPending:0000001c $d
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:401    .text.HAL_EXTI_ClearPending:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:407    .text.HAL_EXTI_ClearPending:00000000 HAL_EXTI_ClearPending
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:423    .text.HAL_EXTI_ClearPending:00000018 $d
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:426    .text.HAL_EXTI_GenerateSWI:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:432    .text.HAL_EXTI_GenerateSWI:00000000 HAL_EXTI_GenerateSWI
+C:\Users\aniru.000\AppData\Local\Temp\ccoOMHsg.s:448    .text.HAL_EXTI_GenerateSWI:00000018 $d
+
+NO UNDEFINED SYMBOLS

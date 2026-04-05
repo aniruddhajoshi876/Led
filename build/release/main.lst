@@ -1,0 +1,155 @@
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              		.section	.text.Error_Handler,"ax",%progbits
+  18              		.align	1
+  19              		.global	Error_Handler
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	Error_Handler:
+  25              		@ Volatile: function does not return.
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29              		.syntax unified
+  30              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  31 0000 72B6     		cpsid i
+  32              	@ 0 "" 2
+  33              		.thumb
+  34              		.syntax unified
+  35              	.L2:
+  36 0002 FEE7     		b	.L2
+  38              		.section	.text.SystemClock_Config,"ax",%progbits
+  39              		.align	1
+  40              		.global	SystemClock_Config
+  41              		.syntax unified
+  42              		.thumb
+  43              		.thumb_func
+  45              	SystemClock_Config:
+  46              		@ args = 0, pretend = 0, frame = 80
+  47              		@ frame_needed = 0, uses_anonymous_args = 0
+  48 0000 30B5     		push	{r4, r5, lr}
+  49 0002 95B0     		sub	sp, sp, #84
+  50 0004 06AD     		add	r5, sp, #24
+  51 0006 3822     		movs	r2, #56
+  52 0008 0021     		movs	r1, #0
+  53 000a 2846     		mov	r0, r5
+  54 000c FFF7FEFF 		bl	memset
+  55 0010 0024     		movs	r4, #0
+  56 0012 0194     		str	r4, [sp, #4]
+  57 0014 0294     		str	r4, [sp, #8]
+  58 0016 0394     		str	r4, [sp, #12]
+  59 0018 0494     		str	r4, [sp, #16]
+  60 001a 0594     		str	r4, [sp, #20]
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s 			page 2
+
+
+  61 001c 4FF40070 		mov	r0, #512
+  62 0020 FFF7FEFF 		bl	HAL_PWREx_ControlVoltageScaling
+  63 0024 0223     		movs	r3, #2
+  64 0026 0693     		str	r3, [sp, #24]
+  65 0028 4FF48073 		mov	r3, #256
+  66 002c 0993     		str	r3, [sp, #36]
+  67 002e 4023     		movs	r3, #64
+  68 0030 0A93     		str	r3, [sp, #40]
+  69 0032 0D94     		str	r4, [sp, #52]
+  70 0034 2846     		mov	r0, r5
+  71 0036 FFF7FEFF 		bl	HAL_RCC_OscConfig
+  72 003a 68B9     		cbnz	r0, .L7
+  73 003c 0F23     		movs	r3, #15
+  74 003e 0193     		str	r3, [sp, #4]
+  75 0040 0123     		movs	r3, #1
+  76 0042 0293     		str	r3, [sp, #8]
+  77 0044 0146     		mov	r1, r0
+  78 0046 0390     		str	r0, [sp, #12]
+  79 0048 0490     		str	r0, [sp, #16]
+  80 004a 0590     		str	r0, [sp, #20]
+  81 004c 01A8     		add	r0, sp, #4
+  82 004e FFF7FEFF 		bl	HAL_RCC_ClockConfig
+  83 0052 18B9     		cbnz	r0, .L8
+  84 0054 15B0     		add	sp, sp, #84
+  85              		@ sp needed
+  86 0056 30BD     		pop	{r4, r5, pc}
+  87              	.L7:
+  88 0058 FFF7FEFF 		bl	Error_Handler
+  89              	.L8:
+  90 005c FFF7FEFF 		bl	Error_Handler
+  92              		.section	.text.main,"ax",%progbits
+  93              		.align	1
+  94              		.global	main
+  95              		.syntax unified
+  96              		.thumb
+  97              		.thumb_func
+  99              	main:
+ 100              		@ Volatile: function does not return.
+ 101              		@ args = 0, pretend = 0, frame = 0
+ 102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103 0000 08B5     		push	{r3, lr}
+ 104 0002 FFF7FEFF 		bl	HAL_Init
+ 105 0006 FFF7FEFF 		bl	SystemClock_Config
+ 106 000a FFF7FEFF 		bl	MX_GPIO_Init
+ 107 000e FFF7FEFF 		bl	bm_create
+ 108 0012 054B     		ldr	r3, .L12
+ 109 0014 1860     		str	r0, [r3]
+ 110              	.L10:
+ 111 0016 044B     		ldr	r3, .L12
+ 112 0018 1868     		ldr	r0, [r3]
+ 113 001a FFF7FEFF 		bl	bm_execute
+ 114 001e 4FF47A70 		mov	r0, #1000
+ 115 0022 FFF7FEFF 		bl	HAL_Delay
+ 116 0026 F6E7     		b	.L10
+ 117              	.L13:
+ 118              		.align	2
+ 119              	.L12:
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s 			page 3
+
+
+ 120 0028 00000000 		.word	bm
+ 122              		.global	bm
+ 123              		.section	.bss.bm,"aw",%nobits
+ 124              		.align	2
+ 127              	bm:
+ 128 0000 00000000 		.space	4
+ 129              		.ident	"GCC: (xPack GNU Arm Embedded GCC x86_64) 15.2.1 20251203"
+ARM GAS  C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s:18     .text.Error_Handler:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s:24     .text.Error_Handler:00000000 Error_Handler
+C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s:39     .text.SystemClock_Config:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s:45     .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s:93     .text.main:00000000 $t
+C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s:99     .text.main:00000000 main
+C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s:120    .text.main:00000028 $d
+C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s:127    .bss.bm:00000000 bm
+C:\Users\aniru.000\AppData\Local\Temp\cc1lZh6P.s:124    .bss.bm:00000000 $d
+
+UNDEFINED SYMBOLS
+memset
+HAL_PWREx_ControlVoltageScaling
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
+HAL_Init
+MX_GPIO_Init
+bm_create
+bm_execute
+HAL_Delay
